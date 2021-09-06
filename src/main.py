@@ -1,7 +1,7 @@
 import sys, os
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow, QHBoxLayout, QFrame,QPushButton
 
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
@@ -26,13 +26,29 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Mouse_Action_Btn.clicked.connect()
         self.NetworkData_Btn.clicked.connect()
         '''
+
+        # Used to add other ui elements to the other frames
+        # self.Content_Container
+        self.Content_Container.setStyleSheet('background: red ;')
+        btn = QPushButton("Oh please god press me ")
+        layout = QHBoxLayout()
+        layout.addWidget(btn)
+
+        self.Content_Container.setLayout(layout)
+
+
+
 #main
 app = QApplication(sys.argv)
 MyFrame= OuterFrame()
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(MyFrame)
-widget.resize(1400,900)
-widget.show()
+MyFrame.show()
+
+# Adding my test widget here
+
+# widget = QtWidgets.QStackedWidget() # What it this
+# widget.addWidget(MyFrame)
+# widget.resize(1400,900)
+# widget.show()
 try:
     sys.exit(app.exec_())
 except:
