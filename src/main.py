@@ -14,10 +14,15 @@ class SettingsWidget(QWidget): # index 1
         super().__init__()
         loadUi(os.getcwd() + "/views/SettingsWidget.ui", self)
 
-class VisualizationWidget(QWidget): # index 2\
+class VisualizationWidget(QWidget): # index 2
     def __init__(self):
         super().__init__()
         loadUi(os.getcwd() + "/views/VisualizationWidget.ui", self)
+
+class TransactionWidget(QWidget): # index 3
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/TransactionWidget.ui", self)
 
 
 class ExportData(QWidget):
@@ -53,7 +58,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
        
         
         
-        self.Transactions_Btn.clicked.connect()
+        
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
         self.Keystroke_Btn.clicked.connect()
@@ -91,6 +96,11 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.VisualizationWidget)
         self.Visualize_Btn.clicked.connect(self.visualizationWidgetClickHandler)
 
+        # Adding the Transaction Widget - Index 3
+        self.TransactionWidget = TransactionWidget()
+        self.contentStackedWidget.addWidget(self.TransactionWidget)
+        self.Transactions_Btn.clicked.connect(self.transactionWidgetClickHandler)
+
         # # Adding The Export Widget
         # self.ExportDataWidget = ExportData()
         # self.contentStackedWidget.addWidget(self.ExportDataWidget) # index 0
@@ -118,6 +128,9 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
     def visualizationWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(2)
+
+    def transactionWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(3)
 
 
     def exportDataClickHandler(self):  # index 0
