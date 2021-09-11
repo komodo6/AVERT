@@ -1,7 +1,13 @@
+
 import sys, os
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow, QHBoxLayout, QFrame, QPushButton, QStackedWidget
+
+class SyncWidget(QWidget): # index 0
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/SyncWidget.ui", self)
 
 class ExportData(QWidget):
     def __init__(self):
@@ -18,6 +24,11 @@ class SearchWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/Search.ui", self)
 
+class DeleteWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/DeleteWidget.ui", self)
+
 
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
@@ -28,7 +39,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         ''' The following lines are commented so that it compiles normally, uncomment lines or move them out of this commented area to work on the feature
         self.Min_Recording_Btn.clicked.connect()# link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
-        self.Sync_Btn.clicked.connect()
+       
         self.Settings_Btn.clicked.connect()
         self.Visualize_Btn.clicked.connect()
         self.Transactions_Btn.clicked.connect()
@@ -40,9 +51,11 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Mouse_Action_Btn.clicked.connect()
         self.NetworkData_Btn.clicked.connect()
         '''
-        self.Export_Btn.clicked.connect(self.exportDataClickHandler)
-        self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
-        self.Search_Left_Frame_Btn.clicked.connect(self.searchClickHandler)
+
+        # self.Export_Btn.clicked.connect(self.exportDataClickHandler)
+        # self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
+        # self.Search_Left_Frame_Btn.clicked.connect(self.searchClickHandler)
+        # self.Delete_Btn.clicked.connect(self.deleteClickHandler)
 
         # The Code Below is to setup the various pages for changing the content pages
 
@@ -52,20 +65,33 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         # Stacked Widget to Contain the content to be changed based on the coresponding button presses
         self.contentStackedWidget = QStackedWidget()
 
-        # Adding The Export Widget
-        self.ExportDataWidget = ExportData()
-        self.contentStackedWidget.addWidget(self.ExportDataWidget) # index 0
+        # Adding the Sync Widget - Index 0
+        self.SyncWidget = SyncWidget()
+        self.contentStackedWidget.addWidget(self.SyncWidget) # index 0
+        self.Sync_Btn.clicked.connect(self.syncWidgetClickHandlerS)
 
-        # Adding The Annotate Widget
-        self.AnnotateDataWidget = AnnotateData()
-        self.contentStackedWidget.addWidget(self.AnnotateDataWidget) # index 1
-
-        # Adding The Search Widget
-        self.SearchWidget = SearchWidget()
-        self.contentStackedWidget.addWidget(self.SearchWidget) # index 2
+        # # Adding The Export Widget
+        # self.ExportDataWidget = ExportData()
+        # self.contentStackedWidget.addWidget(self.ExportDataWidget) # index 0
+        #
+        # # Adding The Annotate Widget
+        # self.AnnotateDataWidget = AnnotateData()
+        # self.contentStackedWidget.addWidget(self.AnnotateDataWidget) # index 1
+        #
+        # # Adding The Search Widget
+        # self.SearchWidget = SearchWidget()
+        # self.contentStackedWidget.addWidget(self.SearchWidget) # index2
+        #
+        # # Adding The Delete Widget
+        # self.DeleteWidget = DeleteWidget()
+        # self.contentStackedWidget.addWidget(self.DeleteWidget)  # index3
 
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
+
+    def syncWidgetClickHandler(self): # index 0
+        self.contentStackedWidget.setCurrentIndex(0)
+
 
     def exportDataClickHandler(self):  # index 0
         self.contentStackedWidget.setCurrentIndex(0)
@@ -78,9 +104,13 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.setCurrentIndex(2)
         print("Search")
 
+    def deleteClickHandler(self):  # index 2
+        self.contentStackedWidget.setCurrentIndex(3)
+        print("Delete")
+
 #main
 app = QApplication(sys.argv)
-MyFrame= OuterFrame()
+MyFrame = OuterFrame()
 MyFrame.show()
 
 # Adding my test widget here
