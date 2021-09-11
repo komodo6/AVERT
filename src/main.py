@@ -14,6 +14,11 @@ class SettingsWidget(QWidget): # index 1
         super().__init__()
         loadUi(os.getcwd() + "/views/SettingsWidget.ui", self)
 
+class VisualizationWidget(QWidget): # index 2\
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/VisualizationWidget.ui", self)
+
 
 class ExportData(QWidget):
     def __init__(self):
@@ -47,7 +52,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
        
         
-        self.Visualize_Btn.clicked.connect()
+        
         self.Transactions_Btn.clicked.connect()
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
@@ -80,6 +85,12 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.SettingsWidget = SettingsWidget()
         self.contentStackedWidget.addWidget(self.SettingsWidget)
         self.Settings_Btn.clicked.connect(self.settingsWidgetClickHandler)
+
+        # Adding the Settings Widget - Index 2
+        self.VisualizationWidget = VisualizationWidget()
+        self.contentStackedWidget.addWidget(self.VisualizationWidget)
+        self.Visualize_Btn.clicked.connect(self.visualizationWidgetClickHandler)
+
         # # Adding The Export Widget
         # self.ExportDataWidget = ExportData()
         # self.contentStackedWidget.addWidget(self.ExportDataWidget) # index 0
@@ -99,11 +110,14 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
 
-    def syncWidgetClickHandler(self): # index 0
+    def syncWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(0)
 
-    def settingsWidgetClickHandler(self): # index 0
+    def settingsWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(1)
+
+    def visualizationWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(2)
 
 
     def exportDataClickHandler(self):  # index 0
