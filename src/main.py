@@ -9,6 +9,12 @@ class SyncWidget(QWidget): # index 0
         super().__init__()
         loadUi(os.getcwd() + "/views/SyncWidget.ui", self)
 
+class SettingsWidget(QWidget): # index 1
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/SettingsWidget.ui", self)
+
+
 class ExportData(QWidget):
     def __init__(self):
         super().__init__()
@@ -40,7 +46,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Min_Recording_Btn.clicked.connect()# link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
        
-        self.Settings_Btn.clicked.connect()
+        
         self.Visualize_Btn.clicked.connect()
         self.Transactions_Btn.clicked.connect()
         self.Delete_Btn.clicked.connect()
@@ -67,9 +73,13 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
         # Adding the Sync Widget - Index 0
         self.SyncWidget = SyncWidget()
-        self.contentStackedWidget.addWidget(self.SyncWidget) # index 0
-        self.Sync_Btn.clicked.connect(self.syncWidgetClickHandlerS)
+        self.contentStackedWidget.addWidget(self.SyncWidget)
+        self.Sync_Btn.clicked.connect(self.syncWidgetClickHandler)
 
+        # Adding the Settings Widget - Index 1
+        self.SettingsWidget = SettingsWidget()
+        self.contentStackedWidget.addWidget(self.SettingsWidget)
+        self.Settings_Btn.clicked.connect(self.settingsWidgetClickHandler)
         # # Adding The Export Widget
         # self.ExportDataWidget = ExportData()
         # self.contentStackedWidget.addWidget(self.ExportDataWidget) # index 0
@@ -91,6 +101,9 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
     def syncWidgetClickHandler(self): # index 0
         self.contentStackedWidget.setCurrentIndex(0)
+
+    def settingsWidgetClickHandler(self): # index 0
+        self.contentStackedWidget.setCurrentIndex(1)
 
 
     def exportDataClickHandler(self):  # index 0
