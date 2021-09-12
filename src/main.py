@@ -58,8 +58,12 @@ class BarGraphWidget(QWidget):
 class PieChartWidget(QWidget):
     def __init__(self):
         super().__init__()
-        loadUi(os.getcwd() + "/views/BarGraphWidget.ui", self)
+        loadUi(os.getcwd() + "/views/PieChartWidget.ui", self)
 
+class CpuUsageWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/CpuUsageWidget.ui", self)
 
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
@@ -139,6 +143,16 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.BarGraphWidget)
         self.VisualizationWidget.Bar_Graph.clicked.connect(self.barGarphClickHandler)
 
+        # Adding the Pie Chart Widget - Index 10
+        self.PieChartWidget = PieChartWidget()
+        self.contentStackedWidget.addWidget(self.PieChartWidget)
+        self.VisualizationWidget.Pie_Chart.clicked.connect(self.pieChartClickHandler)
+
+        # Adding the Pie Chart Widget - Index 11
+        self.CpuUsageWidget = CpuUsageWidget()
+        self.contentStackedWidget.addWidget(self.CpuUsageWidget)
+        self.VisualizationWidget.CPUS_Usage.clicked.connect(self.cpuUsageClickHandler)
+
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
 
@@ -174,6 +188,11 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
     def barGarphClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(9)
 
+    def pieChartClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(10)
+
+    def cpuUsageClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(11)
 
 
 
