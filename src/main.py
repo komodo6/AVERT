@@ -45,6 +45,21 @@ class AnnotateData(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/AnnotateWidget.ui", self)
 
+class TimelineWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/TimelineWidget.ui", self)
+
+class BarGraphWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/BarGraphWidget.ui", self)
+
+class PieChartWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/BarGraphWidget.ui", self)
+
 
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
@@ -82,7 +97,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.SettingsWidget)
         self.Settings_Btn.clicked.connect(self.settingsWidgetClickHandler)
 
-        # Adding the Settings Widget - Index 2
+        # Adding the Visualization Widget - Index 2
         self.VisualizationWidget = VisualizationWidget()
         self.contentStackedWidget.addWidget(self.VisualizationWidget)
         self.Visualize_Btn.clicked.connect(self.visualizationWidgetClickHandler)
@@ -113,8 +128,16 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.AnnotateDataWidget)
         self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
 
+        # The Code Below is to setup the various pages for changing the visualization page
+        # Adding the Timeline Widget - Index 8
+        self.TimelineWidget = TimelineWidget()
+        self.contentStackedWidget.addWidget(self.TimelineWidget)
+        self.VisualizationWidget.Timeline.clicked.connect(self.timelineClickHandler)
 
-
+        # Adding the Timeline Widget - Index 9
+        self.BarGraphWidget = BarGraphWidget()
+        self.contentStackedWidget.addWidget(self.BarGraphWidget)
+        self.VisualizationWidget.Bar_Graph.clicked.connect(self.barGarphClickHandler)
 
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
@@ -138,12 +161,18 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
     def deleteClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(5)
 
-    def searchClickHandler(self):  # index 2
+    def searchClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(6)
         print("Search")
 
-    def annotateDataClickHandler(self):  # index 1
+    def annotateDataClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(7)
+
+    def timelineClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(8)
+
+    def barGarphClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(9)
 
 
 
