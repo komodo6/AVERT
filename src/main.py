@@ -65,6 +65,16 @@ class CpuUsageWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/CpuUsageWidget.ui", self)
 
+class VideoListWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/VideoListWidget.ui", self)
+
+class VideoGraphWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/VideoGridWidget.ui", self)
+
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -77,7 +87,6 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
         self.Keystroke_Btn.clicked.connect()
-        self.Video_Btn.clicked.connect()
         self.ScreenShot_Btn.clicked.connect()
         self.Mouse_Action_Btn.clicked.connect()
         self.NetworkData_Btn.clicked.connect()
@@ -151,7 +160,21 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         # Adding the Pie Chart Widget - Index 11
         self.CpuUsageWidget = CpuUsageWidget()
         self.contentStackedWidget.addWidget(self.CpuUsageWidget)
-        self.VisualizationWidget.CPUS_Usage.clicked.connect(self.cpuUsageClickHandler)
+        self.VisualizationWidget.CPU_Usage.clicked.connect(self.cpuUsageClickHandler)
+
+        # Below are for the Video Widgets 12 and 13
+        self.VideoListWidget = VideoListWidget()
+        self.contentStackedWidget.addWidget(self.VideoListWidget)
+        self.Video_Btn.clicked.connect(self.videoListWidgetClickHandler)
+
+        self.VideoGridWidget = VideoGraphWidget()
+        self.contentStackedWidget.addWidget(self.VideoGridWidget)
+        self.VideoListWidget.Grid_View.clicked.connect(self.videoGridWidgetClickHandler)
+
+        self.VideoGridWidget.List_View.clicked.connect(self.videoListWidgetClickHandler)
+
+
+
 
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
@@ -193,6 +216,12 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
     def cpuUsageClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(11)
+
+    def videoListWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(12)
+
+    def videoGridWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(13)
 
 
 
