@@ -25,10 +25,15 @@ class TransactionWidget(QWidget): # index 3
         loadUi(os.getcwd() + "/views/TransactionWidget.ui", self)
 
 
-class ExportData(QWidget):
+class ExportWidget(QWidget):
     def __init__(self):
         super().__init__()
         loadUi(os.getcwd() + "/views/ExportData.ui", self)
+
+class DeleteWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/DeleteWidget.ui", self)
 
 class AnnotateData(QWidget):
     def __init__(self):
@@ -40,10 +45,7 @@ class SearchWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/Search.ui", self)
 
-class DeleteWidget(QWidget):
-    def __init__(self):
-        super().__init__()
-        loadUi(os.getcwd() + "/views/DeleteWidget.ui", self)
+
 
 
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
@@ -68,10 +70,10 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.NetworkData_Btn.clicked.connect()
         '''
 
-        # self.Export_Btn.clicked.connect(self.exportDataClickHandler)
+
         # self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
         # self.Search_Left_Frame_Btn.clicked.connect(self.searchClickHandler)
-        # self.Delete_Btn.clicked.connect(self.deleteClickHandler)
+
 
         # The Code Below is to setup the various pages for changing the content pages
 
@@ -101,10 +103,17 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.TransactionWidget)
         self.Transactions_Btn.clicked.connect(self.transactionWidgetClickHandler)
 
-        # # Adding The Export Widget
-        # self.ExportDataWidget = ExportData()
-        # self.contentStackedWidget.addWidget(self.ExportDataWidget) # index 0
+        # Adding The Export Widget - Index 4
+        self.ExportDataWidget = ExportWidget()
+        self.contentStackedWidget.addWidget(self.ExportDataWidget)
+        self.Export_Btn.clicked.connect(self.exportWidgetClickHandler)
         #
+
+        # Adding The Delete Widget - Index 5
+        self.DeleteWidget = DeleteWidget()
+        self.contentStackedWidget.addWidget(self.DeleteWidget)
+        self.Delete_Btn.clicked.connect(self.deleteClickHandler)
+
         # # Adding The Annotate Widget
         # self.AnnotateDataWidget = AnnotateData()
         # self.contentStackedWidget.addWidget(self.AnnotateDataWidget) # index 1
@@ -113,9 +122,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         # self.SearchWidget = SearchWidget()
         # self.contentStackedWidget.addWidget(self.SearchWidget) # index2
         #
-        # # Adding The Delete Widget
-        # self.DeleteWidget = DeleteWidget()
-        # self.contentStackedWidget.addWidget(self.DeleteWidget)  # index3
+
 
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
@@ -133,9 +140,12 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.setCurrentIndex(3)
 
 
-    def exportDataClickHandler(self):  # index 0
-        self.contentStackedWidget.setCurrentIndex(0)
-        print("data")
+    def exportWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(4)
+
+    def deleteClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(5)
+
 
     def annotateDataClickHandler(self):  # index 1
         self.contentStackedWidget.setCurrentIndex(1)
@@ -144,9 +154,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.setCurrentIndex(2)
         print("Search")
 
-    def deleteClickHandler(self):  # index 2
-        self.contentStackedWidget.setCurrentIndex(3)
-        print("Delete")
+
 
 #main
 app = QApplication(sys.argv)
