@@ -2,7 +2,7 @@ import sys, os
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow
-
+#df
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
