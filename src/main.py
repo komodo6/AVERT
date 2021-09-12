@@ -90,6 +90,11 @@ class MouseActionsWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/MouseActionsWidget.ui", self)
 
+class PacketWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/PacketWidget.ui", self)
+
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -104,7 +109,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         
         
         
-        self.NetworkData_Btn.clicked.connect()
+        
         '''
 
         # The Code Below is to setup the various pages for changing the content pages
@@ -202,6 +207,10 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.MouseActionsWidget)
         self.Mouse_Action_Btn.clicked.connect(self.mouseActionsWidgetClickHandler)
 
+        self.PacketWidget = PacketWidget()
+        self.contentStackedWidget.addWidget(self.PacketWidget)
+        self.NetworkData_Btn.clicked.connect(self.packetWidgetClickHandler)
+
 
 
         layout.addWidget(self.contentStackedWidget)
@@ -259,6 +268,9 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
     def mouseActionsWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(16)
+
+    def packetWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(17)
 
 
 #main
