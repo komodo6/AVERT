@@ -85,6 +85,11 @@ class ScreenshotsWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/ScreenshotsWidget.ui", self)
 
+class MouseActionsWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/MouseActionsWidget.ui", self)
+
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -98,7 +103,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Search_Left_Frame_Btn.clicked.connect()
         
         
-        self.Mouse_Action_Btn.clicked.connect()
+        
         self.NetworkData_Btn.clicked.connect()
         '''
 
@@ -193,7 +198,9 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.ScreenshotsWidgets)
         self.ScreenShot_Btn.clicked.connect(self.screenshotsWidgetClickHandler)
 
-
+        self.MouseActionsWidget = MouseActionsWidget()
+        self.contentStackedWidget.addWidget(self.MouseActionsWidget)
+        self.Mouse_Action_Btn.clicked.connect(self.mouseActionsWidgetClickHandler)
 
 
 
@@ -250,6 +257,8 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
     def screenshotsWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(15)
 
+    def mouseActionsWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(16)
 
 
 #main
