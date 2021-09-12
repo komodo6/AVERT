@@ -75,6 +75,11 @@ class VideoGraphWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/VideoGridWidget.ui", self)
 
+class KeyStrokesWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/KeyStrokesWidget.ui", self)
+
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -86,7 +91,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
-        self.Keystroke_Btn.clicked.connect()
+        
         self.ScreenShot_Btn.clicked.connect()
         self.Mouse_Action_Btn.clicked.connect()
         self.NetworkData_Btn.clicked.connect()
@@ -174,6 +179,11 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.VideoGridWidget.List_View.clicked.connect(self.videoListWidgetClickHandler)
 
 
+        # The rest of the type og files
+        self.KeyStrokesWidgets = KeyStrokesWidget()
+        self.contentStackedWidget.addWidget(self.KeyStrokesWidgets)
+        self.Keystroke_Btn.clicked.connect(self.kSeyStrokesWidgetClickHandler)
+
 
 
         layout.addWidget(self.contentStackedWidget)
@@ -222,6 +232,9 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
     def videoGridWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(13)
+
+    def keyStrokesWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(14)
 
 
 
