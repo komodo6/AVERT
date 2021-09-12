@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1313</width>
+    <height>872</height>
+   </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #212429</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="Top_Bar">
+    <property name="geometry">
+     <rect>
+      <x>166</x>
+      <y>-3</y>
+      <width>1151</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	Background-color:212429;
+	border-width: 2;
+	border-radius:1;
+	border-style: solid;
+	border-color:white;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="4">
+      <widget class="QPushButton" name="ScreenShot_Btn">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>ScreenShot</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QPushButton" name="Mouse_Action_Btn">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>MouseAction</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <widget class="QPushButton" name="NetworkData_Btn">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>NetworkData</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3" colspan="4">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="styleSheet">
+        <string notr="true">background-color:white;
+</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="Video_Btn">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Video</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="comboBox">
+       <property name="styleSheet">
+        <string notr="true">background-color:white;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="Keystroke_Btn">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Keystroke</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="Side_Bar">
+    <property name="geometry">
+     <rect>
+      <x>-3</x>
+      <y>-3</y>
+      <width>171</width>
+      <height>851</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777214</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	Background-color:212429;
+	border-width: 2;
+	border-radius:1;
+	border-style: solid;
+	border-color:white;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="Min_Recording_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Min_Record</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Hide_Left_Frame_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Min_Left_Bar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Sync_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sync</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Settings_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Settings</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Visualize_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Visualize</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Transactions_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Transactions</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Export_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Export</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Delete_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Delete</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Search_Left_Frame_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Annotate_Btn">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color:#212429;
+	color:white;
+}
+QPushButton:Pressed{
+	color:#78AAD2;
+}</string>
+       </property>
+       <property name="text">
+        <string>Annotate</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="Content_Frame">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>130</y>
+      <width>1141</width>
+      <height>721</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="Content_Container" native="true">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>9</y>
+       <width>1111</width>
+       <height>701</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <zorder>Side_Bar</zorder>
+   <zorder>Top_Bar</zorder>
+   <zorder>Content_Frame</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1313</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

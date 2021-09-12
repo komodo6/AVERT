@@ -18,22 +18,6 @@ class SearchWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/Search.ui", self)
 
-class TransactionLog(QWidget):
-    def __init__(self):
-        super().__init__()
-        loadUi(os.getcwd() + "/views/TransactionLog.ui", self)
-
-class SyncData(QWidget):
-    def __init__(self):
-        super().__init__()
-        loadUi(os.getcwd() + "/views/SyncData.ui", self)
-
-class KeystrokeView(QWidget):
-    def __init__(self):
-        super().__init__()
-        loadUi(os.getcwd() + "/views/KeystrokeView.ui", self)
-
-
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -58,9 +42,6 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Export_Btn.clicked.connect(self.exportDataClickHandler)
         self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
         self.Search_Left_Frame_Btn.clicked.connect(self.searchClickHandler)
-        self.Transactions_Btn.clicked.connect(self.transactionClickHandler)
-        self.Sync_Btn.clicked.connect(self.syncClickHandler)
-        self.Keystroke_Btn.clicked.connect(self.keystrokeClickHandler)
 
         # The Code Below is to setup the various pages for changing the content pages
 
@@ -82,18 +63,6 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.SearchWidget = SearchWidget()
         self.contentStackedWidget.addWidget(self.SearchWidget) # index 2
 
-        # Adding The Transaction Widget
-        self.TransactionWidget = TransactionLog()
-        self.contentStackedWidget.addWidget(self.TransactionWidget)  # index 3
-
-        # Adding the Sync widget
-        self.SyncWidget = SyncData()
-        self.contentStackedWidget.addWidget(self.SyncWidget) # index 4
-
-        # Adding the Keystroke view
-        self.KeystrokeWidget = KeystrokeView()
-        self.contentStackedWidget.addWidget(self.KeystrokeWidget) # index 5
-
         layout.addWidget(self.contentStackedWidget)
         self.Content_Container.setLayout(layout)
 
@@ -107,15 +76,6 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
     def searchClickHandler(self):  # index 2
         self.contentStackedWidget.setCurrentIndex(2)
         print("Search")
-
-    def transactionClickHandler(self):
-        self.contentStackedWidget.setCurrentIndex(3)
-
-    def syncClickHandler(self):
-        self.contentStackedWidget.setCurrentIndex(4)
-
-    def keystrokeClickHandler(self):
-        self.contentStackedWidget.setCurrentIndex(5)
 
 #main
 app = QApplication(sys.argv)
