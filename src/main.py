@@ -28,39 +28,33 @@ class TransactionWidget(QWidget): # index 3
 class ExportWidget(QWidget):
     def __init__(self):
         super().__init__()
-        loadUi(os.getcwd() + "/views/ExportData.ui", self)
+        loadUi(os.getcwd() + "/views/ExportWidget.ui", self)
 
 class DeleteWidget(QWidget):
     def __init__(self):
         super().__init__()
         loadUi(os.getcwd() + "/views/DeleteWidget.ui", self)
 
-class AnnotateData(QWidget):
-    def __init__(self):
-        super().__init__()
-        loadUi(os.getcwd() + "/views/AnnotateData.ui", self)
-
 class SearchWidget(QWidget):
     def __init__(self):
         super().__init__()
-        loadUi(os.getcwd() + "/views/Search.ui", self)
+        loadUi(os.getcwd() + "/views/SearchWidget.ui", self)
 
-
+class AnnotateData(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/AnnotateWidget.ui", self)
 
 
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
-        loadUi(os.getcwd()+"/views/OuterFrame.ui", self)#our .ui files should be in views folder
+        loadUi(os.getcwd()+"/views/OuterFrameMainWindow.ui", self)#our .ui files should be in views folder
 
         #Button Actions
         ''' The following lines are commented so that it compiles normally, uncomment lines or move them out of this commented area to work on the feature
         self.Min_Recording_Btn.clicked.connect()# link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
-       
-        
-        
-        
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
         self.Keystroke_Btn.clicked.connect()
@@ -69,11 +63,6 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Mouse_Action_Btn.clicked.connect()
         self.NetworkData_Btn.clicked.connect()
         '''
-
-
-        # self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
-        # self.Search_Left_Frame_Btn.clicked.connect(self.searchClickHandler)
-
 
         # The Code Below is to setup the various pages for changing the content pages
 
@@ -114,14 +103,17 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.contentStackedWidget.addWidget(self.DeleteWidget)
         self.Delete_Btn.clicked.connect(self.deleteClickHandler)
 
-        # # Adding The Annotate Widget
-        # self.AnnotateDataWidget = AnnotateData()
-        # self.contentStackedWidget.addWidget(self.AnnotateDataWidget) # index 1
-        #
-        # # Adding The Search Widget
-        # self.SearchWidget = SearchWidget()
-        # self.contentStackedWidget.addWidget(self.SearchWidget) # index2
-        #
+        # Adding The Search Widget - Index 6
+        self.SearchWidget = SearchWidget()
+        self.contentStackedWidget.addWidget(self.SearchWidget)
+        self.Search_Left_Frame_Btn.clicked.connect(self.searchClickHandler)
+
+        # Adding The Annotate Widget - Index 7
+        self.AnnotateDataWidget = AnnotateData()
+        self.contentStackedWidget.addWidget(self.AnnotateDataWidget)
+        self.Annotate_Btn.clicked.connect(self.annotateDataClickHandler)
+
+
 
 
         layout.addWidget(self.contentStackedWidget)
@@ -146,13 +138,13 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
     def deleteClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(5)
 
+    def searchClickHandler(self):  # index 2
+        self.contentStackedWidget.setCurrentIndex(6)
+        print("Search")
 
     def annotateDataClickHandler(self):  # index 1
-        self.contentStackedWidget.setCurrentIndex(1)
+        self.contentStackedWidget.setCurrentIndex(7)
 
-    def searchClickHandler(self):  # index 2
-        self.contentStackedWidget.setCurrentIndex(2)
-        print("Search")
 
 
 
