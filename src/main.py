@@ -80,6 +80,11 @@ class KeyStrokesWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/KeyStrokesWidget.ui", self)
 
+class ScreenshotsWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/ScreenshotsWidget.ui", self)
+
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -92,7 +97,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
         
-        self.ScreenShot_Btn.clicked.connect()
+        
         self.Mouse_Action_Btn.clicked.connect()
         self.NetworkData_Btn.clicked.connect()
         '''
@@ -179,10 +184,16 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         self.VideoGridWidget.List_View.clicked.connect(self.videoListWidgetClickHandler)
 
 
-        # The rest of the type og files
+        # The rest of the type of the files
         self.KeyStrokesWidgets = KeyStrokesWidget()
         self.contentStackedWidget.addWidget(self.KeyStrokesWidgets)
-        self.Keystroke_Btn.clicked.connect(self.kSeyStrokesWidgetClickHandler)
+        self.Keystroke_Btn.clicked.connect(self.keyStrokesWidgetClickHandler)
+
+        self.ScreenshotsWidgets = ScreenshotsWidget()
+        self.contentStackedWidget.addWidget(self.ScreenshotsWidgets)
+        self.ScreenShot_Btn.clicked.connect(self.screenshotsWidgetClickHandler)
+
+
 
 
 
@@ -235,6 +246,9 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
     def keyStrokesWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(14)
+
+    def screenshotsWidgetClickHandler(self):
+        self.contentStackedWidget.setCurrentIndex(15)
 
 
 
