@@ -46,7 +46,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="settings">
                                         <property name="text">
                                             <string>Settings</string>
                                         </property>
@@ -110,8 +110,9 @@
                                 <widget class="HomeWidget" name="Home" />
                                 <widget class="KeyStrokeWidget" name="KeyStroke" />
                                 <widget class="MouseActionsWidget" name="fanpage" />
-                                <widget class="PacketCaptureWidget" name="energypage" />
-                                <widget class="ScreenshotWidget" name="energypage" />
+                                <widget class="PacketCaptureWidget" name="MouseActions" />
+                                <widget class="ScreenshotWidget" name="Screenshot" />
+                                <widget class="SettingsWidget" name="Screenshot" />
                             </widget>
                         </item>
                         <!-- TOP BAR  -->
@@ -200,6 +201,12 @@
             <class>ScreenshotWidget</class>
             <extends>QWidget</extends>
             <header>views/Screenshot/Screenshot</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>SettingsWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Settings/Settings</header>
             <container>1</container>
         </customwidget>
     </customwidgets>

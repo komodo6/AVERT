@@ -14,7 +14,7 @@ class MainWidget(Base, Form):
     def __init__(self, parent=None):
         super(self.__class__, self).__init__(parent)
         self.setupUi(self)
-        buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture, self.screenshots)
+        buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture, self.screenshots, self.settings)
         for i, button in enumerate(buttons):
             button.clicked.connect(partial(self.stackedWidget.setCurrentIndex, i))
 
