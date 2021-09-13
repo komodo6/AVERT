@@ -5,7 +5,7 @@ import os
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5 import uic, QtCore
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableView
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableView, QAbstractItemView
 from functools import partial
 from datetime import datetime
 import datetime
@@ -41,11 +41,15 @@ class GalView(Base, Form):
                             QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
         for row in range(len(data)):
             for column in range(len(data[row])):
-                model.setItem(row, column, QStandardItem(
-                    str(data[row][column])))
+                item = QStandardItem(str(data[row][column]))
+                # item.setSelectable(True)
+
+                item.setEditable(False)
+                model.setItem(row, column, item)
 
         table = QTableView()
         table.setModel(model)
+        table.setSelectionBehavior(QAbstractItemView.SelectRows)
         vbox = QVBoxLayout(self)
         vbox.addWidget(table)
         self.setLayout(vbox)

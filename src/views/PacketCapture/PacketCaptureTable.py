@@ -11,38 +11,37 @@ from datetime import datetime
 import datetime
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-data = [('image-121', datetime.datetime(2019, 5, 5, 0, 54), datetime.datetime(2019, 5, 26, 22, 51, 36), '192.2131.2131'),
-        ('image-124', datetime.datetime(2019, 5, 26, 22, 51, 36),
-         datetime.datetime(2019, 6, 15, 10, 22, 48), '192.2131.2131'),
-        ('image-125', datetime.datetime(2019, 6, 15, 10, 22, 48),
-         datetime.datetime(2019, 7, 8, 13, 33, 36), '192.2131.2131'),
-        ('image-124', datetime.datetime(2019, 7, 8, 13, 33, 36),
-         datetime.datetime(2019, 7, 29, 6, 18), '192.2131.2131'),
-        ('image-123', datetime.datetime(2019, 7, 29, 6, 18),
-         datetime.datetime(2019, 8, 6, 18, 50, 24), '192.2131.2131'),
-        ('image-321', datetime.datetime(2019, 8, 6, 18, 50, 24), datetime.datetime(2019, 8, 31, 3, 14, 24), '192.2131.2131')]
+data = [('packet-121', datetime.datetime(2019, 5, 5, 0, 54)),
+        ('packet-121', datetime.datetime(2019, 5, 5, 0, 54)),
+        ('packet-121', datetime.datetime(2019, 5, 5, 0, 54)),
+        ('packet-121', datetime.datetime(2019, 5, 5, 0, 54)),
+        ('packet-121', datetime.datetime(2019, 5, 5, 0, 54)),
+        ('packet-121', datetime.datetime(2019, 5, 5, 0, 54)),
+        ('packet-121', datetime.datetime(2019, 5, 5, 0, 54))]
 
 
 Form, Base = uic.loadUiType(os.path.join(
-    current_dir, "../../ui/Screenshot/ListView.ui"))
+    current_dir, "../../ui/PacketCapture/PacketCaptureTable.ui"))
 
 
-class ListViewWidget(Base, Form):
+class PacketCaptureTableWidget(Base, Form):
     def __init__(self, parent=None):
-        super().__init__()
+        super(self.__class__, self).__init__(parent)
         self.setupUi()
 
     def setupUi(self):
         model = QStandardItemModel()
 
         model.setHorizontalHeaderLabels(
-            ['Name', 'Timestamp', 'MAC Address', 'IP Address'])
+            ['Name', 'Timestamp'])
         model.setHeaderData(0, QtCore.Qt.Horizontal,
                             QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
+
         for row in range(len(data)):
             for column in range(len(data[row])):
                 item = QStandardItem(str(data[row][column]))
-
+                # item.setSelectable(True)
+                # item.setCheckable(True)
                 item.setEditable(False)
                 model.setItem(row, column, item)
 
@@ -57,6 +56,6 @@ class ListViewWidget(Base, Form):
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
-    w = ListViewWidget()
+    w = PacketCaptureTableWidget()
     w.show()
     sys.exit(app.exec_())
