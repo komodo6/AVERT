@@ -95,6 +95,16 @@ class PacketWidget(QWidget):
         super().__init__()
         loadUi(os.getcwd() + "/views/PacketWidget.ui", self)
 
+class FloatingTabWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        loadUi(os.getcwd() + "/views/FloatingTabWindow.ui", self)
+        self.Main_View.clicked.connect(self.closeFloatingTabWindow)
+    def closeFloatingTabWindow(self):
+        self.MyFrame = OuterFrame()
+        self.MyFrame.show()
+        print('Not sure yet ')
+
 class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
     def __init__(self):
         super(OuterFrame, self).__init__()
@@ -102,15 +112,13 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
 
         #Button Actions
         ''' The following lines are commented so that it compiles normally, uncomment lines or move them out of this commented area to work on the feature
-        self.Min_Recording_Btn.clicked.connect()# link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
+        # link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
         self.Delete_Btn.clicked.connect()
         self.Search_Left_Frame_Btn.clicked.connect()
-        
-        
-        
-        
         '''
+
+        self.Min_Recording_Btn.clicked.connect(self.openFloatingTab)
 
         # The Code Below is to setup the various pages for changing the content pages
 
@@ -272,6 +280,12 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
     def packetWidgetClickHandler(self):
         self.contentStackedWidget.setCurrentIndex(17)
 
+    def openFloatingTab(self):
+        self.close()
+        # self.window2 = QMainWindow()
+        self.ui = FloatingTabWindow()
+        # self.ui.setupUi(self.window2)
+        self.ui.show()
 
 #main
 app = QApplication(sys.argv)
