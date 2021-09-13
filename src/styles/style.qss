@@ -1,0 +1,12 @@
+QMainWindow {
+  background-color: #212429;
+}
+
+QPushButton {
+  background-color: #424242;
+  color: white;
+  padding: 4px;
+}
+QPushButton:pressed {
+  color: #78aad2;
+}

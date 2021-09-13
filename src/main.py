@@ -1,39 +1,32 @@
 import sys, os
-from PyQt5.uic import loadUi
+from PyQt5 import uic
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow,QVBoxLayout
+from functools import partial
 
-class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had to be a QMainWindow to load
-    def __init__(self):
-        super(OuterFrame, self).__init__()
-        loadUi(os.getcwd()+"/views/OuterFrame.ui", self)#our .ui files should be in views folder
+current_dir = os.path.dirname(os.path.abspath(__file__))
+print(current_dir)
+Form, Base = uic.loadUiType(os.path.join(current_dir, "ui/main.ui"))
 
-        #Button Actions
-        ''' The following lines are commented so that it compiles normally, uncomment lines or move them out of this commented area to work on the feature
-        self.Min_Recording_Btn.clicked.connect()# link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
-        self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
-        self.Sync_Btn.clicked.connect()
-        self.Settings_Btn.clicked.connect()
-        self.Visualize_Btn.clicked.connect()
-        self.Transactions_Btn.clicked.connect()
-        self.Export_Btn.clicked.connect()
-        self.Delete_Btn.clicked.connect()
-        self.Search_Left_Frame_Btn.clicked.connect()
-        self.Annotate_Btn.clicked.connect()
-        self.Keystroke_Btn.clicked.connect()
-        self.Video_Btn.clicked.connect()
-        self.ScreenShot_Btn.clicked.connect()
-        self.Mouse_Action_Btn.clicked.connect()
-        self.NetworkData_Btn.clicked.connect()
-        '''
-#main
-app = QApplication(sys.argv)
-MyFrame= OuterFrame()
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(MyFrame)
-widget.resize(1400,900)
-widget.show()
-try:
+
+class MainWidget(Base, Form):
+
+    def __init__(self, parent=None):
+        super(self.__class__, self).__init__(parent)
+        self.setupUi(self)
+        buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture, self.screenshots)
+        for i, button in enumerate(buttons):
+            button.clicked.connect(partial(self.stackedWidget.setCurrentIndex, i))
+
+
+if __name__ == '__main__':
+    
+    app = QApplication(sys.argv)
+    with open("./styles/style.qss", "r") as f:
+        _style = f.read()
+        app.setStyleSheet(_style)
+    
+    w = MainWidget()
+    w.show()
     sys.exit(app.exec_())
-except:
-    print("Exiting")
+        
