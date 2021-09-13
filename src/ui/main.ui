@@ -24,7 +24,7 @@
                         <item row="1" column="0">
                             <layout class="QVBoxLayout" name="verticalLayout">
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="miniavert">
                                         <property name="text">
                                             <string>Min Record</string>
                                         </property>

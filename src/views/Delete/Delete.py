@@ -1,3 +1,4 @@
+from posixpath import pardir
 import sys, os
 from PyQt5 import uic
 from PyQt5 import QtWidgets
