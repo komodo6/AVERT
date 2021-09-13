@@ -53,7 +53,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="dataviz">
                                         <property name="text">
                                             <string>Visualize</string>
                                         </property>
@@ -74,7 +74,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="delete">
                                         <property name="text">
                                             <string>Delete</string>
                                         </property>
@@ -112,7 +112,11 @@
                                 <widget class="MouseActionsWidget" name="fanpage" />
                                 <widget class="PacketCaptureWidget" name="MouseActions" />
                                 <widget class="ScreenshotWidget" name="Screenshot" />
-                                <widget class="SettingsWidget" name="Screenshot" />
+                                <widget class="VideoWidget" name="Video" />
+                                <widget class="SettingsWidget" name="Settings" />
+                                <widget class="VisualizeWidget" name="DataVisualize" />
+                                <widget class="DeleteWidget" name="Delete" />
+
                             </widget>
                         </item>
                         <!-- TOP BAR  -->
@@ -149,7 +153,14 @@
                                 <item>
                                     <widget class="QPushButton" name="screenshots">
                                         <property name="text">
-                                            <string>Screen Shots</string>
+                                            <string>Screenshots</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QPushButton" name="videos">
+                                        <property name="text">
+                                            <string>Videos</string>
                                         </property>
                                     </widget>
                                 </item>
@@ -204,9 +215,27 @@
             <container>1</container>
         </customwidget>
         <customwidget>
+            <class>VideoWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Video/Video</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
             <class>SettingsWidget</class>
             <extends>QWidget</extends>
             <header>views/Settings/Settings</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>VisualizeWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Visualize/Visualize</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>DeleteWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Delete/Delete</header>
             <container>1</container>
         </customwidget>
     </customwidgets>
