@@ -32,8 +32,6 @@ class ScreenshotWidget(Base, Form):
             self.currentView = 0
             self.viewButton.setText("Gallery View")
 
-        print(self.currentView)
-
 
 if __name__ == '__main__':
     import sys
