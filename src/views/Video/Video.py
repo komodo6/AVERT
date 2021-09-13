@@ -7,7 +7,7 @@ from functools import partial
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
-Form, Base = uic.loadUiType(os.path.join(current_dir, "../../ui/Video/Video.ui"))
+Form, Base = uic.loadUiType(os.path.join(current_dir, "../../ui/Video/VideoGrid.ui"))
 
 
 class VideoWidget(Base, Form):
