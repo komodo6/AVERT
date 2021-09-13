@@ -23,7 +23,7 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="2" column="1">
+    <item row="4" column="1">
      <widget class="QPushButton" name="pushButton">
       <property name="styleSheet">
        <string notr="true">color: white;l</string>
@@ -44,23 +44,16 @@
        <string notr="true">color: white;</string>
       </property>
       <property name="text">
-       <string>Visualization Widget - Daniela</string>
+       <string>Visualization Widget - Daniela test</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="2" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="Timeline">
         <property name="text">
          <string>Timeline</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Bar_Graph">
-        <property name="text">
-         <string>Bar Graph</string>
         </property>
        </widget>
       </item>
@@ -79,6 +72,13 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="Bar_Graph">
+      <property name="text">
+       <string>Bar Graph</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
