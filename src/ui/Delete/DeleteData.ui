@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>590</width>
+    <height>460</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>50</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>111</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>DELETE DATA</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>551</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">gridline-color: white;
+color: white;
+border: 1px solid white</string>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <attribute name="horizontalHeaderCascadingSectionResizes">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>26</number>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>120</number>
+   </attribute>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderCascadingSectionResizes">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
+   <row>
+    <property name="text">
+     <string> [X]  </string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string> [X]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string> [    ]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string> [    ]</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Data Type</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Date</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Size</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string> keyStrokes</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>keys_01.pdf</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>09/12/2021</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>200KB</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string> PCAP</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>first.pcappng</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="1" column="2">
+    <property name="text">
+     <string>09/12/2021</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="1" column="3">
+    <property name="text">
+     <string>175KB</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="text">
+     <string> PNG</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="2" column="1">
+    <property name="text">
+     <string>IMAGE_001.png</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="2" column="2">
+    <property name="text">
+     <string>09/12/2021</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="2" column="3">
+    <property name="text">
+     <string>150KB</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string> MP4</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="3" column="1">
+    <property name="text">
+     <string>VID_0576.MP4</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="3" column="2">
+    <property name="text">
+     <string>09/12/2021</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="3" column="3">
+    <property name="text">
+     <string>100KB</string>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
