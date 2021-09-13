@@ -101,6 +101,7 @@ class FloatingTabWindow(QMainWindow):
         loadUi(os.getcwd() + "/views/FloatingTabWindow.ui", self)
         self.Main_View.clicked.connect(self.closeFloatingTabWindow)
     def closeFloatingTabWindow(self):
+        self.close()
         self.MyFrame = OuterFrame()
         self.MyFrame.show()
         print('Not sure yet ')
@@ -110,7 +111,7 @@ class OuterFrame(QMainWindow):#would not work as a QDialog for some reason had t
         super(OuterFrame, self).__init__()
         loadUi(os.getcwd()+"/views/OuterFrameMainWindow.ui", self)#our .ui files should be in views folder
 
-        #Button Actions
+        # Button Actions
         ''' The following lines are commented so that it compiles normally, uncomment lines or move them out of this commented area to work on the feature
         # link to function that will have resulting action in paranthesis ...connect(self.changeUi(parameter a)) and make that function in this class
         self.Hide_Left_Frame_Btn.clicked.connect()#As of now the only action that should be implemented are ones that would be changing the UI
