@@ -18,7 +18,7 @@ class MainWidget(Base, Form):
         self.setupUi(self)
 
         buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture,
-                   self.screenshots, self.videos, self.settings, self.dataviz, self.delete, self.transactionButton, self.syncButton)
+                   self.screenshots, self.videos, self.settings, self.dataviz, self.delete)
         for i, button in enumerate(buttons):
             button.clicked.connect(
                 partial(self.stackedWidget.setCurrentIndex, i))

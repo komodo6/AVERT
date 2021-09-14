@@ -39,7 +39,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="syncButton">
+                                    <widget class="QPushButton" name="homebutton">
                                         <property name="text">
                                             <string>Sync</string>
                                         </property>
@@ -60,7 +60,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="transactionButton">
+                                    <widget class="QPushButton" name="homebutton">
                                         <property name="text">
                                             <string>Transactions</string>
                                         </property>
@@ -116,8 +116,6 @@
                                 <widget class="SettingsWidget" name="Settings" />
                                 <widget class="VisualizeWidget" name="DataVisualize" />
                                 <widget class="DeleteWidget" name="Delete" />
-                                <widget class="TransactionWidget" name="Transaction" />
-                                <widget class="SyncWidget" name="Sync" />
 
                             </widget>
                         </item>
@@ -238,18 +236,6 @@
             <class>DeleteWidget</class>
             <extends>QWidget</extends>
             <header>views/Delete/Delete</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>TransactionWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Transaction/Transaction</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>SyncWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Sync/Sync</header>
             <container>1</container>
         </customwidget>
     </customwidgets>

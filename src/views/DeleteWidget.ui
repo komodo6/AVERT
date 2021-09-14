@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1116</width>
+    <height>662</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTableWidget" name="Table_Widget">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>170</y>
+     <width>821</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>35</horstretch>
+     <verstretch>21</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::WheelFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">gridline-color: white;
+color: white;
+border: 1px solid white;</string>
+   </property>
+   <property name="showGrid">
+    <bool>true</bool>
+   </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <property name="cornerButtonEnabled">
+    <bool>true</bool>
+   </property>
+   <property name="rowCount">
+    <number>7</number>
+   </property>
+   <attribute name="horizontalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="horizontalHeaderCascadingSectionResizes">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>36</number>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>266</number>
+   </attribute>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>17</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>30</number>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>[X]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>[X]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>[   ]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>[   ]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>[X]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>[X]</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>[   ]</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Data Type</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Date</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>Keystroke</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>keys_01.pdf</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>03/18/2021</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>PCAP</string>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>first-capture.pcapng</string>
+    </property>
+   </item>
+   <item row="1" column="2">
+    <property name="text">
+     <string>03/17/2021</string>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="text">
+     <string>PNG</string>
+    </property>
+   </item>
+   <item row="2" column="1">
+    <property name="text">
+     <string>IMAGE_001.png</string>
+    </property>
+   </item>
+   <item row="2" column="2">
+    <property name="text">
+     <string>03/13/2021</string>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string>PCAP</string>
+    </property>
+   </item>
+   <item row="3" column="1">
+    <property name="text">
+     <string>second-capture.pcapng</string>
+    </property>
+   </item>
+   <item row="3" column="2">
+    <property name="text">
+     <string>03/19/2021</string>
+    </property>
+   </item>
+   <item row="4" column="0">
+    <property name="text">
+     <string>MP4</string>
+    </property>
+   </item>
+   <item row="4" column="1">
+    <property name="text">
+     <string>VID_05576_03192021.MP4</string>
+    </property>
+   </item>
+   <item row="4" column="2">
+    <property name="text">
+     <string>03/18/2021</string>
+    </property>
+   </item>
+   <item row="5" column="0">
+    <property name="text">
+     <string>Keystrokes</string>
+    </property>
+   </item>
+   <item row="5" column="1">
+    <property name="text">
+     <string>keys_02.pdf</string>
+    </property>
+   </item>
+   <item row="5" column="2">
+    <property name="text">
+     <string>03/19/2021</string>
+    </property>
+   </item>
+   <item row="6" column="0">
+    <property name="text">
+     <string>PNG</string>
+    </property>
+   </item>
+   <item row="6" column="1">
+    <property name="text">
+     <string>IMAGE_002.png</string>
+    </property>
+   </item>
+   <item row="6" column="2">
+    <property name="text">
+     <string>03/21/2021</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>90</y>
+     <width>181</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>DELETE DATA</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>550</y>
+     <width>211</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
