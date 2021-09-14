@@ -52,7 +52,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioButton">
+       <widget class="QPushButton" name="gridViewBTN">
         <property name="text">
          <string>Grid View</string>
         </property>
