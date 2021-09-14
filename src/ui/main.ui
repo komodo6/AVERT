@@ -81,6 +81,13 @@
                                     </widget>
                                 </item>
                                 <item>
+                                    <widget class="QPushButton" name="annotate">
+                                        <property name="text">
+                                            <string>Annotate</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
                                     <spacer name="verticalSpacer">
                                         <property name="orientation">
                                             <enum>Qt::Vertical</enum>
@@ -117,6 +124,7 @@
                                 <widget class="VisualizeWidget" name="DataVisualize" />
                                 <widget class="DeleteWidget" name="Delete" />
                                 <widget class="ExportWidget" name="Export" />
+                                <widget class="AnnotateWidget" name="Annotate" />
                             </widget>
                         </item>
                         <!-- TOP BAR  -->
@@ -242,6 +250,12 @@
             <class>ExportWidget</class>
             <extends>QWidget</extends>
             <header>views/Export/Export</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>AnnotateWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Annotate/Annotate</header>
             <container>1</container>
         </customwidget>
     </customwidgets>
