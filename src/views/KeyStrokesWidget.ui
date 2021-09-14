@@ -16,8 +16,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>40</y>
+     <x>30</x>
+     <y>30</y>
      <width>341</width>
      <height>41</height>
     </rect>
@@ -36,36 +36,21 @@
     <string>KEYSTROKES</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>590</x>
-     <y>290</y>
-     <width>67</width>
-     <height>19</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font/>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: none;</string>
-   </property>
-   <property name="text">
-    <string>Annotate</string>
-   </property>
-  </widget>
   <widget class="QTreeWidget" name="treeWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>100</y>
-     <width>1011</width>
+     <x>30</x>
+     <y>80</y>
+     <width>1131</width>
      <height>441</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: white;</string>
@@ -101,7 +86,7 @@
     <bool>false</bool>
    </property>
    <attribute name="headerDefaultSectionSize">
-    <number>200</number>
+    <number>225</number>
    </attribute>
    <column>
     <property name="text">
@@ -286,7 +271,7 @@
       <string/>
      </property>
      <property name="text">
-      <string/>
+      <string>did this last night</string>
      </property>
      <property name="background">
       <brush brushstyle="SolidPattern">
