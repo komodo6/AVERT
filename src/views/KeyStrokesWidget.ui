@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1093</width>
-    <height>662</height>
+    <width>1054</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -597,6 +597,325 @@ color: rgb(0, 0, 0);</string>
    <property name="text">
     <string>Annotate</string>
    </property>
+  </widget>
+  <widget class="QTreeWidget" name="treeWidget">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>791</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Date</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Time</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Value</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Process</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>MAC Address</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <item>
+    <property name="text">
+     <string>03/19/2021</string>
+    </property>
+    <property name="text">
+     <string>00:00:11 UTC</string>
+    </property>
+    <property name="text">
+     <string>ENTER</string>
+    </property>
+    <property name="text">
+     <string>Command Prompt</string>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>03/18/2021</string>
+    </property>
+    <property name="text">
+     <string>00:12:22 UTC</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>-sudo ls</string>
+    </property>
+    <property name="text">
+     <string>Command Prompt</string>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>03/17/2021</string>
+    </property>
+    <property name="text">
+     <string>18:18:57 UTC</string>
+    </property>
+    <property name="text">
+     <string>ENTER</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>Command Prompt</string>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>03/17/2021</string>
+    </property>
+    <property name="text">
+     <string>23:12:45 UTC</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>nmap -sp 192.100.1.1/24</string>
+    </property>
+    <property name="text">
+     <string>WireShark</string>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Process: Wireshark</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Value: nmap -sp 192.100.1.1/24</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string>Annotations</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Time: 23:12:45 UTC</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string>Relevant keystroke that I executed yesterday</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Date: 03/17/2021</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MAC: 9C-B6-D0-F4-B3-7F</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>IP Address: 189.231.24.218</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </item>
+   </item>
   </widget>
  </widget>
  <resources/>
