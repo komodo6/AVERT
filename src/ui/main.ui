@@ -67,7 +67,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="export">
                                         <property name="text">
                                             <string>Export</string>
                                         </property>
@@ -116,7 +116,7 @@
                                 <widget class="SettingsWidget" name="Settings" />
                                 <widget class="VisualizeWidget" name="DataVisualize" />
                                 <widget class="DeleteWidget" name="Delete" />
-
+                                <widget class="ExportWidget" name="Export" />
                             </widget>
                         </item>
                         <!-- TOP BAR  -->
@@ -236,6 +236,12 @@
             <class>DeleteWidget</class>
             <extends>QWidget</extends>
             <header>views/Delete/Delete</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>ExportWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Export/Export</header>
             <container>1</container>
         </customwidget>
     </customwidgets>
