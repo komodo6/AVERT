@@ -1,84 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>Export_Data_Main</class>
+ <widget class="QWidget" name="Export_Data_Main">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>875</width>
-    <height>600</height>
+    <width>1595</width>
+    <height>648</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>700</x>
-     <y>530</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;1-6 of 100&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>875</width>
-     <height>281</height>
+     <y>20</y>
+     <width>1091</width>
+     <height>641</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>30</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: white;</string>
+        </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;VIDEO LIBRARY&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Export</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="gridViewBTN">
+       <widget class="QPushButton" name="pushButton">
+        <property name="styleSheet">
+         <string notr="true">color: white;</string>
+        </property>
         <property name="text">
-         <string>Grid View</string>
+         <string>Export</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item row="1" column="0">
+    <item row="3" column="0">
      <widget class="QTableWidget" name="tableWidget">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>2</horstretch>
-        <verstretch>2</verstretch>
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>35</horstretch>
+        <verstretch>21</verstretch>
        </sizepolicy>
       </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
+      <property name="font">
+       <font/>
       </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
+      <property name="tabletTracking">
+       <bool>false</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::WheelFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">gridline-color: white;
+color: white;
+border: 1px solid white;</string>
       </property>
       <property name="showGrid">
        <bool>true</bool>
-      </property>
-      <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
       </property>
       <property name="sortingEnabled">
        <bool>false</bool>
@@ -89,62 +86,51 @@
       <property name="cornerButtonEnabled">
        <bool>true</bool>
       </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>true</bool>
       </attribute>
-      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-       <bool>true</bool>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>36</number>
       </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="verticalHeaderCascadingSectionResizes">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="verticalHeaderStretchLastSection">
-       <bool>true</bool>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>177</number>
       </attribute>
       <row>
        <property name="text">
-        <string>1</string>
+        <string>[X]</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>2</string>
+        <string>[   ]</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>3</string>
+        <string>[   ]</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>4</string>
+        <string>[X]</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>5</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>6</string>
+        <string>[X]</string>
        </property>
       </row>
       <column>
        <property name="text">
-        <string>Name</string>
+        <string>Data Type</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Date</string>
+        <string>Data</string>
        </property>
       </column>
       <column>
@@ -154,17 +140,22 @@
       </column>
       <column>
        <property name="text">
-        <string>MAC Address</string>
+        <string>Value</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>IP Address</string>
+        <string>Process</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>MAC address</string>
        </property>
       </column>
       <item row="0" column="0">
        <property name="text">
-        <string>VID_ad3db4cc-f731-4603-8c37-92e07211f689.MP4</string>
+        <string>Keystroke</string>
        </property>
       </item>
       <item row="0" column="1">
@@ -174,24 +165,27 @@
       </item>
       <item row="0" column="2">
        <property name="text">
-        <string>13:13:11 UTC</string>
+        <string>00:00:11 UTC</string>
        </property>
       </item>
       <item row="0" column="3">
        <property name="text">
-        <string>66-37-BD-34-32-D1
-</string>
+        <string>ENTER</string>
        </property>
       </item>
       <item row="0" column="4">
        <property name="text">
-        <string>26.28.154.203
-</string>
+        <string>Command Prompt</string>
+       </property>
+      </item>
+      <item row="0" column="5">
+       <property name="text">
+        <string>9C-B6-D0-F4-B3-7F</string>
        </property>
       </item>
       <item row="1" column="0">
        <property name="text">
-        <string>VID_ad3db4cc-f731-4603-8c37-92e07211f689.MP4</string>
+        <string>Keystroke</string>
        </property>
       </item>
       <item row="1" column="1">
@@ -201,24 +195,27 @@
       </item>
       <item row="1" column="2">
        <property name="text">
-        <string>13:13:11 UTC</string>
+        <string>00:00:11 UTC</string>
        </property>
       </item>
       <item row="1" column="3">
        <property name="text">
-        <string>66-37-BD-34-32-D1
-</string>
+        <string>-sudo ls</string>
        </property>
       </item>
       <item row="1" column="4">
        <property name="text">
-        <string>26.28.154.203
-</string>
+        <string>Command Prompt</string>
+       </property>
+      </item>
+      <item row="1" column="5">
+       <property name="text">
+        <string>9C-B6-D0-F4-B3-7F</string>
        </property>
       </item>
       <item row="2" column="0">
        <property name="text">
-        <string>VID_ad3db4cc-f731-4603-8c37-92e07211f689.MP4</string>
+        <string>Keystroke</string>
        </property>
       </item>
       <item row="2" column="1">
@@ -228,24 +225,27 @@
       </item>
       <item row="2" column="2">
        <property name="text">
-        <string>13:13:11 UTC</string>
+        <string>00:00:11 UTC</string>
        </property>
       </item>
       <item row="2" column="3">
        <property name="text">
-        <string>66-37-BD-34-32-D1
-</string>
+        <string>ENTER</string>
        </property>
       </item>
       <item row="2" column="4">
        <property name="text">
-        <string>26.28.154.203
-</string>
+        <string>Command Prompt</string>
+       </property>
+      </item>
+      <item row="2" column="5">
+       <property name="text">
+        <string>9C-B6-D0-F4-B3-7F</string>
        </property>
       </item>
       <item row="3" column="0">
        <property name="text">
-        <string>VID_ad3db4cc-f731-4603-8c37-92e07211f689.MP4</string>
+        <string>Keystroke</string>
        </property>
       </item>
       <item row="3" column="1">
@@ -255,24 +255,27 @@
       </item>
       <item row="3" column="2">
        <property name="text">
-        <string>13:13:11 UTC</string>
+        <string>18:18:57 UTC</string>
        </property>
       </item>
       <item row="3" column="3">
        <property name="text">
-        <string>66-37-BD-34-32-D1
-</string>
+        <string>ENTER</string>
        </property>
       </item>
       <item row="3" column="4">
        <property name="text">
-        <string>26.28.154.203
-</string>
+        <string>Command Prompt</string>
+       </property>
+      </item>
+      <item row="3" column="5">
+       <property name="text">
+        <string>9C-B6-D0-F4-B3-7F</string>
        </property>
       </item>
       <item row="4" column="0">
        <property name="text">
-        <string>VID_ad3db4cc-f731-4603-8c37-92e07211f689.MP4</string>
+        <string>Keystroke</string>
        </property>
       </item>
       <item row="4" column="1">
@@ -282,46 +285,22 @@
       </item>
       <item row="4" column="2">
        <property name="text">
-        <string>13:13:11 UTC</string>
+        <string>18:18:57 UTC</string>
        </property>
       </item>
       <item row="4" column="3">
        <property name="text">
-        <string>66-37-BD-34-32-D1
-</string>
+        <string>-nmap -sp 192.100.1.1/24</string>
        </property>
       </item>
       <item row="4" column="4">
        <property name="text">
-        <string>26.28.154.203
-</string>
+        <string>Command Prompt</string>
        </property>
       </item>
-      <item row="5" column="0">
+      <item row="4" column="5">
        <property name="text">
-        <string>VID_ad3db4cc-f731-4603-8c37-92e07211f689.MP4</string>
-       </property>
-      </item>
-      <item row="5" column="1">
-       <property name="text">
-        <string>03/19/2021</string>
-       </property>
-      </item>
-      <item row="5" column="2">
-       <property name="text">
-        <string>13:13:11 UTC</string>
-       </property>
-      </item>
-      <item row="5" column="3">
-       <property name="text">
-        <string>66-37-BD-34-32-D1
-</string>
-       </property>
-      </item>
-      <item row="5" column="4">
-       <property name="text">
-        <string>26.28.154.203
-</string>
+        <string>9C-B6-D0-F4-B3-7F</string>
        </property>
       </item>
      </widget>
