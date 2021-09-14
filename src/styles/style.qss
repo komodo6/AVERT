@@ -3,6 +3,30 @@ QMainWindow {
   color: white;
 }
 
+QWidget {
+  background-color: #212429;
+  color: white;
+}
+
+
+
+
+QTableView {
+  color: white;
+  gridline-color: gray;
+}
+
+QTableView QHeaderView::section {
+  color: white;
+  background-color: #424242;
+}
+
+QTableView QTableCornerButton::section {
+    background-color:#424242;
+}
+
+
+
 QPushButton {
   background-color: #424242;
   color: white;
@@ -10,4 +34,9 @@ QPushButton {
 }
 QPushButton:pressed {
   color: #78aad2;
+}
+
+
+QLabel {
+  font-size: 25px;
 }
