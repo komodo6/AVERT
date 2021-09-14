@@ -15,7 +15,7 @@ class VideoWidget(Base, Form):
 		self.setupUi(self)
          
         # loading image
-		self.pixmap = QPixmap(os.path.join(current_dir, "../../img/fakevid.png"))
+		self.pixmap = QPixmap(os.path.join(current_dir, "../../img/vid.png"))
 
 		positions = [(i, j) for i in range(2) for j in range(4)]
 
