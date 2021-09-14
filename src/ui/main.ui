@@ -67,7 +67,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="exportButton">
                                         <property name="text">
                                             <string>Export</string>
                                         </property>
@@ -118,6 +118,7 @@
                                 <widget class="DeleteWidget" name="Delete" />
                                 <widget class="TransactionWidget" name="Transaction" />
                                 <widget class="SyncWidget" name="Sync" />
+                                <widget class="ExportWidget" name="Export" />
 
                             </widget>
                         </item>
@@ -250,6 +251,12 @@
             <class>SyncWidget</class>
             <extends>QWidget</extends>
             <header>views/Sync/Sync</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>ExportWidget</class>
+            <extends>QWidget</extends>
+            <header>views/Export/Export</header>
             <container>1</container>
         </customwidget>
     </customwidgets>
