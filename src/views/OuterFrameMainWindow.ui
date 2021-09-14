@@ -389,21 +389,14 @@ QPushButton:Pressed{
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
+    <widget class="QWidget" name="Content_Container" native="true">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>20</y>
-       <width>181</width>
-       <height>31</height>
+       <x>9</x>
+       <y>9</y>
+       <width>1111</width>
+       <height>701</height>
       </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color:white;
-</string>
-     </property>
-     <property name="plainText">
-      <string>Put View Content in here</string>
      </property>
     </widget>
    </widget>

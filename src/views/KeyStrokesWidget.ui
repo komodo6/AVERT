@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1232</width>
+    <height>718</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>341</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>KEYSTROKES</string>
+   </property>
+  </widget>
+  <widget class="QTreeWidget" name="treeWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>1131</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>false</bool>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::MultiSelection</enum>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectItems</enum>
+   </property>
+   <property name="uniformRowHeights">
+    <bool>false</bool>
+   </property>
+   <property name="itemsExpandable">
+    <bool>true</bool>
+   </property>
+   <property name="animated">
+    <bool>false</bool>
+   </property>
+   <property name="allColumnsShowFocus">
+    <bool>false</bool>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <property name="headerHidden">
+    <bool>false</bool>
+   </property>
+   <attribute name="headerDefaultSectionSize">
+    <number>225</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Date</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Time</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Value</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Process</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>MAC Address</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+   </column>
+   <item>
+    <property name="text">
+     <string>03/19/2021</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>00:00:11 UTC</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>ENTER</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>Command Prompt</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <item>
+     <property name="text">
+      <string>                  IP Address:</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>189.231.24.218</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>Annotations</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string>did this last night</string>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+   </item>
+   <item>
+    <property name="text">
+     <string>03/18/2021</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>00:12:22 UTC</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>-sudo ls</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>Command Prompt</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <item>
+     <property name="text">
+      <string>                  IP Address:</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>189.231.24.218</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>Annotations</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+   </item>
+   <item>
+    <property name="text">
+     <string>03/17/2021</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>18:18:57 UTC</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>ENTER</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>Command Prompt</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <item>
+     <property name="text">
+      <string>                  IP Address:</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>189.231.24.218</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>Annotations</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+   </item>
+   <item>
+    <property name="text">
+     <string>03/17/2021</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>23:12:45 UTC</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>nmap -sp 192.100.1.1/24</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>WireShark</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="text">
+     <string>9C-B6-D0-F4-B3-7F</string>
+    </property>
+    <property name="foreground">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled|ItemIsTristate</set>
+    </property>
+    <item>
+     <property name="text">
+      <string>                  IP Address:</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>189.231.24.218</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string>Annotations</string>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="background">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="flags">
+      <set>ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
