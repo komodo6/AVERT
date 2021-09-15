@@ -1,4 +1,3 @@
-from posixpath import pardir
 import sys
 import os
 from PyQt5 import uic
@@ -10,10 +9,10 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 Form, Base = uic.loadUiType(os.path.join(
-    current_dir, "../../ui/Export/Export.ui"))
+    current_dir, "../../ui/Sync/Sync.ui"))
 
 
-class ExportWidget(Base, Form):
+class SyncWidget(Base, Form):
     def __init__(self, parent=None):
         super(self.__class__, self).__init__(parent)
         self.setupUi(self)
@@ -22,6 +21,6 @@ class ExportWidget(Base, Form):
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
-    w = ExportWidget()
+    w = SyncWidget()
     w.show()
     sys.exit(app.exec_())
