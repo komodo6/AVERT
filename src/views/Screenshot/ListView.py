@@ -47,7 +47,6 @@ class ListViewWidget(Base, Form):
                 model.setItem(row, column, item)
 
         table = QTableView()
-
         table.setModel(model)
         table.setSelectionBehavior(QAbstractItemView.SelectRows)
         vbox = QVBoxLayout(self)

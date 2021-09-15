@@ -1,50 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>Form</class>
-    <widget class="QWidget" name="QWidget">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>696</width>
-                <height>450</height>
-            </rect>
-        </property>
-        <property name="windowTitle">
-            <string>Form</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-                <layout class="QHBoxLayout" name="horizontalLayout">
-                    <item>
-                        <widget class="QLabel" name="snapshots">
-                            <property name="text">
-                                <string>Mouse Actions</string>
-                            </property>
-                        </widget>
-                    </item>
-                </layout>
-            </item>
-            <item>
-                <layout class="QGridLayout" name="gridLayout">
-                    <item row="0" column="0">
-                        <widget class="QStackedWidget" name="screenshotViews">
-                            <widget class="ListViewWidget" name="ListView" />
-                        </widget>
-                    </item>
-                </layout>
-            </item>
-        </layout>
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 139, 85);</string>
+     </property>
+     <property name="text">
+      <string>Mouse Actions</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
-    <customwidgets>
-        <customwidget>
-            <class>ListViewWidget</class>
-            <extends>QWidget</extends>
-            <header>views/MouseActions/ListView</header>
-            <container>1</container>
-        </customwidget>
-
-    </customwidgets>
-    <resources />
-    <connections />
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
 </ui>

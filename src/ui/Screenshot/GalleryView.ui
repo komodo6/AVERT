@@ -15,7 +15,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-                <layout class="QGridLayout" name="imageGrid"></layout>
+                <layout class="QGridLayout" name="gridLayout" />
             </item>
         </layout>
     </widget>
