@@ -1,6 +1,4 @@
-
-import sys
-import os
+import sys, os
 from PyQt5 import uic
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout
@@ -18,7 +16,7 @@ class MainWidget(Base, Form):
         self.setupUi(self)
 
         buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture,
-                   self.screenshots, self.videos, self.settings, self.dataviz, self.delete, self.transactionButton, self.syncButton, self.exportButton)
+                   self.screenshots, self.videos, self.settings, self.dataviz, self.delete, self.transactionButton, self.syncButton, self.exportButton, self.annotate)
         for i, button in enumerate(buttons):
             button.clicked.connect(
                 partial(self.stackedWidget.setCurrentIndex, i))
