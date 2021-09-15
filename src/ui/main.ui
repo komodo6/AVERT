@@ -39,7 +39,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="syncButton">
                                         <property name="text">
                                             <string>Sync</string>
                                         </property>
@@ -60,7 +60,7 @@
                                     </widget>
                                 </item>
                                 <item>
-                                    <widget class="QPushButton" name="homebutton">
+                                    <widget class="QPushButton" name="transactionButton">
                                         <property name="text">
                                             <string>Transactions</string>
                                         </property>
@@ -77,6 +77,13 @@
                                     <widget class="QPushButton" name="delete">
                                         <property name="text">
                                             <string>Delete</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QPushButton" name="annotate">
+                                        <property name="text">
+                                            <string>Annotate</string>
                                         </property>
                                     </widget>
                                 </item>
