@@ -25,6 +25,20 @@ QTableView QTableCornerButton::section {
     background-color:#424242;
 }
 
+QTreeView {
+  color: white;
+  gridline-color: gray;
+}
+
+QTreeView QHeaderView::section {
+  color: white;
+  background-color: #424242;
+}
+
+QTreeView QTableCornerButton::section {
+    background-color:#424242;
+}
+
 
 
 QPushButton {
@@ -38,5 +52,5 @@ QPushButton:pressed {
 
 
 QLabel {
-  font-size: 25px;
+  font-size: 18px;
 }

@@ -26,7 +26,7 @@
                                 <item>
                                     <widget class="QPushButton" name="miniavert">
                                         <property name="text">
-                                            <string>Min Record</string>
+                                            <string>Avert Popup</string>
                                         </property>
                                     </widget>
                                 </item>

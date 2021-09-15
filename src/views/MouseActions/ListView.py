@@ -11,20 +11,24 @@ from datetime import datetime
 import datetime
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-data = [('image-121', datetime.datetime(2019, 5, 5, 0, 54), datetime.datetime(2019, 5, 26, 22, 51, 36), '192.2131.2131'),
-        ('image-124', datetime.datetime(2019, 5, 26, 22, 51, 36),
-         datetime.datetime(2019, 6, 15, 10, 22, 48), '192.2131.2131'),
-        ('image-125', datetime.datetime(2019, 6, 15, 10, 22, 48),
-         datetime.datetime(2019, 7, 8, 13, 33, 36), '192.2131.2131'),
-        ('image-124', datetime.datetime(2019, 7, 8, 13, 33, 36),
-         datetime.datetime(2019, 7, 29, 6, 18), '192.2131.2131'),
-        ('image-123', datetime.datetime(2019, 7, 29, 6, 18),
-         datetime.datetime(2019, 8, 6, 18, 50, 24), '192.2131.2131'),
-        ('image-321', datetime.datetime(2019, 8, 6, 18, 50, 24), datetime.datetime(2019, 8, 31, 3, 14, 24), '192.2131.2131')]
+data = [
+    (datetime.datetime(2019, 5, 5, 0, 54), "Right Click",
+     '150.3123, 54.0334', "cmd.exe", "00-15-E9-2B-99-3C"),
+    (datetime.datetime(2019, 5, 5, 0, 54), "Right Click",
+     '150.3123, 54.0334', "cmd.exe", "00-15-E9-2B-99-3C"),
+    (datetime.datetime(2019, 5, 5, 0, 54), "Right Click",
+     '150.3123, 54.0334', "cmd.exe", "00-15-E9-2B-99-3C"),
+    (datetime.datetime(2019, 5, 5, 0, 54), "Right Click",
+     '150.3123, 54.0334', "nc -l 2222", "00-15-E9-2B-99-3C"),
+    (datetime.datetime(2019, 5, 5, 0, 54), "Right Click",
+     '150.3123, 54.0334', "python3 spinner.py", "00-15-E9-2B-99-3C"),
+    (datetime.datetime(2019, 5, 5, 0, 54), "Left Click",
+     '150.3123, 54.0334', "htop", "00-15-E9-2B-99-3C"),
+]
 
 
 Form, Base = uic.loadUiType(os.path.join(
-    current_dir, "../../ui/Screenshot/ListView.ui"))
+    current_dir, "../../ui/MouseActions/ListView.ui"))
 
 
 class ListViewWidget(Base, Form):
@@ -36,7 +40,7 @@ class ListViewWidget(Base, Form):
         model = QStandardItemModel()
 
         model.setHorizontalHeaderLabels(
-            ['Name', 'Timestamp', 'MAC Address', 'IP Address'])
+            ['Date/Time', 'Type', 'X,Y Coordinates', 'Process', 'MAC Address'])
         model.setHeaderData(0, QtCore.Qt.Horizontal,
                             QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
         for row in range(len(data)):

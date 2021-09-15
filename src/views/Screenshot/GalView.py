@@ -2,10 +2,10 @@ import uuid
 from posixpath import pardir
 import sys
 import os
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap
 from PyQt5 import uic, QtCore
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableView, QAbstractItemView
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableView, QAbstractItemView, QLabel
 from functools import partial
 from datetime import datetime
 import datetime
@@ -30,29 +30,38 @@ data = [('imageasdasdas-121', datetime.datetime(2019, 5, 5, 0, 54), datetime.dat
 class GalView(Base, Form):
     def __init__(self, parent=None):
         super().__init__()
-        self.setupUi()
+        self.setupUi(self)
+        pixmap = QPixmap(os.path.join(
+            current_dir, "../../img/placeholder.png"))
 
-    def setupUi(self):
-        model = QStandardItemModel()
+        positions = [(i, j) for i in range(2) for j in range(4)]
 
-        model.setHorizontalHeaderLabels(
-            ['Name', 'Timestamp', 'MAC Address', 'IP Address'])
-        model.setHeaderData(0, QtCore.Qt.Horizontal,
-                            QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
-        for row in range(len(data)):
-            for column in range(len(data[row])):
-                item = QStandardItem(str(data[row][column]))
-                # item.setSelectable(True)
+        for position in positions:
+            # adding image to label
+            label = QLabel(self)
+            label.setPixmap(pixmap)
+            self.imageGrid.addWidget(label, *position)
 
-                item.setEditable(False)
-                model.setItem(row, column, item)
+        # model = QStandardItemModel()
 
-        table = QTableView()
-        table.setModel(model)
-        table.setSelectionBehavior(QAbstractItemView.SelectRows)
-        vbox = QVBoxLayout(self)
-        vbox.addWidget(table)
-        self.setLayout(vbox)
+        # model.setHorizontalHeaderLabels(
+        #     ['Name', 'Timestamp', 'MAC Address', 'IP Address'])
+        # model.setHeaderData(0, QtCore.Qt.Horizontal,
+        #                     QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
+        # for row in range(len(data)):
+        #     for column in range(len(data[row])):
+        #         item = QStandardItem(str(data[row][column]))
+        #         # item.setSelectable(True)
+
+        #         item.setEditable(False)
+        #         model.setItem(row, column, item)
+
+        # table = QTableView()
+        # table.setModel(model)
+        # table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        # vbox = QVBoxLayout(self)
+        # vbox.addWidget(table)
+        # self.setLayout(vbox)
 
 
 if __name__ == '__main__':
