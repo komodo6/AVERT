@@ -3,6 +3,5 @@ class Annotation:
         self.ip_address = ip_address
         self.note = note
 
-
     def __getitem__(self, item):
         return getattr(self, item)

@@ -5,7 +5,6 @@ class Artifact:
         self.mac_address = mac_address
         self.annotations = annotations
 
-
     def __getitem__(self, item):
         return getattr(self, item)
 
