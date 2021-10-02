@@ -22,3 +22,9 @@ pip3 install -r requirements.txt
 cd src
 python3 main.py
 ```
+
+## Adding to the requirements.txt
+
+```
+pip3 or pip freeze > requirements.txt
+```
