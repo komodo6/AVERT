@@ -1,6 +1,6 @@
 from Artifact import Artifact
 
-class MouseActions(Artifact):
+class MouseAction(Artifact):
     def __init__(self, timestamp, ip_address, mac_address, annotations):
         super().__init__(timestamp, ip_address, mac_address, annotations)
 

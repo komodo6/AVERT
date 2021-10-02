@@ -1,5 +1,11 @@
+import db
+
 class KeystrokeDAO:
     def __init__(self) -> None:
-        pass
+        self.db = db['Keycloak']
+
+    def fetchAll(self):
+        print(db)
+        
     
     
