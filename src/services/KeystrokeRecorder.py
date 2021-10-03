@@ -23,3 +23,6 @@ class KeystrokeRecorder(Recorder):
 
     def stop(self):
         self.listener.stop()
+        
+    def start(self):
+        self.listener.start()
