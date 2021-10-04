@@ -1,6 +1,8 @@
 import time
 from pynput import mouse
-from src.models.MouseActions import MouseActions
+from src.models.model import MouseAction
+from src.models.model import MouseActionCollection
+
 
 class MouseActionRecorder:
 
@@ -12,7 +14,7 @@ class MouseActionRecorder:
     '''
 
     def initiate(self):
-        print("made init")
+        self.mouse_action_collection = MouseActionCollection()
         self.running = False
         self.listener = mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
         self.listener.start()
@@ -21,48 +23,28 @@ class MouseActionRecorder:
         self.running = True
 
     def stop(self):
-        print('stop')
         self.running = False
 
     def on_move(self,x, y):
         if self.running:
-            print("on_move")
-            print(x, ',', y)
+            print(MouseAction("time","date", "ip", "mac", "annotations", type = 'on_move', coord_x=x, coord_y=y ).data_to_dict())
+
 
     def on_click(self,x, y, button, pressed):
         if self.running:
-            print("on_click")
-            print(x, ',', y)
-            print('pressed: ', pressed)
-            print('button: ', button)
+            print(MouseAction("time","date","ip","mac","annotations", type = 'on_click', coord_x=x, coord_y=y,pressed=pressed, button=button).data_to_dict())
 
     def on_scroll(self,x, y, dx, dy):
         if self.running:
-            print('on_scroll')
-            print(x, ',', y)
-            print('dy', dy)
+            print(MouseAction("time", "date", "ip", "mac", "annotations", type='on_click', coord_x=x, coord_y=y, scroll=dy).data_to_dict())
 
-    def make_mouse_action(self):
-        # IP
-        # MAC
-        # Time Stamp
-        pass
 
 
 mouse_action_recorder = MouseActionRecorder()
 mouse_action_recorder.initiate()
-
-while True:
-    print('Beginning----------------------------------------------------------------------------------------\n\n\n\n\n\n\n\n\n')
-    time.sleep(4)
-
-    mouse_action_recorder.start()
-
-    print("Before the sleep")
-    time.sleep(4)
-    print("after the sleep")
-
-    mouse_action_recorder.stop()
+mouse_action_recorder.start()
+time.sleep(4)
+mouse_action_recorder.stop()
 
 
 
