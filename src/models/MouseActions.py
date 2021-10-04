@@ -1,4 +1,4 @@
-from src.models.Artifact import Artifact
+from Artifact import Artifact
 
 class MouseActions(Artifact):
     def __init__(self, timestamp, ip_address, mac_address, annotations):
