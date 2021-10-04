@@ -9,6 +9,7 @@ print(current_dir)
 Form, Base = uic.loadUiType(os.path.join(current_dir, "ui/main.ui"))
 
 
+
 class MainWidget(Base, Form):
 
     def __init__(self, parent=None):
