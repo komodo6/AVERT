@@ -2,7 +2,7 @@ import time
 from pynput import mouse
 from src.models.MouseActions import MouseActions
 
-class MouseActionRecord:
+class MouseActionRecorder:
 
     '''
     When using the non - blocking version below, the current thread will
@@ -33,14 +33,14 @@ class MouseActionRecord:
             print(x, ',', y)
 
     def on_click(self,x, y, button, pressed):
-        if not self.running:
+        if self.running:
             print("on_click")
             print(x, ',', y)
             print('pressed: ', pressed)
             print('button: ', button)
 
     def on_scroll(self,x, y, dx, dy):
-        if not self.running:
+        if self.running:
             print('on_scroll')
             print(x, ',', y)
             print('dy', dy)
@@ -52,7 +52,7 @@ class MouseActionRecord:
         pass
 
 
-mouse_action_recorder = MouseActionRecord()
+mouse_action_recorder = MouseActionRecorder()
 mouse_action_recorder.initiate()
 
 while True:
