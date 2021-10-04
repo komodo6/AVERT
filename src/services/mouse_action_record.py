@@ -126,6 +126,7 @@ class MouseActionRecord:
         print('stop')
         self.running = "False"
         self.listener.stop()
+        return
 
     def makeClass(self):
         pass
@@ -194,6 +195,7 @@ while True:
     print("after the sleep")
 
     mouse_action_recorder.stop()
+    continue
 
 
 
