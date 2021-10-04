@@ -27,16 +27,16 @@ class MouseActionRecorder:
 
     def on_move(self,x, y):
         if self.running:
-            print(MouseAction("time","date", "ip", "mac", "annotations", type = 'on_move', coord_x=x, coord_y=y ).data_to_dict())
+            self.mouse_action_collection.create(MouseAction("time","date", "ip", "mac", "annotations", type = 'on_move', coord_x=x, coord_y=y ))
 
 
     def on_click(self,x, y, button, pressed):
         if self.running:
-            print(MouseAction("time","date","ip","mac","annotations", type = 'on_click', coord_x=x, coord_y=y,pressed=pressed, button=button).data_to_dict())
+            self.mouse_action_collection.create(MouseAction("time","date","ip","mac","annotations", type = 'on_click', coord_x=x, coord_y=y,pressed=pressed, button=button))
 
     def on_scroll(self,x, y, dx, dy):
         if self.running:
-            print(MouseAction("time", "date", "ip", "mac", "annotations", type='on_click', coord_x=x, coord_y=y, scroll=dy).data_to_dict())
+            self.mouse_action_collection.create(MouseAction("time", "date", "ip", "mac", "annotations", type='on_click', coord_x=x, coord_y=y, scroll=dy))
 
 
 
