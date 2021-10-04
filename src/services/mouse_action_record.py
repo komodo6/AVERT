@@ -2,10 +2,11 @@ import time
 from pynput import mouse
 from src.models.model import MouseAction
 from src.models.model import MouseActionCollection
-
+from Recorder import Recorder
 
 class MouseActionRecorder:
 
+class MouseActionRecorder(Recorder):
     '''
     When using the non - blocking version below, the current thread will
     continue executing.This might be necessary when integrating
@@ -14,7 +15,7 @@ class MouseActionRecorder:
     '''
 
     def initiate(self):
-        self.mouse_action_collection = MouseActionCollection()
+        print("made init")
         self.running = False
         self.listener = mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
         self.listener.start()
