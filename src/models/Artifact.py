@@ -1,6 +1,6 @@
 import uuid
 class Artifact:        
-    def __init__(self, id, timestamp, ip_address, mac_address, annotations):
+    def __init__(self, timestamp, ip_address, mac_address, annotations):
         self.id = uuid.uuid1()
         self.timestamp = timestamp
         self.ip_address = ip_address

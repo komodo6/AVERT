@@ -11,9 +11,9 @@ class Artifact:
     _ip = ""
     _mac = ""
     _annotations = ""
-    def __init__(self, time_created, date_created, ip, mac, annotations):
+    def __init__(self, time_created, ip, mac, annotations):
         self._time_created = time_created
-        self._date_created = date_created
+        # self._date_created = date_created
         self._ip = ip
         self._mac = mac
         self._annotations = annotations
@@ -38,15 +38,17 @@ class Keystroke(Artifact):
         return {**super().data_to_dict(), 'value':self._value}
 
 class MouseAction(Artifact):
-    _type = ""
-    _coordinate = ""
-    def __init__(self,time_created, date_created, ip, mac, annotations, type, coordinate):
-        super().__init__(time_created, date_created, ip, mac, annotations)
-        self._type = type
-        self._coordinate = coordinate
+
+    def __init__(self,time_created,  ip, mac, annotations, type = "", coord_x=None,coord_y=None, pressed=False, button="", scroll=0):
+        super().__init__(time_created,  ip, mac, annotations)
+        self.type = type
+        self.coords = [coord_x,coord_y]
+        self.pressed = pressed
+        self.button = button
+        self.scroll = scroll
 
     def data_to_dict(self):
-        return {**super().data_to_dict(), 'type':self._type, 'coordinate':self._coordinate}
+        return {**super().data_to_dict(), 'type':self.type, 'coordinate':self.coords, 'pressed':self.pressed, 'button':self.button, 'scroll':self.scroll}
 
 
 
@@ -86,6 +88,7 @@ class KeystrokeCollection(DatabaseCollection):
 class MouseActionCollection(DatabaseCollection):
     def __init__(self):
         super().__init__()
+
         # Accessing the Mouse Action collection
         self.collection = self.database.mouse_actions
 
