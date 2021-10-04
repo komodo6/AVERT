@@ -1,9 +1,9 @@
 import time
 from pynput import mouse
 from src.models.MouseActions import MouseActions
-#testing
-class MouseActionRecorder:
 
+
+class MouseActionRecorder(Recorder):
     '''
     When using the non - blocking version below, the current thread will
     continue executing.This might be necessary when integrating
@@ -24,19 +24,19 @@ class MouseActionRecorder:
         print('stop')
         self.running = False
 
-    def on_move(self,x, y):
+    def on_move(self, x, y):
         if self.running:
             print("on_move")
             print(x, ',', y)
 
-    def on_click(self,x, y, button, pressed):
+    def on_click(self, x, y, button, pressed):
         if self.running:
             print("on_click")
             print(x, ',', y)
             print('pressed: ', pressed)
             print('button: ', button)
 
-    def on_scroll(self,x, y, dx, dy):
+    def on_scroll(self, x, y, dx, dy):
         if self.running:
             print('on_scroll')
             print(x, ',', y)
@@ -53,7 +53,8 @@ mouse_action_recorder = MouseActionRecorder()
 mouse_action_recorder.initiate()
 
 while True:
-    print('Beginning----------------------------------------------------------------------------------------\n\n\n\n\n\n\n\n\n')
+    print(
+        'Beginning----------------------------------------------------------------------------------------\n\n\n\n\n\n\n\n\n')
     time.sleep(4)
 
     mouse_action_recorder.start()
@@ -63,7 +64,3 @@ while True:
     print("after the sleep")
 
     mouse_action_recorder.stop()
-
-
-
-
