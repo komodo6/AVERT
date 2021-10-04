@@ -1,4 +1,4 @@
-from db import db
+from src.db.db import db
 
 class MouseActionsDAO:
     def __init__(self) -> None:
@@ -15,6 +15,8 @@ class MouseActionsDAO:
             self.db.MouseActions.find({})
         else:
             return self.db.MouseActions.find({"id": mouse_action_id})
+
+    #TODO: add read_all to read all the entries in the MouseActions
 
     def update(self, mouse_action):
         if mouse_action is not None:
