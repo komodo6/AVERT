@@ -24,9 +24,6 @@ class MouseActionRecorder:
         print('stop')
         self.running = False
 
-    def makeClass(self):
-        pass
-
     def on_move(self,x, y):
         if self.running:
             print("on_move")
