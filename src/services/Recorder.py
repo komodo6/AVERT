@@ -2,7 +2,7 @@ import socket
 import time
 import uuid
 import re
-
+import datetime
 
 class Recorder:
 
@@ -16,5 +16,6 @@ class Recorder:
         return mac_address
 
     def get_timestamp(self):
-        time_stamp = time.time()
+        time_stamp = datetime.datetime.utcnow()
         return time_stamp
+

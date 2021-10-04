@@ -11,9 +11,9 @@ class Artifact:
     _ip = ""
     _mac = ""
     _annotations = ""
-    def __init__(self, time_created, date_created, ip, mac, annotations):
+    def __init__(self, time_created, ip, mac, annotations):
         self._time_created = time_created
-        self._date_created = date_created
+        # self._date_created = date_created
         self._ip = ip
         self._mac = mac
         self._annotations = annotations
@@ -39,8 +39,8 @@ class Keystroke(Artifact):
 
 class MouseAction(Artifact):
 
-    def __init__(self,time_created, date_created, ip, mac, annotations, type = "", coord_x=None,coord_y=None, pressed=False, button="", scroll=0):
-        super().__init__(time_created, date_created, ip, mac, annotations)
+    def __init__(self,time_created,  ip, mac, annotations, type = "", coord_x=None,coord_y=None, pressed=False, button="", scroll=0):
+        super().__init__(time_created,  ip, mac, annotations)
         self.type = type
         self.coords = [coord_x,coord_y]
         self.pressed = pressed
