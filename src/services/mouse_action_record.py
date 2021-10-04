@@ -1,9 +1,9 @@
-import time
-from pynput import mouse
-from src.models.model import MouseAction
-from src.models.model import MouseActionCollection
-from Recorder import Recorder
 
+from src.db.MouseActionsDAO import MouseActionsDAO
+from src.models.MouseAction import MouseAction
+from pynput import mouse
+from Recorder import Recorder
+import time
 class MouseActionRecorder(Recorder):
     '''
     When using the non - blocking version below, the current thread will
@@ -14,7 +14,7 @@ class MouseActionRecorder(Recorder):
     def initiate(self):
         self.ip = super().get_ip()
         self.mac = super().get_mac()
-        self.mouse_action_collection = MouseActionCollection()
+        self.mouse_action_collection = MouseActionsDAO()
         self.running = False
         self.listener = mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
         self.listener.start()
