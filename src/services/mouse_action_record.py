@@ -35,6 +35,71 @@ from src.models.MouseActions import MouseActions
 # with mouse.Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener_m:
 #     listener_m.join()
 
+# class MouseActionRecord:
+#     def test_functionality(self):
+#         self.listener.start()
+#         with mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll) as listener_m:
+#             listener_m.join()
+#
+#     '''
+#     When using the non - blocking version below, the current thread will
+#     continue executing.This might be necessary when integrating
+#     with other GUI frameworks that incorporate a main-loop, but
+#     when run from a script, this will cause the program to terminate immediately.
+#     '''
+#
+#     def initiate(self):
+#         print("made init")
+#         self.running = False
+#         self.listener = mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
+#
+#     def start(self):
+#         self.running = True
+#         self.listener.start()
+#
+#     def stop(self):
+#         print('stop')
+#         self.running = "False"
+#         self.listener.stop()
+#
+#     def makeClass(self):
+#         pass
+#
+#     def on_move(self,x, y):
+#         print("on_move")
+#         print(x , ',', y)
+#         if not self.running:
+#             return False
+#         # return False
+#
+#
+#     def on_click(self,x, y, button, pressed):
+#         print("on_click")
+#         print(x, ',' ,y)
+#         print('pressed: ',pressed)
+#         print('button: ', button)
+#         if not self.running:
+#             return False
+#         # return False
+#
+#     def on_scroll(self,x, y, dx, dy):
+#
+#         print('on_scroll')
+#         print(x , ',', y)
+#         print('dy', dy)
+#         if not self.running:
+#             return False
+#         # return False
+#
+#
+#     def make_mouse_action(self):
+#         # IP
+#         # MAC
+#         # Time Stamp
+#         pass
+
+
+
 class MouseActionRecord:
     def test_functionality(self):
         self.listener.start()
@@ -50,14 +115,17 @@ class MouseActionRecord:
 
     def initiate(self):
         print("made init")
+        self.running = False
         self.listener = mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
 
     def start(self):
+        self.running = True
         self.listener.start()
 
     def stop(self):
         print('stop')
-        self.listener.join()
+        self.running = "False"
+        self.listener.stop()
 
     def makeClass(self):
         pass
@@ -65,22 +133,29 @@ class MouseActionRecord:
     def on_move(self,x, y):
         print("on_move")
         print(x , ',', y)
-        # print('\n')
+        if not self.running:
+            return False
+        # return False
+
 
     def on_click(self,x, y, button, pressed):
         print("on_click")
         print(x, ',' ,y)
         print('pressed: ',pressed)
         print('button: ', button)
-        # print('\n')
-        # mouse_logger.info('{0} at ,{1}'.format('Pressed' if pressed else 'Released', (x, y)))
+        # if not self.running:
+        #     return False
+        return False
 
     def on_scroll(self,x, y, dx, dy):
 
         print('on_scroll')
         print(x , ',', y)
         print('dy', dy)
-        # mouse_logger.info('Scrolled {0} at ,{1}'.format('down' if dy < 0 else 'up', (x, y)))
+        # if not self.running:
+        #     return False
+        # return False
+
 
     def make_mouse_action(self):
         # IP
@@ -89,17 +164,37 @@ class MouseActionRecord:
         pass
 
 
-# while True:
-#     mouse_action_recorder = MouseActionRecord()
-#     mouse_action_recorder.initiate()
-#     mouse_action_recorder.start()
+# mouse_action_recorder = MouseActionRecord()
+# mouse_action_recorder.initiate()
+# mouse_action_recorder.start()
+# time.sleep(4)
+# mouse_action_recorder.stop()
 #
-#     print("Before the sleep")
-#     time.sleep(4)
-#     print("after the sleep")
 #
-#     mouse_action_recorder.listener.wait()
-# S
+# time.sleep(4)
+# print("Starting 2")
+#
+# mouse_action_recorder = MouseActionRecord()
+# mouse_action_recorder.initiate()
+# mouse_action_recorder.start()
+# time.sleep(4)
+# mouse_action_recorder.stop()
+
+mouse_action_recorder = None
+
+while True:
+    print('Beginning----------------------------------------------------------------------------------------\n\n\n\n\n\n\n\n\n')
+    time.sleep(4)
+    mouse_action_recorder = MouseActionRecord()
+    mouse_action_recorder.initiate()
+    mouse_action_recorder.start()
+
+    print("Before the sleep")
+    time.sleep(4)
+    print("after the sleep")
+
+    mouse_action_recorder.stop()
+
 
 
 
