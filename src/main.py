@@ -21,6 +21,8 @@ class MainWidget(Base, Form):
         for i, button in enumerate(buttons):
             button.clicked.connect(
                 partial(self.stackedWidget.setCurrentIndex, i))
+            button.clicked.connect(lambda: self.toggleButtons(button, buttons))
+            button.setCheckable(True)
 
         self.miniavert.clicked.connect(self.openChild)
 
@@ -30,6 +32,11 @@ class MainWidget(Base, Form):
     def openChild(self):
         self.child.show()
         self.hide()
+    
+    def toggleButtons(self, btn, buttons):
+        for i, button in enumerate(buttons):
+            button.setChecked(False)
+        btn.setChecked(True)
 
 
 if __name__ == '__main__':
