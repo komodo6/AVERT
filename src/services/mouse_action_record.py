@@ -1,6 +1,7 @@
 import time
 from pynput import mouse
 from src.models.MouseActions import MouseActions
+from Recorder import Recorder
 
 
 class MouseActionRecorder(Recorder):
@@ -51,7 +52,8 @@ class MouseActionRecorder(Recorder):
 
 mouse_action_recorder = MouseActionRecorder()
 mouse_action_recorder.initiate()
-
+print("IP", mouse_action_recorder.get_ip())
+print("MAC", mouse_action_recorder.get_mac())
 while True:
     print(
         'Beginning----------------------------------------------------------------------------------------\n\n\n\n\n\n\n\n\n')
@@ -64,3 +66,4 @@ while True:
     print("after the sleep")
 
     mouse_action_recorder.stop()
+    print(mouse_action_recorder.get_timestamp())
