@@ -1,7 +1,7 @@
 from services.Recorder import Recorder
 from db.KeystrokeDAO import KeystrokeDAO
 import pynput
-from models.Keystoke import Keystroke
+from models.Keystroke import Keystroke
 from models.Annotation import Annotation
 
 
