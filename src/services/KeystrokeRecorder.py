@@ -38,4 +38,4 @@ class KeystrokeRecorder(Recorder):
         self.listener.start()
 
 
-recorder = KeystrokeRecorder()
+
