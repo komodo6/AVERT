@@ -19,12 +19,12 @@ class KeystrokeRecorder(Recorder):
         if self.running:
             try:
                 self.save_keystroke(str(key.char))
-            except Exception as e:
-                raise e
+            except AttributeError:
+                self.save_keystroke(str(key)[4:])
 
     def save_keystroke(self, key):
-        Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
-                  mac_address=self.mac, annotation=Annotation(self.ip, None), key=str(key.char))
+        self.ksDAO.create(Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
+            mac_address=self.mac, annotations=Annotation(self.ip, None).toJSON(), key=key))
 
     def stop(self):
         self.running = False

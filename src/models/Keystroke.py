@@ -3,8 +3,8 @@ from models.Artifact import Artifact
 
 class Keystroke(Artifact):
 
-    def __init__(self, id, timestamp, ip_address, mac_address, annotations, key):
-        super().__init__(id, timestamp, ip_address, mac_address, annotations)
+    def __init__(self, timestamp, ip_address, mac_address, annotations, key):
+        super().__init__(timestamp, ip_address, mac_address, annotations)
         self.key = key
     
 

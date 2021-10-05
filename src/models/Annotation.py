@@ -5,3 +5,6 @@ class Annotation:
 
     def __getitem__(self, item):
         return getattr(self, item)
+
+    def toJSON(self):
+        return self.__dict__
