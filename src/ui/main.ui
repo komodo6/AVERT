@@ -120,84 +120,43 @@
        </widget>
       </item>
       <item row="0" column="3">
-<<<<<<< HEAD
        <layout class="QHBoxLayout" name="horizontalLayout_8">
         <item>
-=======
-       <layout class="QGridLayout" name="gridLayout">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>189</number>
-        </property>
-        <property name="horizontalSpacing">
-         <number>0</number>
-        </property>
-        <item row="0" column="0">
->>>>>>> develop
          <widget class="QPushButton" name="homebutton">
           <property name="text">
            <string>Home</string>
           </property>
          </widget>
         </item>
-<<<<<<< HEAD
         <item>
          <widget class="QPushButton" name="keystroke">
-=======
-        <item row="0" column="1">
-         <widget class="QPushButton" name="keystroke">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
->>>>>>> develop
           <property name="text">
            <string>KeyStroke</string>
           </property>
          </widget>
         </item>
-<<<<<<< HEAD
         <item>
-=======
-        <item row="0" column="2">
->>>>>>> develop
          <widget class="QPushButton" name="mouseactions">
           <property name="text">
            <string>Mouse Actions</string>
           </property>
          </widget>
         </item>
-<<<<<<< HEAD
         <item>
-=======
-        <item row="0" column="3">
->>>>>>> develop
          <widget class="QPushButton" name="packetcapture">
           <property name="text">
            <string>Packet Capture</string>
           </property>
          </widget>
         </item>
-<<<<<<< HEAD
         <item>
-=======
-        <item row="0" column="4">
->>>>>>> develop
          <widget class="QPushButton" name="screenshots">
           <property name="text">
            <string>Screenshots</string>
           </property>
          </widget>
         </item>
-<<<<<<< HEAD
         <item>
-=======
-        <item row="0" column="5">
->>>>>>> develop
          <widget class="QPushButton" name="videos">
           <property name="text">
            <string>Videos</string>
