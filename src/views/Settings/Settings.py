@@ -18,7 +18,7 @@ class SettingsWidget(Base, Form):
 		self.setupUi(self)
 
 		for i in range(0, 6):
-			recorders = ['screen', 'keystrokes', 'screenshots', 'pcap', 'window_history', MouseActionRecorder]
+			recorders = ['screen', 'keystrokes', 'screenshots', 'pcap', 'window_history', MouseActionRecorder()]
 			toggle = Toggle(
 				bar_color=Qt.red,
             	checked_color="#00FF00",
@@ -33,7 +33,10 @@ class SettingsWidget(Base, Form):
 			self.gridLayout_2.addWidget(toggle, i, 1)
 
 	def toggle_recording(self, toggle, recorder):
-		print("{}".format(toggle.handle_position) + ":" + recorder)
+		if toggle:
+			recorder.start()
+		elif not toggle:
+			recorder.stop()
 
 if __name__ == '__main__':
 	import sys
