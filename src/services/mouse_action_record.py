@@ -3,7 +3,6 @@ from db.MouseActionsDAO import MouseActionsDAO
 from models.MouseAction import MouseAction
 from pynput import mouse
 from services.Recorder import Recorder
-import time
 class MouseActionRecorder(Recorder):
     '''
     When using the non - blocking version below, the current thread will
