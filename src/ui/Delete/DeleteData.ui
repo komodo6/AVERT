@@ -405,17 +405,29 @@
       </disabled>
      </palette>
     </property>
+    <property name="toolTipDuration">
+     <number>0</number>
+    </property>
     <property name="styleSheet">
-     <string notr="true">gridline-color: white;
-color: white;
-border: 1px solid white</string>
+     <string notr="true">QTreeView::indicator
+{
+border: 2px solid;
+border-color:white;
+}
+QTreeView::indicator:checked
+{
+border: 5px solid;
+border-color: white;
+background-color: black;
+}
+</string>
     </property>
     <property name="sizeAdjustPolicy">
      <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
     <column>
      <property name="text">
-      <string>     </string>
+      <string>_</string>
      </property>
     </column>
     <column>
