@@ -1,6 +1,6 @@
 
-from src.db.MouseActionsDAO import MouseActionsDAO
-from src.models.MouseAction import MouseAction
+from db.MouseActionsDAO import MouseActionsDAO
+from models.MouseAction import MouseAction
 from pynput import mouse
 from Recorder import Recorder
 import time
