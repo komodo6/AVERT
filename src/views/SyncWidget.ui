@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1093</width>
-    <height>662</height>
+    <height>989</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -82,29 +82,42 @@ background-color: rgb(132, 132, 132);</string>
     <string>Sync</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>50</x>
      <y>150</y>
-     <width>161</width>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Include Videos</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>150</y>
+     <width>16</width>
      <height>16</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator
-{
-border: 2px solid;
-border-color: white;
-}
-QCheckBox::indicator:Checked
-{
-background-color: white;
-}
-</string>
+    <string notr="true">color: black;
+background-color: rgb(122, 122, 122);</string>
    </property>
    <property name="text">
-    <string>Include Videos</string>
+    <string>CheckBox</string>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar">

@@ -26,11 +26,11 @@
     <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
+background-color: white; 
 }</string>
    </property>
    <property name="text">
@@ -187,12 +187,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -207,12 +207,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -227,12 +227,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -247,12 +247,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -281,13 +281,12 @@ background-color: green;
        <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
-}
-</string>
+background-color: white; 
+}</string>
       </property>
       <property name="text">
        <string>Window Histories</string>
@@ -300,11 +299,11 @@ background-color: green;
        <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -318,11 +317,11 @@ background-color: green;
        <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -336,11 +335,11 @@ background-color: green;
        <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -354,11 +353,11 @@ background-color: green;
        <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -372,11 +371,11 @@ background-color: green;
        <string notr="true">QCheckBox::indicator
 {
 border: 2px solid;
-border-color: green;
+border-color: white;
 }
 QCheckBox:indicator:checked
 { 
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -406,12 +405,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -426,12 +425,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -446,12 +445,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
 border-radius: 6px;
-background-color: green; 
+background-color: white; 
 }</string>
       </property>
       <property name="text">
@@ -466,11 +465,12 @@ background-color: green;
 {
 border: 2px solid;
 border-radius: 6px;
-border-color: green;
+border-color: white;
 }
 QRadioButton::indicator::checked
 { 
-background-color: green; 
+border-radius: 6px;
+background-color: white; 
 }</string>
       </property>
       <property name="text">
