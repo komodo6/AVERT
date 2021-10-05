@@ -9,7 +9,6 @@ print(current_dir)
 Form, Base = uic.loadUiType(os.path.join(current_dir, "ui/main.ui"))
 
 
-
 class MainWidget(Base, Form):
 
     def __init__(self, parent=None):
@@ -17,14 +16,19 @@ class MainWidget(Base, Form):
         self.setupUi(self)
 
         self.buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture,
-                   self.screenshots, self.videos, self.settings, self.dataviz, self.delete, self.transactionButton, self.syncButton, self.exportButton, self.annotate)
+                        self.screenshots, self.videos, self.settings, self.dataviz, self.delete,
+                        self.transactionButton, self.syncButton, self.exportButton, self.annotate)
+
+
         for i, button in enumerate(self.buttons):
             button.clicked.connect(
                 partial(self.stackedWidget.setCurrentIndex, i))
             button.clicked.connect(partial(self.toggleButtons, button))
+            button.setStyleSheet("background-color : grey")
             button.setCheckable(True)
 
         self.miniavert.clicked.connect(self.openChild)
+        self.miniavert.setStyleSheet("background-color : grey")
 
         self.child = AvertMiniWindow()
         self.child.closed.connect(self.show)
@@ -33,13 +37,15 @@ class MainWidget(Base, Form):
     def openChild(self):
         self.child.show()
         self.hide()
-    
+
     def toggleButtons(self, btn):
         for i, button in enumerate(self.buttons):
             if btn == button:
                 continue
             button.setChecked(False)
         btn.setChecked(True)
+
+
 
 
 if __name__ == '__main__':
