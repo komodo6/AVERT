@@ -2,7 +2,7 @@
 from src.db.MouseActionsDAO import MouseActionsDAO
 from src.models.MouseAction import MouseAction
 from pynput import mouse
-from Recorder import Recorder
+from src.services.Recorder import Recorder
 import time
 class MouseActionRecorder(Recorder):
     '''
