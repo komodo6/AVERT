@@ -1,16 +1,17 @@
+from db.MouseActionsDAO import MouseActionsDAO
 import uuid
 from posixpath import pardir
 import sys
 import os
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5 import uic, QtCore
+from PyQt5.QtCore import Qt
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableView, QCheckBox, QAbstractItemView
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableWidget, QTableView, QCheckBox, QAbstractItemView
 from functools import partial
 from datetime import datetime
 import datetime
 current_dir = os.path.dirname(os.path.abspath(__file__))
-
 data = [
     (datetime.datetime(2019, 5, 5, 0, 54), "Right Click",
      '150.3123, 54.0334', "cmd.exe", "00-15-E9-2B-99-3C"),
@@ -37,26 +38,68 @@ class ListViewWidget(Base, Form):
         self.setupUi()
 
     def setupUi(self):
-        model = QStandardItemModel()
 
-        model.setHorizontalHeaderLabels(
-            ['Date/Time', 'Type', 'X,Y Coordinates', 'Process', 'MAC Address'])
-        model.setHeaderData(0, QtCore.Qt.Horizontal,
-                            QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
-        for row in range(len(data)):
-            for column in range(len(data[row])):
-                item = QStandardItem(str(data[row][column]))
+        maDAO = MouseActionsDAO()
+        MouseActionsData = list(maDAO.read())
+        table = QTableWidget(self)
+        table.setColumnCount(9)
+        # Set the table headers
+        table.setHorizontalHeaderLabels(
+            ["Date/Time", "IP Address", "MAC Address", "Annotations", "Type", "X/Y Coordinates", "Pressed", "Button", "Scroll"])
+        row = 0
+        table.setRowCount(len(MouseActionsData))
+        for maData in MouseActionsData:
+            timestamp = QTableWidgetItem(maData["timestamp"])
+            timestamp.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 0, timestamp)
 
-                item.setEditable(False)
-                model.setItem(row, column, item)
+            ip = QTableWidgetItem(maData["ip_address"])
+            ip.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 1, ip)
 
-        table = QTableView()
+            mac = QTableWidgetItem(maData["mac_address"])
+            mac.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 2, mac)
 
-        table.setModel(model)
-        table.setSelectionBehavior(QAbstractItemView.SelectRows)
+            anno = QTableWidgetItem(maData["annotations"])
+            table.setItem(row, 3, anno)
+
+            mtype = QTableWidgetItem(maData["type"])
+            mtype.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 4, mtype)
+
+            coord = QTableWidgetItem(
+                f"{maData['coords'][0]}, {maData['coords'][1]}")
+            coord.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+
+            table.setItem(row, 5, coord)
+
+            pressed = QTableWidgetItem(maData["pressed"])
+            pressed.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 6, pressed)
+
+            button = QTableWidgetItem(maData["button"])
+            button.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 7, button)
+
+            scroll = QTableWidgetItem(maData["scroll"])
+            scroll.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 8, scroll)
+            row = row + 1
+
+        table.resizeColumnsToContents()
+        table.resizeRowsToContents()
+        table.itemChanged.connect(self.test)
+
+        # Display the table
+        table.show()
         vbox = QVBoxLayout(self)
         vbox.addWidget(table)
         self.setLayout(vbox)
+
+    def test(self, item):
+
+        print(item.row(), item.column())
 
 
 if __name__ == '__main__':

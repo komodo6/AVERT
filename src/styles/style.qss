@@ -47,6 +47,7 @@ QPushButton {
   padding: 4px;
 }
 QPushButton:pressed {
+  background-color: #575656;
   color: #78aad2;
 }
 
