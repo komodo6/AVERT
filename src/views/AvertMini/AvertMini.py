@@ -31,7 +31,7 @@ class AvertMiniWindow(Base, Form):
             toggle.setFixedHeight(17)
             toggle.setFixedWidth(40)
             toggle.clicked.connect(partial(self.toggle_recording, toggle, recorders[i]))
-            self.formLayout.replaceWidget(self.checkBox, toggle)
+            self.gridLayout.addWidget(toggle, i, 1)
 
     def toggle_recording(self, toggle, recorder):
         if toggle:
