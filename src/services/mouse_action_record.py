@@ -1,4 +1,3 @@
-
 from db.MouseActionsDAO import MouseActionsDAO
 from models.MouseAction import MouseAction
 from models.Annotation import Annotation
@@ -14,7 +13,8 @@ class MouseActionRecorder(Recorder):
     when run from a script, this will cause the program to terminate immediately.
     '''
 
-    def initiate(self):
+    def __init__(self) -> None:
+        super().__init__()
         self.ip = super().get_ip()
         self.mac = super().get_mac()
         self.mouse_action_collection = MouseActionsDAO()

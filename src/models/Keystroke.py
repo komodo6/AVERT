@@ -1,6 +1,5 @@
 import json
-
-from .Artifact import Artifact
+from models.Artifact import Artifact
 
 class Keystroke(Artifact):
 
