@@ -1,6 +1,5 @@
 from models.Artifact import Artifact
 
-
 class MouseAction(Artifact):
     def __init__(self, timestamp, ip_address, mac_address, annotations,
                  type="", coord_x=None, coord_y=None, pressed=False, button="", scroll=0):
