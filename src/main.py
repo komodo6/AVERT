@@ -16,25 +16,28 @@ class MainWidget(Base, Form):
         super(self.__class__, self).__init__(parent)
         self.setupUi(self)
 
-        buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture,
+        self.buttons = (self.homebutton, self.keystroke, self.mouseactions, self.packetcapture,
                    self.screenshots, self.videos, self.settings, self.dataviz, self.delete, self.transactionButton, self.syncButton, self.exportButton, self.annotate)
-        for i, button in enumerate(buttons):
+        for i, button in enumerate(self.buttons):
             button.clicked.connect(
                 partial(self.stackedWidget.setCurrentIndex, i))
-            button.clicked.connect(lambda: self.toggleButtons(button, buttons))
+            button.clicked.connect(partial(self.toggleButtons, button))
             button.setCheckable(True)
 
         self.miniavert.clicked.connect(self.openChild)
 
         self.child = AvertMiniWindow()
         self.child.closed.connect(self.show)
+        self.homebutton.setChecked(True)
 
     def openChild(self):
         self.child.show()
         self.hide()
     
-    def toggleButtons(self, btn, buttons):
-        for i, button in enumerate(buttons):
+    def toggleButtons(self, btn):
+        for i, button in enumerate(self.buttons):
+            if btn == button:
+                continue
             button.setChecked(False)
         btn.setChecked(True)
 
