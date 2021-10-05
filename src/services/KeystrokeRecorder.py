@@ -23,7 +23,7 @@ class KeystrokeRecorder(Recorder):
 
     def save_keystroke(self, key):
         self.ksDAO.create(Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
-                                    mac_address=self.mac, annotations=Annotation(self.ip, None), key=key))
+            mac_address=self.mac, annotations=Annotation(self.ip, None).toJSON(), key=key))
 
     def stop(self):
         self.listener.stop()
