@@ -22,6 +22,17 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}</string>
+   </property>
    <property name="text">
     <string>Select All</string>
    </property>
@@ -164,13 +175,26 @@
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>381</width>
+     <width>385</width>
      <height>51</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QRadioButton" name="TimelineRadioButton">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Timeline</string>
       </property>
@@ -178,6 +202,19 @@
     </item>
     <item>
      <widget class="QRadioButton" name="BarGraphRadioButton">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Bar Graph</string>
       </property>
@@ -185,6 +222,19 @@
     </item>
     <item>
      <widget class="QRadioButton" name="PieChartRadioButton">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Pie Chart</string>
       </property>
@@ -192,6 +242,19 @@
     </item>
     <item>
      <widget class="QRadioButton" name="CPUUsageRadioButton">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>CPU Usage</string>
       </property>
@@ -211,6 +274,21 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="1">
      <widget class="QCheckBox" name="checkBox_4">
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}
+</string>
+      </property>
       <property name="text">
        <string>Window Histories</string>
       </property>
@@ -218,6 +296,17 @@
     </item>
     <item row="1" column="0">
      <widget class="QCheckBox" name="checkBox_2">
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Videos</string>
       </property>
@@ -225,6 +314,17 @@
     </item>
     <item row="1" column="1">
      <widget class="QCheckBox" name="checkBox_5">
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>PCAP</string>
       </property>
@@ -232,6 +332,17 @@
     </item>
     <item row="2" column="1">
      <widget class="QCheckBox" name="checkBox_6">
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Keystrokes</string>
       </property>
@@ -239,6 +350,17 @@
     </item>
     <item row="2" column="0">
      <widget class="QCheckBox" name="checkBox_3">
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Cursor Movements</string>
       </property>
@@ -246,6 +368,17 @@
     </item>
     <item row="0" column="0">
      <widget class="QCheckBox" name="checkBox">
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: green;
+}
+QCheckBox:indicator:checked
+{ 
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Screenshots</string>
       </property>
@@ -268,6 +401,19 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QRadioButton" name="radioButton_2">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Seconds</string>
       </property>
@@ -275,6 +421,19 @@
     </item>
     <item>
      <widget class="QRadioButton" name="radioButton_4">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Minutes</string>
       </property>
@@ -282,6 +441,19 @@
     </item>
     <item>
      <widget class="QRadioButton" name="radioButton_3">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+border-radius: 6px;
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Hours</string>
       </property>
@@ -289,6 +461,18 @@
     </item>
     <item>
      <widget class="QRadioButton" name="radioButton">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator
+{
+border: 2px solid;
+border-radius: 6px;
+border-color: green;
+}
+QRadioButton::indicator::checked
+{ 
+background-color: green; 
+}</string>
+      </property>
       <property name="text">
        <string>Days</string>
       </property>
