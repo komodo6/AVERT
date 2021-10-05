@@ -1,279 +1,281 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>MainWindow</class>
-    <widget class="QMainWindow" name="MainWindow">
-        <property name="enabled">
-            <bool>true</bool>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>977</width>
+    <height>647</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="miniavert">
+          <property name="text">
+           <string>Avert Popup</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="syncButton">
+          <property name="text">
+           <string>Sync</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="settings">
+          <property name="text">
+           <string>Settings</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="dataviz">
+          <property name="text">
+           <string>Visualize</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="transactionButton">
+          <property name="text">
+           <string>Transactions</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="exportButton">
+          <property name="text">
+           <string>Export</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="delete">
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="annotate">
+          <property name="text">
+           <string>Annotate</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="3">
+       <widget class="QStackedWidget" name="stackedWidget">
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>0</height>
+         </size>
         </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>977</width>
-                <height>647</height>
-            </rect>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
-        <property name="windowTitle">
-            <string>MainWindow</string>
+        <widget class="HomeWidget" name="Home"/>
+        <widget class="KeyStrokeWidget" name="KeyStroke"/>
+        <widget class="MouseActionsWidget" name="fanpage"/>
+        <widget class="PacketCaptureWidget" name="MouseActions"/>
+        <widget class="ScreenshotWidget" name="Screenshot"/>
+        <widget class="VideoWidget" name="Video"/>
+        <widget class="SettingsWidget" name="Settings"/>
+        <widget class="VisualizeWidget" name="DataVisualize"/>
+        <widget class="DeleteWidget" name="Delete"/>
+        <widget class="TransactionWidget" name="Transaction"/>
+        <widget class="SyncWidget" name="Sync"/>
+        <widget class="ExportWidget" name="Export"/>
+        <widget class="AnnotateWidget" name="Annotate"/>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
         </property>
-        <widget class="QWidget" name="centralwidget">
-            <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                    <!-- SIDE BAR  -->
-                    <layout class="QGridLayout" name="gridLayout_2">
-                        <item row="1" column="0">
-                            <layout class="QVBoxLayout" name="verticalLayout">
-                                <item>
-                                    <widget class="QPushButton" name="miniavert">
-                                        <property name="text">
-                                            <string>Avert Popup</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="statusbutton">
-
-                                        <property name="text">
-                                            <string>Min Left Bar</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="syncButton">
-                                        <property name="text">
-                                            <string>Sync</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="settings">
-                                        <property name="text">
-                                            <string>Settings</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="dataviz">
-                                        <property name="text">
-                                            <string>Visualize</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="transactionButton">
-                                        <property name="text">
-                                            <string>Transactions</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="exportButton">
-                                        <property name="text">
-                                            <string>Export</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="delete">
-                                        <property name="text">
-                                            <string>Delete</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="annotate">
-                                        <property name="text">
-                                            <string>Annotate</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <spacer name="verticalSpacer">
-                                        <property name="orientation">
-                                            <enum>Qt::Vertical</enum>
-                                        </property>
-                                        <property name="sizeHint" stdset="0">
-                                            <size>
-                                                <width>20</width>
-                                                <height>40</height>
-                                            </size>
-                                        </property>
-                                    </spacer>
-                                </item>
-                            </layout>
-                        </item>
-                        <!-- Widget Stack -->
-                        <item row="1" column="3">
-                            <widget class="QStackedWidget" name="stackedWidget">
-                                <property name="minimumSize">
-                                    <size>
-                                        <width>10</width>
-                                        <height>0</height>
-                                    </size>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true" />
-                                </property>
-                                <widget class="HomeWidget" name="Home" />
-                                <widget class="KeyStrokeWidget" name="KeyStroke" />
-                                <widget class="MouseActionsWidget" name="fanpage" />
-                                <widget class="PacketCaptureWidget" name="MouseActions" />
-                                <widget class="ScreenshotWidget" name="Screenshot" />
-                                <widget class="VideoWidget" name="Video" />
-                                <widget class="SettingsWidget" name="Settings" />
-                                <widget class="VisualizeWidget" name="DataVisualize" />
-                                <widget class="DeleteWidget" name="Delete" />
-                                <widget class="TransactionWidget" name="Transaction" />
-                                <widget class="SyncWidget" name="Sync" />
-                                <widget class="ExportWidget" name="Export" />
-                                <widget class="AnnotateWidget" name="Annotate" />
-
-                            </widget>
-                        </item>
-                        <!-- TOP BAR  -->
-                        <item row="0" column="3">
-                            <layout class="QHBoxLayout" name="horizontalLayout_8">
-                                <item>
-                                    <widget class="QPushButton" name="homebutton">
-                                        <property name="text">
-                                            <string>Home</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="keystroke">
-                                        <property name="text">
-                                            <string>KeyStroke</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="mouseactions">
-                                        <property name="text">
-                                            <string>Mouse Actions</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="packetcapture">
-                                        <property name="text">
-                                            <string>Packet Capture</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="screenshots">
-                                        <property name="text">
-                                            <string>Screenshots</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                                <item>
-                                    <widget class="QPushButton" name="videos">
-                                        <property name="text">
-                                            <string>Videos</string>
-                                        </property>
-                                    </widget>
-                                </item>
-                            </layout>
-                        </item>
-                    </layout>
-                </item>
-            </layout>
-        </widget>
-        <widget class="QMenuBar" name="menubar">
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>977</width>
-                    <height>21</height>
-                </rect>
-            </property>
-        </widget>
-        <widget class="QStatusBar" name="statusbar" />
-    </widget>
-    <!-- LIST OF WIDGETS -->
-    <customwidgets>
-        <customwidget>
-            <class>HomeWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Home/Home</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>KeyStrokeWidget</class>
-            <extends>QWidget</extends>
-            <header>views/KeyStroke/KeyStroke</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>MouseActionsWidget</class>
-            <extends>QWidget</extends>
-            <header>views/MouseActions/MouseActions</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>PacketCaptureWidget</class>
-            <extends>QWidget</extends>
-            <header>views/PacketCapture/PacketCapture</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>ScreenshotWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Screenshot/Screenshot</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>VideoWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Video/Video</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>SettingsWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Settings/Settings</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>VisualizeWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Visualize/Visualize</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>DeleteWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Delete/Delete</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>TransactionWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Transaction/Transaction</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>SyncWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Sync/Sync</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>ExportWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Export/Export</header>
-            <container>1</container>
-        </customwidget>
-        <customwidget>
-            <class>AnnotateWidget</class>
-            <extends>QWidget</extends>
-            <header>views/Annotate/Annotate</header>
-            <container>1</container>
-        </customwidget>
-    </customwidgets>
-    <resources />
-    <connections />
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>189</number>
+        </property>
+        <property name="horizontalSpacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="homebutton">
+          <property name="text">
+           <string>Home</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="keystroke">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>KeyStroke</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="mouseactions">
+          <property name="text">
+           <string>Mouse Actions</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="packetcapture">
+          <property name="text">
+           <string>Packet Capture</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QPushButton" name="screenshots">
+          <property name="text">
+           <string>Screenshots</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QPushButton" name="videos">
+          <property name="text">
+           <string>Videos</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>977</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HomeWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Home/Home</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KeyStrokeWidget</class>
+   <extends>QWidget</extends>
+   <header>views/KeyStroke/KeyStroke</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MouseActionsWidget</class>
+   <extends>QWidget</extends>
+   <header>views/MouseActions/MouseActions</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PacketCaptureWidget</class>
+   <extends>QWidget</extends>
+   <header>views/PacketCapture/PacketCapture</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScreenshotWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Screenshot/Screenshot</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>VideoWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Video/Video</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SettingsWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Settings/Settings</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>VisualizeWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Visualize/Visualize</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DeleteWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Delete/Delete</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TransactionWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Transaction/Transaction</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SyncWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Sync/Sync</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ExportWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Export/Export</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AnnotateWidget</class>
+   <extends>QWidget</extends>
+   <header>views/Annotate/Annotate</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
 </ui>

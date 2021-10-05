@@ -1,9 +1,8 @@
 
-from src.db.MouseActionsDAO import MouseActionsDAO
-from src.models.MouseAction import MouseAction
+from db.MouseActionsDAO import MouseActionsDAO
+from models.MouseAction import MouseAction
 from pynput import mouse
-from src.services.Recorder import Recorder
-import time
+from services.Recorder import Recorder
 class MouseActionRecorder(Recorder):
     '''
     When using the non - blocking version below, the current thread will
@@ -37,15 +36,3 @@ class MouseActionRecorder(Recorder):
     def on_scroll(self,x, y, dx, dy):
         if self.running:
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(), self.ip, self.mac, "annotations", type='on_click', coord_x=x, coord_y=y, scroll=dy))
-
-
-
-mouse_action_recorder = MouseActionRecorder()
-mouse_action_recorder.initiate()
-mouse_action_recorder.start()
-time.sleep(4)
-mouse_action_recorder.stop()
-
-
-
-

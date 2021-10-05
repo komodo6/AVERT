@@ -1,4 +1,4 @@
-from src.db.db import db
+from db.db import db
 
 class MouseActionsDAO:
     def __init__(self) -> None:
