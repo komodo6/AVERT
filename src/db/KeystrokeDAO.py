@@ -3,36 +3,28 @@ from db import db
 
 class KeystrokeDAO:
     def __init__(self) -> None:
-        self.db = db
+        self.db = db.db.Keystrokes
 
     def create(self, keystroke):
         if keystroke is not None:
-            self.db.keystrokes.insert(keystroke.toJSON())
+            self.db.insert(keystroke.toJSON())
         else:
             raise Exception("Cannot Insert, Keystroke is empty")
-    
+
     def read(self, keystroke_id):
         if keystroke_id is None:
-            self.db.keystrokes.find({})
+            return self.db.find({}, {'_id': False})
         else:
-            return self.db.keystrokes.find({"id": keystroke_id})
+            return self.db.find({"id": keystroke_id}, {'_id': False})
 
     def update(self, keystroke):
         if keystroke is not None:
-            self.db.keystrokes.save(keystroke.toJSON())
+            self.db.save(keystroke.toJSON())
         else:
             raise Exception("Cannot update, keystroke is empty")
 
     def delete(self, keystroke):
         if keystroke is not None:
-            self.db.keystrokes.remove(keystroke.toJSON())
+            self.db.remove(keystroke.toJSON())
         else:
             raise Exception("Cannot Delete, Keystroke is empty")
-
-    
-    
-ks = KeystrokeDAO()
-ks.fetchAll()
-
-# if __name__ == '__main__':
- 
