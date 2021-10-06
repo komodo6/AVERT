@@ -42,7 +42,7 @@ class ListViewWidget(Base, Form):
         KeyStrokeData = list(ksDAO.read())
 
         table = QTableWidget(self)
-        table.setColumnCount(9)
+        table.setColumnCount(5)
         # Set the table headers
         table.setHorizontalHeaderLabels(
             ["Date/Time", "IP Address", "MAC Address", "Annotations", "Key"])
