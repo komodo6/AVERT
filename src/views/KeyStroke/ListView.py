@@ -5,10 +5,13 @@ import os
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5 import uic, QtCore
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableView, QCheckBox, QAbstractItemView
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QListWidget, QTableWidgetItem, QTableWidget, QTableView, QCheckBox, QAbstractItemView
 from functools import partial
 from datetime import datetime
 import datetime
+from PyQt5.QtCore import Qt
+from db.KeystrokeDAO import KeystrokeDAO
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 data = [('image-121', datetime.datetime(2019, 5, 5, 0, 54), datetime.datetime(2019, 5, 26, 22, 51, 36), '192.2131.2131'),
@@ -33,23 +36,46 @@ class ListViewWidget(Base, Form):
         self.setupUi()
 
     def setupUi(self):
-        model = QStandardItemModel()
 
-        model.setHorizontalHeaderLabels(
-            ['Timestamp', 'Key', 'Process', 'MAC Address'])
-        model.setHeaderData(0, QtCore.Qt.Horizontal,
-                            QtCore.Qt.AlignCenter, QtCore.Qt.TextAlignmentRole)
-        for row in range(len(data)):
-            for column in range(len(data[row])):
-                item = QStandardItem(str(data[row][column]))
+        ksDAO = KeystrokeDAO()
 
-                item.setEditable(False)
-                model.setItem(row, column, item)
+        KeyStrokeData = list(ksDAO.read())
 
-        table = QTableView()
+        table = QTableWidget(self)
+        table.setColumnCount(9)
+        # Set the table headers
+        table.setHorizontalHeaderLabels(
+            ["Date/Time", "IP Address", "MAC Address", "Annotations", "Key"])
+        row = 0
+        table.setRowCount(len(KeyStrokeData))
+        for maData in KeyStrokeData:
+            timestamp = QTableWidgetItem(maData["timestamp"])
+            timestamp.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 0, timestamp)
 
-        table.setModel(model)
-        table.setSelectionBehavior(QAbstractItemView.SelectRows)
+            ip = QTableWidgetItem(maData["ip_address"])
+            ip.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 1, ip)
+
+            mac = QTableWidgetItem(maData["mac_address"])
+            mac.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 2, mac)
+
+            anno = QTableWidgetItem(maData["annotations"])
+            table.setItem(row, 3, anno)
+
+            mtype = QTableWidgetItem(maData["key"])
+            mtype.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 4, mtype)
+
+            row = row + 1
+        table.resizeColumnsToContents()
+        table.resizeRowsToContents()
+        table.itemChanged.connect(self.test)
+
+        # Display the table
+        table.show()
+
         vbox = QVBoxLayout(self)
         vbox.addWidget(table)
         self.setLayout(vbox)
