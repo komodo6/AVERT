@@ -4,7 +4,7 @@ from models.Annotation import Annotation
 from pynput import mouse
 from services.Recorder import Recorder
 import time
-
+from services.ActiveWindow import ActiveWindow
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Wnck', '3.0')
@@ -28,9 +28,14 @@ class MouseActionRecorder(Recorder):
         self.listener = mouse.Listener(
             on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
         self.listener.start()
-        wnck_scr = Wnck.Screen.get_default()
-        wnck_scr.connect("active-window-changed", self.getWindow)
-        Gtk.main()
+
+        # move this to where you start recording
+        aw = ActiveWindow()
+        aw.start()
+        
+        
+        
+        
 
     def start(self):
         self.running = True
@@ -50,12 +55,8 @@ class MouseActionRecorder(Recorder):
 
     def on_scroll(self, x, y, dx, dy):
         if self.running:
+            
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
             ), self.ip, self.mac, Annotation(self.ip, None), type='on_click', coord_x=x, coord_y=y, scroll=dy))
 
-    def getWindow(self, screen, previous_window):
-        try:
-            return screen.get_active_window().get_name()
-        except AttributeError:
-            pass
-            
+    

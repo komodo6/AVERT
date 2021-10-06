@@ -21,7 +21,7 @@ class KeystrokeRecorder(Recorder):
         self.listener.start()
         wnck_scr = Wnck.Screen.get_default()
         wnck_scr.connect("active-window-changed", self.getWindow)
-        Gtk.main()
+        # Gtk.main()
 
     def on_release(self, key):
         if self.running:
