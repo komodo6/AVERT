@@ -28,8 +28,8 @@ class AvertMiniWindow(Base, Form):
                 bar_color=Qt.red,
                 checked_color="#00FF00",
             )
-            toggle.setFixedHeight(17)
-            toggle.setFixedWidth(40)
+            toggle.setFixedHeight(40)
+            toggle.setFixedWidth(70)
             toggle.clicked.connect(partial(self.toggle_recording, toggle, recorders[i]))
             self.gridLayout.addWidget(toggle, i, 1)
 
