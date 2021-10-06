@@ -22,28 +22,28 @@ class AvertMiniWindow(Base, Form):
         super(self.__class__, self).__init__(parent)
         self.setupUi(self)
         
-        for i in range(0, 6):
-            recorders = ['screen', KeystrokeRecorder(), 'screenshots', 'pcap', 'window_history', MouseActionRecorder()]
-            toggle = Toggle(
-                bar_color=Qt.red,
-                checked_color="#00FF00",
-            )
-            toggle.setFixedHeight(17)
-            toggle.setFixedWidth(40)
-            toggle.clicked.connect(partial(self.toggle_recording, toggle, recorders[i]))
-            self.gridLayout.addWidget(toggle, i, 1)
-
-    def toggle_recording(self, toggle, recorder):
-        if toggle:
-            try:
-                recorder.start()
-            except Exception as e:
-                raise e
-        elif not toggle:
-            try:
-                recorder.stop()
-            except Exception as e:
-                raise e
+    #     for i in range(0, 6):
+    #         recorders = ['screen', KeystrokeRecorder(), 'screenshots', 'pcap', 'window_history', MouseActionRecorder()]
+    #         toggle = Toggle(
+    #             bar_color=Qt.red,
+    #             checked_color="#00FF00",
+    #         )
+    #         toggle.setFixedHeight(40)
+    #         toggle.setFixedWidth(70)
+    #         toggle.clicked.connect(partial(self.toggle_recording, toggle, recorders[i]))
+    #         self.gridLayout.addWidget(toggle, i, 1)
+    #
+    # def toggle_recording(self, toggle, recorder):
+    #     if toggle:
+    #         try:
+    #             recorder.start()
+    #         except Exception as e:
+    #             raise e
+    #     elif not toggle:
+    #         try:
+    #             recorder.stop()
+    #         except Exception as e:
+    #             raise e
 
     def closeEvent(self, event):
         self.closed.emit()
