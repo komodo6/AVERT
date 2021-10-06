@@ -20,8 +20,8 @@ class KeystrokeRecorder(Recorder):
         self.running = False
         self.listener = keyboard.Listener(on_release=self.on_release)
         self.listener.start()
-        aw = ActiveWindow()
-        aw.start()
+        self.aw = ActiveWindow()
+        self.aw.start()
         # Gtk.main()
 
     def on_release(self, key):

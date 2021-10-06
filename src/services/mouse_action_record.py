@@ -30,8 +30,8 @@ class MouseActionRecorder(Recorder):
         self.listener.start()
 
         # move this to where you start recording
-        aw = ActiveWindow()
-        aw.start()
+        self.aw = ActiveWindow()
+        self.aw.start()
         
         
         
