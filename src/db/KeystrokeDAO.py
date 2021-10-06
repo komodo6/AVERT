@@ -11,7 +11,7 @@ class KeystrokeDAO:
         else:
             raise Exception("Cannot Insert, Keystroke is empty")
 
-    def read(self, keystroke_id):
+    def read(self, keystroke_id=None):
         if keystroke_id is None:
             return self.db.find({}, {'_id': False})
         else:
