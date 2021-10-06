@@ -171,7 +171,7 @@
     <property name="verticalSpacing">
      <number>6</number>
     </property>
-    <item row="5" column="0">
+    <item row="0" column="0">
      <widget class="QLabel" name="label_4">
       <property name="font">
        <font>
@@ -181,26 +181,12 @@
        </font>
       </property>
       <property name="text">
-       <string>Record Screenshots</string>
+       <string>Record Screen</string>
       </property>
      </widget>
     </item>
-    <item row="11" column="0">
+    <item row="1" column="0">
      <widget class="QLabel" name="label_6">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Record PCAP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
         <pointsize>10</pointsize>
@@ -213,8 +199,36 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Record Screenshots</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
      <widget class="QLabel" name="label_5">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Record PCAP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_7">
       <property name="font">
        <font>
         <pointsize>10</pointsize>
@@ -227,21 +241,7 @@
       </property>
      </widget>
     </item>
-    <item row="17" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Record Cursor</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
@@ -251,7 +251,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Record Screen</string>
+       <string>Record Cursor</string>
       </property>
      </widget>
     </item>

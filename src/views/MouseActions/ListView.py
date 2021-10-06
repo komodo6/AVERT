@@ -61,7 +61,7 @@ class ListViewWidget(Base, Form):
             mac.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
             table.setItem(row, 2, mac)
 
-            anno = QTableWidgetItem(maData["annotations"])
+            anno = QTableWidgetItem(maData["annotations"]['note'])
             table.setItem(row, 3, anno)
 
             mtype = QTableWidgetItem(maData["type"])
