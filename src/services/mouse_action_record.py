@@ -46,17 +46,17 @@ class MouseActionRecorder(Recorder):
     def on_move(self, x, y):
         if self.running:
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, Annotation(self.ip, None).toJSON(), type='on_move', coord_x=x, coord_y=y))
+            ), self.ip, self.mac, Annotation(self.ip, None).toJSON(), type='on_move', coord_x=x, coord_y=y, active_window=self.aw.whatWindow()))
 
     def on_click(self, x, y, button, pressed):
         if self.running:
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, Annotation(self.ip, None).toJSON(), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name))
+            ), self.ip, self.mac, Annotation(self.ip, None).toJSON(), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=self.aw.whatWindow()))
 
     def on_scroll(self, x, y, dx, dy):
         if self.running:
             
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, Annotation(self.ip, None), type='on_click', coord_x=x, coord_y=y, scroll=dy))
+            ), self.ip, self.mac, Annotation(self.ip, None), type='on_click', coord_x=x, coord_y=y, scroll=dy, active_window=self.aw.whatWindow()))
 
     

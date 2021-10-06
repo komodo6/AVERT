@@ -10,6 +10,7 @@ class ActiveWindow(Thread):
         Thread.__init__(self)
         self.wnck_scr = Wnck.Screen.get_default()
         self.wnck_scr.connect("active-window-changed", self.getWindow)
+        self.window = None
         
 
     def run(self):
@@ -18,9 +19,15 @@ class ActiveWindow(Thread):
 
     def getWindow(self, screen, previous_window):
         try:
-            return screen.get_active_window().get_name()
+            self.window = screen.get_active_window().get_name()
         except AttributeError:
             pass
+
+        
+
+    def whatWindow(self):
+        return self.window
+
             
 
 
