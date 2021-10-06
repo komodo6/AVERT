@@ -42,10 +42,10 @@ class ListViewWidget(Base, Form):
         KeyStrokeData = list(ksDAO.read())
 
         table = QTableWidget(self)
-        table.setColumnCount(5)
+        table.setColumnCount(6)
         # Set the table headers
         table.setHorizontalHeaderLabels(
-            ["Date/Time", "IP Address", "MAC Address", "Annotations", "Key"])
+            ["Date/Time", "IP Address", "MAC Address", "Annotations", "Key", "Active Window"])
         row = 0
         table.setRowCount(len(KeyStrokeData))
         for maData in KeyStrokeData:
@@ -67,6 +67,10 @@ class ListViewWidget(Base, Form):
             mtype = QTableWidgetItem(maData["key"])
             mtype.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
             table.setItem(row, 4, mtype)
+
+            active_window = QTableWidgetItem(maData["active_window"])
+            active_window.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 5, active_window)
 
             row = row + 1
         table.resizeColumnsToContents()

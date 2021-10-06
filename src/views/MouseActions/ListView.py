@@ -42,10 +42,10 @@ class ListViewWidget(Base, Form):
         maDAO = MouseActionsDAO()
         MouseActionsData = list(maDAO.read())
         table = QTableWidget(self)
-        table.setColumnCount(9)
+        table.setColumnCount(10)
         # Set the table headers
         table.setHorizontalHeaderLabels(
-            ["Date/Time", "IP Address", "MAC Address", "Annotations", "Type", "X/Y Coordinates", "Pressed", "Button", "Scroll"])
+            ["Date/Time", "IP Address", "MAC Address", "Annotations", "Type", "X/Y Coordinates", "Pressed", "Button", "Scroll", "Active Window"])
         row = 0
         table.setRowCount(len(MouseActionsData))
         for maData in MouseActionsData:
@@ -85,6 +85,10 @@ class ListViewWidget(Base, Form):
             scroll = QTableWidgetItem(maData["scroll"])
             scroll.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
             table.setItem(row, 8, scroll)
+
+            active_window = QTableWidgetItem(maData["active_window"])
+            active_window.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+            table.setItem(row, 9, active_window)
             row = row + 1
 
         table.resizeColumnsToContents()
