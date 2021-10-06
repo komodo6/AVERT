@@ -4,7 +4,7 @@ from Artifact import Artifact
 
 class Keystroke(Artifact):
 
-    def __init__(self, id, timestamp, ip_address, mac_address, annotations, key):
+    def __init__(self, id, timestamp, ip_address, mac_address, annotations, key, active_window):
         super().__init__(id, timestamp, ip_address, mac_address, annotations)
         self.key = key
     

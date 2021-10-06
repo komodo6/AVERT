@@ -5,6 +5,11 @@ from models.Keystoke import Keystroke
 from models.Annotation import Annotation
 
 
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Wnck', '3.0')
+from gi.repository import Gtk, Wnck
+
 class KeystrokeRecorder(Recorder):
     def __init__(self) -> None:
         super().__init__()
@@ -14,6 +19,9 @@ class KeystrokeRecorder(Recorder):
         self.listener = pynput.keyboard.Listener(on_release=self.on_release)
         self.listener.start()
         self.listener.join()
+        wnck_scr = Wnck.Screen.get_default()
+        wnck_scr.connect("active-window-changed", self.getWindow)
+        Gtk.main()
 
     def on_release(self, key):
         try:
@@ -30,3 +38,10 @@ class KeystrokeRecorder(Recorder):
 
     def start(self):
         self.listener.start()
+
+
+    def getWindow(self, screen, previous_window):
+        try:
+            return screen.get_active_window().get_name()
+        except AttributeError:
+            pass
