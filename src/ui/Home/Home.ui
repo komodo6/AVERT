@@ -395,6 +395,17 @@ p, li { white-space: pre-wrap; }
         </disabled>
        </palette>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: white;
+}
+QCheckBox::indicator:Checked
+{
+background-color: white;
+}</string>
+      </property>
       <property name="text">
        <string>Keystrokes</string>
       </property>
@@ -525,6 +536,17 @@ p, li { white-space: pre-wrap; }
          </colorrole>
         </disabled>
        </palette>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: white;
+}
+QCheckBox::indicator:Checked
+{
+background-color: white;
+}</string>
       </property>
       <property name="text">
        <string>VIdeos</string>
@@ -657,6 +679,17 @@ p, li { white-space: pre-wrap; }
         </disabled>
        </palette>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: white;
+}
+QCheckBox::indicator:Checked
+{
+background-color: white;
+}</string>
+      </property>
       <property name="text">
        <string>Window and cursor</string>
       </property>
@@ -788,6 +821,17 @@ p, li { white-space: pre-wrap; }
         </disabled>
        </palette>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: white;
+}
+QCheckBox::indicator:Checked
+{
+background-color: white;
+}</string>
+      </property>
       <property name="text">
        <string>Screenshots</string>
       </property>
@@ -918,6 +962,17 @@ p, li { white-space: pre-wrap; }
          </colorrole>
         </disabled>
        </palette>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox::indicator
+{
+border: 2px solid;
+border-color: white;
+}
+QCheckBox::indicator:Checked
+{
+background-color: white;
+}</string>
       </property>
       <property name="text">
        <string>PCAP</string>
@@ -1625,6 +1680,19 @@ p, li { white-space: pre-wrap; }
       </disabled>
      </palette>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QTreeView::indicator
+{
+border: 2px solid;
+border-color:white;
+}
+QTreeView::indicator:checked
+{
+border: 5px solid;
+border-color: white;
+background-color: black;
+}</string>
+    </property>
     <column>
      <property name="text">
       <string>_</string>
@@ -1657,7 +1725,33 @@ p, li { white-space: pre-wrap; }
     </column>
     <item>
      <property name="text">
+      <string notr="true"/>
+     </property>
+     <property name="statusTip">
       <string/>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="background">
+      <brush brushstyle="NoBrush">
+       <color alpha="255">
+        <red>0</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="NoBrush">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
      </property>
      <property name="checkState">
       <enum>Checked</enum>
@@ -1685,7 +1779,7 @@ p, li { white-space: pre-wrap; }
        <string/>
       </property>
       <property name="text">
-       <string>           </string>
+       <string/>
       </property>
      </item>
      <item>
@@ -1761,7 +1855,7 @@ p, li { white-space: pre-wrap; }
        <string/>
       </property>
       <property name="text">
-       <string>            </string>
+       <string/>
       </property>
      </item>
     </item>

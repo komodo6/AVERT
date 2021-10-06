@@ -1,4 +1,3 @@
-
 from db.MouseActionsDAO import MouseActionsDAO
 from models.MouseAction import MouseAction
 from models.Annotation import Annotation
@@ -20,7 +19,8 @@ class MouseActionRecorder(Recorder):
     when run from a script, this will cause the program to terminate immediately.
     '''
 
-    def initiate(self):
+    def __init__(self) -> None:
+        super().__init__()
         self.ip = super().get_ip()
         self.mac = super().get_mac()
         self.mouse_action_collection = MouseActionsDAO()
@@ -41,12 +41,12 @@ class MouseActionRecorder(Recorder):
     def on_move(self, x, y):
         if self.running:
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, Annotation(self.ip, None), type='on_move', coord_x=x, coord_y=y))
+            ), self.ip, self.mac, Annotation(self.ip, None).toJSON(), type='on_move', coord_x=x, coord_y=y))
 
     def on_click(self, x, y, button, pressed):
         if self.running:
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, Annotation(self.ip, None), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name))
+            ), self.ip, self.mac, Annotation(self.ip, None).toJSON(), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name))
 
     def on_scroll(self, x, y, dx, dy):
         if self.running:

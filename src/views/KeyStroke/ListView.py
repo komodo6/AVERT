@@ -42,7 +42,7 @@ class ListViewWidget(Base, Form):
         KeyStrokeData = list(ksDAO.read())
 
         table = QTableWidget(self)
-        table.setColumnCount(9)
+        table.setColumnCount(5)
         # Set the table headers
         table.setHorizontalHeaderLabels(
             ["Date/Time", "IP Address", "MAC Address", "Annotations", "Key"])
@@ -61,7 +61,7 @@ class ListViewWidget(Base, Form):
             mac.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
             table.setItem(row, 2, mac)
 
-            anno = QTableWidgetItem(maData["annotations"])
+            anno = QTableWidgetItem(maData["annotations"]["note"])
             table.setItem(row, 3, anno)
 
             mtype = QTableWidgetItem(maData["key"])
@@ -71,7 +71,7 @@ class ListViewWidget(Base, Form):
             row = row + 1
         table.resizeColumnsToContents()
         table.resizeRowsToContents()
-        table.itemChanged.connect(self.test)
+        #table.itemChanged.connect(self.test)
 
         # Display the table
         table.show()
