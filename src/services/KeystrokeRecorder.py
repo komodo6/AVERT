@@ -19,7 +19,6 @@ class KeystrokeRecorder(Recorder):
         self.running = False
         self.listener = keyboard.Listener(on_release=self.on_release)
         self.listener.start()
-        self.listener.join()
         wnck_scr = Wnck.Screen.get_default()
         wnck_scr.connect("active-window-changed", self.getWindow)
         Gtk.main()
