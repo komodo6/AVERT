@@ -4,11 +4,11 @@ from models.Annotation import Annotation
 from pynput import mouse
 from services.Recorder import Recorder
 import time
-from services.ActiveWindow import ActiveWindow
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Wnck', '3.0')
-from gi.repository import Gtk, Wnck
+# from services.ActiveWindow import ActiveWindow
+# import gi
+# gi.require_version('Gtk', '3.0')
+# gi.require_version('Wnck', '3.0')
+# from gi.repository import Gtk, Wnck
 import time
 
 class MouseActionRecorder(Recorder):
@@ -30,8 +30,8 @@ class MouseActionRecorder(Recorder):
         self.listener.start()
 
         # move this to where you start recording
-        self.aw = ActiveWindow()
-        self.aw.start()
+        # self.aw = ActiveWindow()
+        # self.aw.start()
         
         
         
@@ -47,18 +47,18 @@ class MouseActionRecorder(Recorder):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, a.toJSON(), type='on_move', coord_x=x, coord_y=y, active_window=self.aw.whatWindow()))
+            ), self.ip, self.mac, a.toJSON(), type='on_move', coord_x=x, coord_y=y, active_window=None))
 
     def on_click(self, x, y, button, pressed):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, a.toJSON(), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=self.aw.whatWindow()))
+            ), self.ip, self.mac, a.toJSON(), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=None))
 
     def on_scroll(self, x, y, dx, dy):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, a.toJSON(), type='on_click', coord_x=x, coord_y=y, scroll=dy, active_window=self.aw.whatWindow()))
+            ), self.ip, self.mac, a.toJSON(), type='on_click', coord_x=x, coord_y=y, scroll=dy, active_window=None))
 
     

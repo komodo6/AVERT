@@ -2,7 +2,7 @@
   <div class="q-pa-sm">
     <div class="row">
       <div class="col">
-        <q-table :columns="columns"> </q-table>
+        <q-table title="Keystrokes" :columns="columns"> </q-table>
       </div>
     </div>
   </div>
@@ -35,8 +35,8 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Active Window",
-    label: "Active Window",
+    name: "Window",
+    label: "Window",
     align: "center",
     sortable: true,
   },
