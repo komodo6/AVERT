@@ -30,33 +30,41 @@
                 />
               </template>
             </q-input>
-            <div v-if="$q.screen.gt.xs" class="col">
-              <q-toggle
-                v-model="visibleColumns"
-                val="calories"
-                label="Calories"
-              />
-              <q-toggle v-model="visibleColumns" val="fat" label="Fat" />
-              <q-toggle v-model="visibleColumns" val="carbs" label="Carbs" />
-              <q-toggle
-                v-model="visibleColumns"
-                val="protein"
-                label="Protein"
-              />
-              <q-toggle v-model="visibleColumns" val="sodium" label="Sodium" />
-              <q-toggle
-                v-model="visibleColumns"
-                val="calcium"
-                label="Calcium"
-              />
-              <q-toggle v-model="visibleColumns" val="iron" label="Iron" />
-            </div>
-            <div class="datetime-from">
-              <input type="datetime-local" name="" id="" />
+            <div class="item-selections row q-mx-sm">
+              <div v-if="$q.screen.gt.xs" class="col">
+                <q-toggle
+                  v-model="visibleColumns"
+                  val="calories"
+                  label="Calories"
+                />
+                <q-toggle v-model="visibleColumns" val="fat" label="Fat" />
+                <q-toggle v-model="visibleColumns" val="carbs" label="Carbs" />
+                <q-toggle
+                  v-model="visibleColumns"
+                  val="protein"
+                  label="Protein"
+                />
+                <q-toggle
+                  v-model="visibleColumns"
+                  val="sodium"
+                  label="Sodium"
+                />
+                <q-toggle
+                  v-model="visibleColumns"
+                  val="calcium"
+                  label="Calcium"
+                />
+                <q-toggle v-model="visibleColumns" val="iron" label="Iron" />
+              </div>
             </div>
 
-            <div class="datetime-to">
-              <input type="datetime-local" name="" id="" />
+            <div class="row">
+              <div class="datetime-from col-12">
+                <input type="datetime-local" name="" id="" />
+              </div>
+              <div class="datetime-to col-12">
+                <input type="datetime-local" name="" id="" />
+              </div>
             </div>
           </template>
         </q-table>

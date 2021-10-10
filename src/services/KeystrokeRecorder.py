@@ -5,11 +5,11 @@ from models.Keystroke import Keystroke
 from models.Annotation import Annotation
 
 
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Wnck', '3.0')
-from gi.repository import Gtk, Wnck
-from services.ActiveWindow import ActiveWindow
+# import gi
+# gi.require_version('Gtk', '3.0')
+# gi.require_version('Wnck', '3.0')
+# from gi.repository import Gtk, Wnck
+# from services.ActiveWindow import ActiveWindow
 
 class KeystrokeRecorder(Recorder):
     def __init__(self) -> None:
@@ -20,8 +20,8 @@ class KeystrokeRecorder(Recorder):
         self.running = False
         self.listener = keyboard.Listener(on_release=self.on_release)
         self.listener.start()
-        self.aw = ActiveWindow()
-        self.aw.start()
+        # self.aw = ActiveWindow()
+        # self.aw.start()
         # Gtk.main()
 
     def on_release(self, key):
@@ -34,7 +34,7 @@ class KeystrokeRecorder(Recorder):
     def save_keystroke(self, key):
         a = Annotation(self.ip, None)
         self.ksDAO.create(Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
-            mac_address=self.mac, annotations=a.toJSON(), key=key, active_window=self.aw.whatWindow()))
+            mac_address=self.mac, annotations=a.toJSON(), key=key, active_window=None))
 
     def stop(self):
         self.running = False
