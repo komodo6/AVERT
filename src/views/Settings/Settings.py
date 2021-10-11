@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QMainWindow,QVBoxLayo
 from qtwidgets import Toggle
 from PyQt5.QtCore import Qt
 from functools import partial
-from services.mouse_action_record import MouseActionRecorder
+from services.MouseActionRecord import MouseActionRecorder
 from services.KeystrokeRecorder import KeystrokeRecorder
 
 current_dir = os.path.dirname(os.path.abspath(__file__))

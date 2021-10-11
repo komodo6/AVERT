@@ -1,15 +1,9 @@
 from Recorder import Recorder
-
-import numpy as np
-
 import cv2
 # pip install opencv-python
 # sudo apt-get install scrot
 # pip install Pillow
-
-
 import pyautogui
-import gridfs
 from db.db import db
 import io
 from PIL import Image
