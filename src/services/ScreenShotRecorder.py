@@ -14,7 +14,7 @@ from db.db import db
 import io
 from PIL import Image
 
-class ScreenShot(Recorder):
+class ScreenShotRecorder(Recorder):
     def __init__(self):
         self.ip = super().get_ip()
         self.mac = super().get_mac()
@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     # saving that file into the folder
     image = cv2.cvtColor(np.array(image),cv2.COLOR_RGB2BGR)
-    cv2.imwrite("image1.png", image)
+    cv2.imwrite(str(image_id) + ".png", image)
 
     # screen_shot = ScreenShot()
     # screen_shot.take_screen_shot()
