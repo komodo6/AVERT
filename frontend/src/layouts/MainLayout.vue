@@ -99,9 +99,9 @@ const linksList = [
     link: "https://facebook.quasar.dev",
   },
   {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
+    title: "Settings",
+    caption: "",
+    icon: "settings",
     link: "https://awesome.quasar.dev",
   },
 ];
