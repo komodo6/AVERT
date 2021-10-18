@@ -1,0 +1,49 @@
+from Recorder import Recorder
+from Keystroke.KeystrokeDAO import KeystrokeDAO
+from pynput import keyboard
+from models.Keystroke import Keystroke
+from models.Annotation import Annotation
+
+
+# import gi
+# gi.require_version('Gtk', '3.0')
+# gi.require_version('Wnck', '3.0')
+# from gi.repository import Gtk, Wnck
+# from services.ActiveWindow import ActiveWindow
+
+class KeystrokeRecorder(Recorder):
+    def __init__(self) -> None:
+        super().__init__()
+        self.ip = super().get_ip()
+        self.mac = super().get_mac()
+        self.ksDAO = KeystrokeDAO()
+        self.running = False
+        self.listener = keyboard.Listener(on_release=self.on_release)
+        self.listener.start()
+        # self.aw = ActiveWindow()
+        # self.aw.start()
+        # Gtk.main()
+
+    def on_release(self, key):
+        if self.running:
+            try:
+                self.save_keystroke(str(key.char))
+            except AttributeError:
+                self.save_keystroke(str(key)[4:])
+
+    def save_keystroke(self, key):
+        a = Annotation(self.ip, None)
+        self.ksDAO.create(Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
+            mac_address=self.mac, annotations=a.toJSON(), key=key, active_window=None))
+
+    def stop(self):
+        self.running = False
+    def start(self):
+        self.running = True
+
+
+    def getWindow(self, screen, previous_window):
+        try:
+            return screen.get_active_window().get_name()
+        except AttributeError:
+            pass
