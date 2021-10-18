@@ -17,7 +17,7 @@ class Process(Artifact):
     proc_privileges,
     proc_priority
     ):
-        super().__init__(self,timestamp, ip_address, mac_address, annotations)
+        super().__init__(timestamp, ip_address, mac_address, annotations,None)
         self.proc_name = proc_name
         self.proc_user = proc_user
         self.proc_pid = proc_pid
