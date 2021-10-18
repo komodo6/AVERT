@@ -1,28 +1,3 @@
-<!--
-<template>
-  <div class="q-pa-md">
-    <div class="q-gutter-sm">
-      <q-checkbox v-model="val" />
-    </div>
-
-    <div class="q-px-sm">
-    </div>
-  </div>
-</template>
-
-<script>
-import { ref } from 'vue'
-export default {
-  setup () {
-    return {
-      val: ref(true)
-    }
-  }
-}
-</script>
--->
-
-
 <template>
 
   <div style="width:1000px;">
@@ -44,12 +19,12 @@ export default {
    <div class="q-pa-md">
     <div class="q-gutter-sm">
       <p style="padding-left:20px; font-size:17px;"> Select data to include</p>
-      <q-checkbox style="padding-right:60px;" label="Select All" v-model="val" />
-      <q-checkbox  label="Screenshots" v-model="val"/><br>
-      <q-checkbox  label="Mouse Movements" v-model="val" />
-      <q-checkbox  label="Window Histories" v-model="val" /><br>
-      <q-checkbox style="padding-right:84px;" label="PCAP" v-model="val"/>
-      <q-checkbox  label="Keystrokes" v-model="val"/><br>
+      <q-checkbox style="padding-right:60px;" label="Select All" v-model="sa" />
+      <q-checkbox  label="Screenshots" v-model="sc"/><br>
+      <q-checkbox  label="Mouse Movements" v-model="mm" />
+      <q-checkbox  label="Window Histories" v-model="wh" /><br>
+      <q-checkbox style="padding-right:84px;" label="PCAP" v-model="pc"/>
+      <q-checkbox  label="Keystrokes" v-model="ks"/><br>
     </div>
    </div>  
 
@@ -83,11 +58,13 @@ export default {
   </div>
 <p style=" font-size:17px;"> Select graph interval</p>
 
-<q-radio val="sec" label="Seconds" v-model="val"/>
-<q-radio val="min" label="Minutes" v-model="val"/>
-<q-radio val="hr" label="Hours" v-model="val"/>
-<q-radio val="day" label="Days" v-model="val"/>
-
+<q-radio val="sec" label="Seconds" v-model="int"/>
+<q-radio val="min" label="Minutes" v-model="int"/>
+<q-radio val="hr" label="Hours" v-model="int"/>
+<q-radio val="day" label="Days" v-model="int"/><br><br><br>
+<div style=" padding-left:600px">
+<q-btn size="22px" color="white" text-color="black" label="Generate Graph" />
+</div>
 </div>
 
 <div style="clear: both;"></div>
@@ -97,8 +74,16 @@ import { ref } from 'vue'
 
 export default {
   setup () {
+    let sa = ref(false);
+    let sc = ref(false);
+    let mm = ref(false);
+    let wh = ref(false);
+    let pc = ref(false);
+    let ks = ref(false);
     return {
-      val: ref(true)
+      sa,sc,mm,wh,pc,ks,
+      val: ref(true),
+      int: ref(true)
     }
   }
 }
