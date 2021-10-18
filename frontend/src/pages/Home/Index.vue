@@ -73,8 +73,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+<script>
+// const { desktopCapturer } = require("electron");
+import { defineComponent, ref, computed, onMounted } from "vue";
 
 const columns = [
   {
@@ -216,7 +217,7 @@ const rows = [
   },
 ];
 
-export default defineComponent({
+export default {
   setup() {
     let visibleColumns = ref([
       "calories",
@@ -238,5 +239,5 @@ export default defineComponent({
       text: ref(""),
     };
   },
-});
+};
 </script>

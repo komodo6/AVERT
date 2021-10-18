@@ -15,9 +15,11 @@ def create_app():
     from app.Keystroke.controller import bp as keystrokes
     from app.MouseAction.controller import bp as MouseActions
     from app.Recorder.controller import bp as recorder
+    from app.Screenshots.controller import bp as screenshots
 
     app.register_blueprint(keystrokes)
     app.register_blueprint(MouseActions)
+    app.register_blueprint(screenshots)
     app.register_blueprint(recorder)
-
+    
     return app
