@@ -10,7 +10,7 @@
                                     <q-item-label>Record Screen</q-item-label>
                                 </q-item-section>
                                 <q-item-section>
-                                    <q-toggle color="primary" v-model="value" />
+                                    <q-toggle color="primary" v-model="active[0]" v-on:click="toggle('screen', 0)" />
                                 </q-item-section>
                             </q-item>
                             <q-item>
@@ -18,7 +18,7 @@
                                     <q-item-label>Record Keystrokes</q-item-label>
                                 </q-item-section>
                                 <q-item-section>
-                                    <q-toggle color="primary" v-model="value" />
+                                    <q-toggle color="primary" v-model="active[1]" v-on:click="toggle('keystrokes', 1)"/>
                                 </q-item-section>
                             </q-item>
                             <q-item>
@@ -26,7 +26,7 @@
                                     <q-item-label>Record Screenshots</q-item-label>
                                 </q-item-section>
                                 <q-item-section>
-                                    <q-toggle color="primary" v-model="value" />
+                                    <q-toggle color="primary" v-model="active[2]" v-on:click="toggle('screenshots', 2)"/>
                                 </q-item-section>
                             </q-item>
                             <q-item>
@@ -34,7 +34,7 @@
                                     <q-item-label>Record PCAP</q-item-label>
                                 </q-item-section>
                                 <q-item-section>
-                                    <q-toggle color="primary" v-model="value" />
+                                    <q-toggle color="primary" v-model="active[3]" v-on:click="toggle('pcap', 3)"/>
                                 </q-item-section>
                             </q-item>
                             <q-item>
@@ -42,7 +42,7 @@
                                     <q-item-label>Record Window History</q-item-label>
                                 </q-item-section>
                                 <q-item-section>
-                                    <q-toggle color="primary" v-model="value" />
+                                    <q-toggle color="primary" v-model="active[4]" v-on:click="toggle('window', 4)"/>
                                 </q-item-section>
                             </q-item>
                             <q-item>
@@ -50,7 +50,7 @@
                                     <q-item-label>Record Cursor</q-item-label>
                                 </q-item-section>
                                 <q-item-section>
-                                    <q-toggle color="primary" v-model="value" />
+                                    <q-toggle color="primary" v-model="active[5]" v-on:click="toggle('cursor', 5)"/>
                                 </q-item-section>
                             </q-item>
                         </q-list>
@@ -107,17 +107,25 @@
 </template>
 <script>
 import { ref } from 'vue'
+import axios from "axios";
 export default {
-    setup(){
+    data(){
         return {
-            value: ref(true),
+            active: [false, false, false, false, false, false],
             model: ref(null),
             options: [
             'Minutes', 'Seconds',
             ],
             text: ref('')
         }
-    }
+    },
+    methods: {
+       async toggle(recordType, i) {
+            let data = {record: this.active[i], type: recordType}
+            const response = await axios.post("http://localhost:5000/recording/", data);
+            console.log(response);
+        },
+    },
 }
 </script>
 <style lang="">

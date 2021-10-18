@@ -1,4 +1,5 @@
 import uuid
+
 class Artifact:        
     def __init__(self, timestamp, ip_address, mac_address, annotations, active_window):
         self.id = str(uuid.uuid1())

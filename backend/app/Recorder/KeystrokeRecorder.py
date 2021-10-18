@@ -1,8 +1,8 @@
-from Recorder import Recorder
-from Keystroke.KeystrokeDAO import KeystrokeDAO
+from .Recorder import Recorder
+from app.Keystroke.KeystrokeDAO import KeystrokeDAO
 from pynput import keyboard
-from models.Keystroke import Keystroke
-from models.Annotation import Annotation
+from app.models.Keystroke import Keystroke
+from app.models.Annotation import Annotation
 
 
 # import gi
