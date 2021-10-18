@@ -1,5 +1,4 @@
 import socket
-import time
 import uuid
 import re
 import datetime
@@ -18,4 +17,3 @@ class Recorder:
     def get_timestamp(self):
         time_stamp = datetime.datetime.utcnow()
         return str(time_stamp)
-

@@ -1,6 +1,15 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
+      <q-bar class="q-electron-drag bg-black">
+        <div>AVERT</div>
+
+        <q-space />
+
+        <q-btn dense flat icon="minimize" @click="minimize" />
+        <q-btn dense flat icon="crop_square" @click="toggleMaximize" />
+        <q-btn dense flat icon="close" @click="closeApp" />
+      </q-bar>
       <q-toolbar class="bg-dark">
         <q-btn
           flat
@@ -36,6 +45,7 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
+        <q-btn @click="test"> capture </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -50,6 +60,23 @@
         />
       </q-list>
     </q-drawer>
+
+    <q-footer elevated>
+      <q-toolbar class="bg-dark">
+        <q-toolbar-title></q-toolbar-title>
+        <q-btn class="q-ma-md" @click="captureScreenshot" color="grey-9">
+          Capture Screenshot
+        </q-btn>
+        <q-btn
+          class="q-ma-md"
+          :class="{ recording: recordState }"
+          color="grey-9"
+          @click="startRecording"
+        >
+          {{ recordText }}
+        </q-btn>
+      </q-toolbar>
+    </q-footer>
 
     <q-page-container>
       <router-view />
@@ -99,15 +126,15 @@ const linksList = [
     link: "https://facebook.quasar.dev",
   },
   {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
+    title: "Settings",
+    caption: "",
+    icon: "settings",
     link: "https://awesome.quasar.dev",
   },
 ];
 
 import { defineComponent, ref } from "vue";
-
+import axios from "axios";
 export default defineComponent({
   name: "MainLayout",
 
@@ -116,6 +143,23 @@ export default defineComponent({
   },
 
   setup() {
+    let recordState = ref(false);
+    let recordText = ref("Start Recording");
+
+    const startRecording = () => {
+      if (recordState.value) {
+        recordState.value = false;
+        recordText.value = "Start Recording";
+      } else {
+        recordState.value = true;
+        recordText.value = "Stop Recording";
+      }
+    };
+
+    const captureScreenshot = async () => {
+      axios.get("http://localhost:5000/screenshots/capture");
+    };
+
     const leftDrawerOpen = ref(false);
 
     const moveTo = () => {
@@ -125,7 +169,40 @@ export default defineComponent({
       });
     };
 
+    function test() {
+      if (process.env.MODE === "electron") {
+        window.screenCaptureAPI.screenCapture();
+        // console.log(window.electron);
+      }
+    }
+
+    function minimize() {
+      if (process.env.MODE === "electron") {
+        window.myWindowAPI.minimize();
+      }
+    }
+
+    function toggleMaximize() {
+      if (process.env.MODE === "electron") {
+        window.myWindowAPI.toggleMaximize();
+      }
+    }
+
+    function closeApp() {
+      if (process.env.MODE === "electron") {
+        window.myWindowAPI.close();
+      }
+    }
+
     return {
+      captureScreenshot,
+      recordState,
+      recordText,
+      startRecording,
+      minimize,
+      toggleMaximize,
+      closeApp,
+      test,
       essentialLinks: linksList,
       moveTo,
       leftDrawerOpen,
@@ -138,6 +215,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.recording {
+  background-color: red !important;
+}
 a {
   text-decoration: none;
   color: white;
