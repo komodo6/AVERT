@@ -19,7 +19,7 @@ class ProcessDAO:
 
     def update(self, process):
         if process is not None:
-            self.db.save(mouse_action.toJSON())
+            self.db.save(process.toJSON())
         else:
             raise Exception("Cannot update, Mouse Action is empty")
 
