@@ -1,4 +1,4 @@
-from models.Artifact import Artifact
+from .Artifact import Artifact
 
 class Process(Artifact):
     def __init__(self, timestamp, ip_address, mac_address, annotations,
@@ -17,7 +17,7 @@ class Process(Artifact):
     proc_privileges,
     proc_priority
     ):
-        super.__init__(self,timestamp, ip_address, mac_address, annotations)
+        super().__init__(self,timestamp, ip_address, mac_address, annotations)
         self.proc_name = proc_name
         self.proc_user = proc_user
         self.proc_pid = proc_pid
@@ -32,7 +32,7 @@ class Process(Artifact):
         else:
             self.proc_type = 'Background'
 
-        self.proc_memory_percentage - proc_memory_percentage
+        self.proc_memory_percentage = proc_memory_percentage
         self.threads = proc_threads
         self.proc_cpu_precentage = proc_cpu_percentage
 
