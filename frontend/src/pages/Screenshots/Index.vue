@@ -7,7 +7,7 @@
         standout
         v-model="text"
         input-class="text-right"
-        class="q-ml-md"
+        class=""
       >
         <template v-slot:append>
           <q-icon v-if="text === ''" name="search" />
