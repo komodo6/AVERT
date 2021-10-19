@@ -28,18 +28,23 @@ const routes = [
         path: "/transactions",
         component: () => import("pages/Transactions/Index.vue"),
       },
-      { path: "/videos", component: () => import("pages/Videos/Index.vue") },
+      { path: "/videos", 
+      component: () => import("pages/Videos/Index.vue") },
       {
         path: "/visualize",
         component: () => import("pages/Visualize/Index.vue"),
       },
     ],
   },
+  {
+    path: "/miniavert",
+    component: () => import("pages/miniavert/Index.vue"),
+  },
 
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: "/:catchAll(.*)*",
+    path: "/:catchAll(.)",
     component: () => import("pages/Error404.vue"),
   },
 ];
