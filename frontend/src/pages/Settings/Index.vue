@@ -7,6 +7,18 @@
             <q-list bordered>
               <q-item>
                 <q-item-section>
+                  <q-item-label>Toggle All</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-toggle
+                    color="primary"
+                    v-model="all"
+                    v-on:click="toggleAll"
+                  />
+                </q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section>
                   <q-item-label>Record Screen</q-item-label>
                 </q-item-section>
                 <q-item-section>
@@ -144,12 +156,23 @@ export default {
   data() {
     return {
       active: [false, false, false, false, false, false],
-      model: ref(null),
+      all: ref(false),
       options: ["Minutes", "Seconds"],
       text: ref(""),
     };
   },
   methods: {
+    async toggleAll() {
+      if (this.all) {
+        for (let i in this.active) {
+          this.active[i] = true;
+        }
+      } else {
+        for (let i in this.active) {
+          this.active[i] = false;
+        }
+      }
+    },
     async toggle(recordType, i) {
       let data = { record: this.active[i], type: recordType };
       const response = await axios.post(
