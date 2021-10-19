@@ -8,6 +8,7 @@ bp = Blueprint('recording', __name__, url_prefix='/recording')
 
 recorders = {'keystrokes': KeystrokeRecorder(), 'mouse': MouseActionRecorder(), 'processes': ProcessRecorder()}
 
+
 @bp.route('/', methods=['POST'])
 def index():
     try:
