@@ -14,7 +14,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-2">
+                    <div class="col-2.5">
                       <q-radio> Timeline </q-radio>
                     </div>
                     <div class="col-2.5">
