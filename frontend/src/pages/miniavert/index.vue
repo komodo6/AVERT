@@ -6,10 +6,12 @@
           <q-list>
             <q-item>
               <q-item-section>
-                <q-toggle v-model="opt1"> replace me </q-toggle>
-
-                <q-toggle v-model="opt2"> replace me </q-toggle>
-                <q-toggle v-model="opt3"> replace me </q-toggle>
+                <q-toggle v-model="opt1"> Record System Calls</q-toggle>
+                <q-toggle v-model="opt2"> Record Processes </q-toggle>
+                <q-toggle v-model="opt3"> Record Keystrokes </q-toggle>
+                <q-toggle v-model="opt4"> Record Mouse Actions </q-toggle>
+                <q-toggle v-model="opt5"> Record PCAP Data </q-toggle>
+                <q-toggle v-model="opt6"> Record Window History </q-toggle>
               </q-item-section>
             </q-item>
           </q-list>
@@ -20,8 +22,9 @@
       <div class="col-6">
         <div>
           <q-btn-group>
+            Record Video
             <q-btn @click="startRecording"> Start </q-btn>
-            <q-btn> Not Sure what goes here </q-btn>
+            <!-- <q-btn> Not Sure what goes here </q-btn> -->
             <q-btn @click="startRecording"> Stop </q-btn>
           </q-btn-group>
         </div>
@@ -47,6 +50,9 @@ export default {
     let opt1 = ref(false);
     let opt2 = ref(false);
     let opt3 = ref(false);
+    let opt4 = ref(false);
+    let opt5 = ref(false);
+    let opt6 = ref(false);
     const startRecording = () => {
       console.log("recording starting");
     };
@@ -62,6 +68,9 @@ export default {
       opt1,
       opt2,
       opt3,
+      opt4,
+      opt5,
+      opt6,
       captureScreenshot,
       stopRecording,
       startRecording,
