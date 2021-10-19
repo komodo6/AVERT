@@ -6,19 +6,21 @@ from .ProcessRecorder import ProcessRecorder
 
 bp = Blueprint('recording', __name__, url_prefix='/recording')
 
-recorders = {'keystrokes': KeystrokeRecorder(), 'cursor': MouseActionRecorder(), 'processes': ProcessRecorder()}
+recorders = {'keystrokes': KeystrokeRecorder(), 'mouse': MouseActionRecorder(), 'processes': ProcessRecorder()}
 
 @bp.route('/', methods=['POST'])
 def index():
     try:
-        toggle, rec_type = request.get_json().values()
+        toggles = request.get_json()
 
-        recorder = recorders[rec_type]
+        print(toggles)
 
-        if toggle:
-            recorder.start()
-        elif not toggle:
-            recorder.stop()
+        for key in toggles:
+            if toggles[key] and key in recorders:
+                recorders[key].start()
+            elif not toggles[key] and key in recorders:
+                recorders[key].stop()
+
         return json.dumps({'msg': 'ok'})
     except Exception as e:
         print(e)
