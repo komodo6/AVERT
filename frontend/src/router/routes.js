@@ -45,7 +45,13 @@ const routes = [
   },
   {
     path: "/miniavert",
-    component: () => import("pages/miniavert/Index.vue"),
+    component: () => import("layouts/MiniAvertLayout.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("pages/miniavert/Index.vue"),
+      },
+    ],
   },
 
   // Always leave this as last one,

@@ -105,7 +105,6 @@ import { useStore } from "vuex";
 import axios from "axios";
 export default {
   setup() {
-    let chips1 = ref(["dsa"]);
     let store = useStore();
 
     let screenshots = computed(() => store.state.screenshots.screenshots);
@@ -113,6 +112,9 @@ export default {
     let selectedScreenshots = ref(null);
 
     const updateTags = async (val, id) => {
+      if (!val) {
+        val = [];
+      }
       await axios.post("http://localhost:5000/screenshots/image", {
         id: id,
         tags: val,
@@ -124,7 +126,6 @@ export default {
       screenshots,
       columns,
       selectedScreenshots,
-      chips1,
     };
   },
 };

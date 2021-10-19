@@ -60,7 +60,7 @@ def update_image():
     if id:
         tags = request.get_json(
         )["tags"] if "tags" in request.get_json() else None
-        if tags:
+        if tags is not None:
             dao.update_tag(id, tags)
             return "Updated", 200
         else:

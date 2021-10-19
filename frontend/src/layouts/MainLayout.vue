@@ -52,8 +52,9 @@
 
         <q-item :clickable="false">
           <q-item-section>
-            <a href="http://localhost:8080/#/miniavert" target="_blank">
+            <a>
               <q-btn
+                @click="test"
                 style="width: 200px"
                 icon="close_fullscreen"
                 label="miniAvert"
@@ -225,12 +226,14 @@ const linksList = [
 
 import { defineComponent, ref } from "vue";
 import axios from "axios";
+import { useStore } from "vuex";
 export default defineComponent({
   name: "MainLayout",
 
   components: {},
 
   setup() {
+    let store = useStore();
     let recordState = ref(false);
     let recordText = ref("Start Recording");
 
@@ -258,10 +261,11 @@ export default defineComponent({
     };
 
     function test() {
-      if (process.env.MODE === "electron") {
-        window.screenCaptureAPI.screenCapture();
-        // console.log(window.electron);
-      }
+      store.state.miniavert.miniavert_window = window.open(
+        process.env.APP_URL + "/#/miniavert",
+        "_black",
+        "top=500,left=200,frame=true,nodeIntegration=yes,height=500,widht=300,maxHeight=500,maxWidth=400,alwaysOnTop,closable=true"
+      );
     }
 
     function minimize() {

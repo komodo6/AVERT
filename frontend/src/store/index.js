@@ -19,10 +19,18 @@ const screenshots = {
   },
 };
 
+const miniavert = {
+  namespace: true,
+  state: {
+    miniavert_window: null,
+  },
+};
+
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       screenshots,
+      miniavert,
       // example
     },
 
