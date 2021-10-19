@@ -11,12 +11,12 @@ class ScreemshotDAO:
         else:
             raise Exception("Cannot Insert, Mouse Action is empty")
 
-    def read(self, screen_shot_id=None):
+    def read_id(self, screen_shot_id=None):
         # print(self.db.find({}))
-        if screen_shot_id is None:
-            return self.db.find({}, {'_id': False})
-        else:
-            return self.db.find({"image_id": screen_shot_id}, {'_id': False})
+        return self.db.find({"id": screen_shot_id}, {'_id': False})
+
+    def read_all(self):
+        return self.db.find({}, {'_id': False})
 
     def update(self, screenshot):
         if screenshot is not None:
@@ -24,8 +24,18 @@ class ScreemshotDAO:
         else:
             raise Exception("Cannot update, Mouse Action is empty")
 
+    def update_tag(self, id, tags):
+        if id is not None:
+            self.db.update({'id': id}, {
+                "$set": {
+                    'tags': tags
+                }
+            }, upsert=False, multi=False)
+        else:
+            raise Exception("Cannot update, Mouse Action is empty")
+
     def delete(self, screenshot):
         if screenshot is not None:
-            self.db.remove(screenshot.toJSON())
+            self.db.remove({'id': screenshot})
         else:
             raise Exception("Cannot Delete, Mouse Action is empty")

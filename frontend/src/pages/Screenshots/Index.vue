@@ -7,7 +7,7 @@
         standout
         v-model="text"
         input-class="text-right"
-        class="q-ml-md"
+        class=""
       >
         <template v-slot:append>
           <q-icon v-if="text === ''" name="search" />
@@ -29,7 +29,7 @@
         <GalleryView
           v-show="gallView"
           v-for="image in images"
-          :key="image.image_id"
+          :key="image.id"
           v-bind="image"
         />
         <ListView v-show="listView" />
@@ -39,7 +39,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+
+import { useStore } from "vuex";
 import GalleryView from "./GalleryView.vue";
 import ListView from "./ListView.vue";
 import axios from "axios";
@@ -49,6 +51,8 @@ export default {
     ListView,
   },
   setup() {
+    let store = useStore();
+
     let gallView = ref(true);
     let listView = ref(false);
     let viewState = ref("List View");
@@ -59,6 +63,7 @@ export default {
       );
       console.log(data);
       images.value = data;
+      store.state.screenshots.screenshots = data;
     };
 
     const switchViews = () => {

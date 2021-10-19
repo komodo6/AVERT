@@ -34,13 +34,13 @@ class KeystrokeRecorder(Recorder):
     def save_keystroke(self, key):
         a = Annotation(self.ip, None)
         self.ksDAO.create(Keystroke(timestamp=super().get_timestamp(), ip_address=self.ip,
-            mac_address=self.mac, annotations=a.toJSON(), key=key, active_window=None))
+                                    mac_address=self.mac, annotations=[], tags=[], key=key, active_window=None))
 
     def stop(self):
         self.running = False
+
     def start(self):
         self.running = True
-
 
     def getWindow(self, screen, previous_window):
         try:
