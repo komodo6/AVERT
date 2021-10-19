@@ -43,6 +43,9 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
+                <q-btn color="grey-9 q-mx-sm">
+          <router-link to="/visualize"> Visualize </router-link>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
