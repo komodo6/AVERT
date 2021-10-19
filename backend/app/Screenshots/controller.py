@@ -17,14 +17,10 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 def screenshot_capture():
     
     cs = CaptureScreenshot()
-    print(cs.start())
+    cs.start()
     cs.join()
 
-    
-   
-   
-
-    return "ok", 200 #send_file(os.path.join( current_dir,f"../images/{photoID}.png"), mimetype="image/png"), 200
+    return "ok", 200 
     
 
 
@@ -32,7 +28,6 @@ def screenshot_capture():
 @bp.route('/images', methods=['GET'])
 def get_images():
     images = list(dao.read())
-
     return json.dumps(images), 200
     
 

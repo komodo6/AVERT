@@ -1,7 +1,7 @@
 from .Artifact import Artifact
 
 class Process(Artifact):
-    def __init__(self, timestamp, ip_address, mac_address, annotations,
+    def __init__(self, timestamp, ip_address, mac_address, annotations, tags,
     proc_name,
     proc_user,
     proc_pid,
@@ -17,7 +17,7 @@ class Process(Artifact):
     proc_privileges,
     proc_priority
     ):
-        super().__init__(timestamp, ip_address, mac_address, annotations,None)
+        super().__init__(timestamp, ip_address, mac_address, annotations, tags)
         self.proc_name = proc_name
         self.proc_user = proc_user
         self.proc_pid = proc_pid

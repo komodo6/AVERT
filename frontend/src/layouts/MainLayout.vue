@@ -20,8 +20,6 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> AVERT </q-toolbar-title>
-
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/"> Home </router-link>
         </q-btn>
@@ -45,7 +43,6 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
-        <q-btn @click="test"> capture </q-btn>
       </q-toolbar>
     </q-header>
 
