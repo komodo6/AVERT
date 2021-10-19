@@ -4,6 +4,7 @@ class Annotation:
         self.annotations = []
 
     def add_annotations(self, ip, text):
+        #TODO: maybe add get a new ip if someone else makes an annotation
         self.annotations = self.annotations + [{'ip':ip,'text':text}]
 
     def __getitem__(self, item):
