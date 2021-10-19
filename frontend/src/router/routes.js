@@ -28,11 +28,18 @@ const routes = [
         path: "/transactions",
         component: () => import("pages/Transactions/Index.vue"),
       },
-      { path: "/videos", 
-      component: () => import("pages/Videos/Index.vue") },
+      { path: "/videos", component: () => import("pages/Videos/Index.vue") },
       {
         path: "/visualize",
         component: () => import("pages/Visualize/Index.vue"),
+      },
+      {
+        path: "/sync",
+        component: () => import("pages/Sync/Index.vue"),
+      },
+      {
+        path: "/delete",
+        component: () => import("pages/Delete/Index.vue"),
       },
     ],
   },

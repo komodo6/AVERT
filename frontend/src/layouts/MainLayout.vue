@@ -49,62 +49,105 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header> MAIN MENU </q-item-label>
-        
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="http://localhost:8080/#/miniavert"
-        >
+
+        <q-item :clickable="false">
           <q-item-section>
-            <q-btn style = "width:200px;" icon="close_fullscreen" label="miniAvert" color="grey-9 q-mx-sm" push />
+            <a href="http://localhost:8080/#/miniavert" target="_blank">
+              <q-btn
+                style="width: 200px"
+                icon="close_fullscreen"
+                label="miniAvert"
+                color="grey-9 q-mx-sm"
+                push
+              >
+              </q-btn
+            ></a>
           </q-item-section>
         </q-item>
 
-         <q-item>
+        <q-item :clickable="false">
           <q-item-section>
-            
-              <router-link to="/sync"> <q-btn style = "width:200px;" icon="sync" label="sync" color="grey-9 q-mx-sm" push/> </router-link> 
-              
+            <router-link to="/sync">
+              <q-btn
+                style="width: 200px"
+                icon="sync"
+                label="sync"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
           </q-item-section>
         </q-item>
 
-        <q-item>
+        <q-item :clickable="false">
           <q-item-section>
-            <router-link to="/transaction"> <q-btn style = "width:200px;" icon="article" label="transaction" color="grey-9 q-mx-sm" push/> </router-link> 
-          </q-item-section>
-        </q-item>
-        
-        <q-item>
-          <q-item-section>
-            <router-link to="/visualize"> <q-btn style = "width:200px;" icon="auto_graph" label="visualize" color="grey-9 q-mx-sm" push/> </router-link> 
-          </q-item-section>
-        </q-item>
-
-        <q-item>
-          <q-item-section>
-            <router-link to="/delete"> <q-btn style = "width:200px;" icon="delete" label="delete" color="grey-9 q-mx-sm" push/> </router-link> 
+            <router-link to="/transaction">
+              <q-btn
+                style="width: 200px"
+                icon="article"
+                label="transaction"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
           </q-item-section>
         </q-item>
 
-        <q-item>
+        <q-item :clickable="false">
           <q-item-section>
-            <router-link to="/annotate"> <q-btn style = "width:200px;" icon="edit" label="annotate" color="grey-9 q-mx-sm" push/> </router-link> 
+            <router-link to="/visualize">
+              <q-btn
+                style="width: 200px"
+                icon="auto_graph"
+                label="visualize"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
           </q-item-section>
         </q-item>
 
-        <q-item>
+        <q-item :clickable="false">
           <q-item-section>
-            <router-link to="/export"> <q-btn style = "width:200px;" icon="north_east" label="export" color="grey-9 q-mx-sm" push/> </router-link> 
+            <router-link to="/delete">
+              <q-btn
+                style="width: 200px"
+                icon="delete"
+                label="delete"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
           </q-item-section>
         </q-item>
 
-        <q-item>
+        <q-item :clickable="false">
           <q-item-section>
-            <router-link to="/settings"> <q-btn style = "width:200px;" icon="settings" label="settings" color="grey-9 q-mx-sm" push/> </router-link> 
+            <router-link to="/export">
+              <q-btn
+                style="width: 200px"
+                icon="north_east"
+                label="export"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
           </q-item-section>
         </q-item>
 
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/settings">
+              <q-btn
+                style="width: 200px"
+                icon="settings"
+                label="settings"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
