@@ -3,7 +3,7 @@ from flask import Blueprint, send_file, render_template, request
 import json
 import os
 from .Services.CaptureScreenshot import CaptureScreenshot
-from .Services.CaptureScreenshot import photoID
+
 from .ScreenshotDAO import ScreemshotDAO
 bp = Blueprint('screenshots', __name__, url_prefix='/screenshots')
 
@@ -24,8 +24,7 @@ def screenshot_capture():
    
    
 
-    return "ok", 200 #send_file(os.path.join( current_dir,f"../images/{photoID}.png"), mimetype="image/png"), 200
-    
+    return "ok", 200     
 
 
 
