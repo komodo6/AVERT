@@ -33,13 +33,31 @@ const routes = [
         path: "/visualize",
         component: () => import("pages/Visualize/Index.vue"),
       },
+      {
+        path: "/sync",
+        component: () => import("pages/Sync/Index.vue"),
+      },
+      {
+        path: "/delete",
+        component: () => import("pages/Delete/Index.vue"),
+      },
+    ],
+  },
+  {
+    path: "/miniavert",
+    component: () => import("layouts/MiniAvertLayout.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("pages/miniavert/Index.vue"),
+      },
     ],
   },
 
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: "/:catchAll(.*)*",
+    path: "/:catchAll(.)",
     component: () => import("pages/Error404.vue"),
   },
 ];

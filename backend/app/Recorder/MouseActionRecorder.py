@@ -10,6 +10,7 @@ from app.models.Annotation import Annotation
 # gi.require_version('Wnck', '3.0')
 # from gi.repository import Gtk, Wnck
 
+
 class MouseActionRecorder(Recorder):
     '''
     When using the non - blocking version below, the current thread will
@@ -42,18 +43,16 @@ class MouseActionRecorder(Recorder):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, a.toJSON(), type='on_move', coord_x=x, coord_y=y, active_window=None))
+            ), self.ip, self.mac, [], [], type='on_move', coord_x=x, coord_y=y, active_window=None))
 
     def on_click(self, x, y, button, pressed):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, a.toJSON(), type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=None))
+            ), self.ip, self.mac, [], [], type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=None))
 
     def on_scroll(self, x, y, dx, dy):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, a.toJSON(), type='on_click', coord_x=x, coord_y=y, scroll=dy, active_window=None))
-
-    
+            ), self.ip, self.mac, [], [], type='on_click', coord_x=x, coord_y=y, scroll=dy, active_window=None))

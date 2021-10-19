@@ -1,133 +1,156 @@
 <template>
-    <div>
+  <div>
+    <div class="row">
+      <div class="col">
         <div class="row">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <q-list bordered>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Record Screen</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-toggle color="primary" v-model="active[0]" v-on:click="toggle('screen', 0)" />
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Record Keystrokes</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-toggle color="primary" v-model="active[1]" v-on:click="toggle('keystrokes', 1)"/>
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Record Screenshots</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-toggle color="primary" v-model="active[2]" v-on:click="toggle('screenshots', 2)"/>
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Record PCAP</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-toggle color="primary" v-model="active[3]" v-on:click="toggle('pcap', 3)"/>
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Record Window History</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-toggle color="primary" v-model="active[4]" v-on:click="toggle('window', 4)"/>
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Record Cursor</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-toggle color="primary" v-model="active[5]" v-on:click="toggle('cursor', 5)"/>
-                                </q-item-section>
-                            </q-item>
-                        </q-list>
-                    </div>
-                    <div class="col">
-                        <q-list bordered>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>PCAP Creation Interval</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-input color="primary" v-model="text"/>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-select v-model="model" :options="options" label="Interval" />
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Idle Recording Threshold</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-input color="primary" v-model="text"/>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-select v-model="model" :options="options" label="Interval" />
-                                </q-item-section>
-                            </q-item>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label>Process Capture Interval</q-item-label>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-input color="primary" v-model="text"/>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-select v-model="model" :options="options" label="Interval" />
-                                </q-item-section>
-                            </q-item>
-                        </q-list>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                .col
-            </div>
+          <div class="col">
+            <q-list bordered>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>Toggle All</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-toggle
+                    color="primary"
+                    v-model="all"
+                    v-on:click="toggleAll()"
+                  />
+                </q-item-section>
+              </q-item>
+              <q-item v-for="item in items" :key="item.label">
+                <q-item-section>
+                  <q-item-label>{{ item.label }}</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-toggle
+                    color="primary"
+                    v-model="item.active"
+                    v-on:click="toggle()"
+                  />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
+          <div class="col">
+            <q-list bordered>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>PCAP Creation Interval</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-input color="primary" v-model="text" />
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>Idle Recording Threshold</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-input color="primary" v-model="text" />
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>Process Capture Interval</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-input color="primary" v-model="text" />
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
         </div>
-        <div class="row">
-            <div class="col">
-                .col
-            </div>
-        </div>
+      </div>
+      <div class="col">.col</div>
     </div>
+    <div class="row">
+      <div class="col">.col</div>
+    </div>
+  </div>
 </template>
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 import axios from "axios";
 export default {
-    data(){
-        return {
-            active: [false, false, false, false, false, false],
-            model: ref(null),
-            options: [
-            'Minutes', 'Seconds',
-            ],
-            text: ref('')
-        }
+  data() {
+    return {
+      items: [
+        { active: false, label: 'Record Keystrokes' }, 
+        { active: false, label: 'Record Mouse' },
+        { active: false, label: 'Record Screenshots' }, 
+        { active: false, label: 'Record Processes' }, 
+        { active: false, label: 'Record Window History' }, 
+        { active: false, label: 'Record System Calls' },
+        { active: false, label: 'Record Video' },
+        { active: false, label: 'Record PCAP' },
+      ],
+      all: ref(false),
+      options: ["Minutes", "Seconds"],
+      text: ref(""),
+    };
+  },
+  methods: {
+    async toggleAll() {
+      if (this.all) {
+        this.items.forEach(element => {
+          element.active = true;
+        });
+      } else {
+        this.items.forEach(element => {
+          element.active = false;
+        });
+      }
+      this.toggle();
     },
-    methods: {
-       async toggle(recordType, i) {
-            let data = {record: this.active[i], type: recordType}
-            const response = await axios.post("http://localhost:5000/recording/", data);
-            console.log(response);
-        },
+    async toggle() {
+      let post_data = {
+        keystrokes: false, 
+        mouse: false,
+        screenshots: false, 
+        processes: false, 
+        window_history: false, 
+        system_calls: false, 
+        video: false, 
+        pcap: false
+      };
+      let i = 0;
+      for (var key in post_data) {
+        if(!post_data.hasOwnProperty(key))
+          continue;
+        post_data[key] = this.items[i].active;
+        i++;
+      }
+
+      console.log(post_data)
+
+      const response = await axios.post(
+        "http://localhost:5000/recording/",
+        post_data
+      );
+      console.log(response);
     },
-}
+  },
+};
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>

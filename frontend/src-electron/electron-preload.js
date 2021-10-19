@@ -38,3 +38,18 @@ contextBridge.exposeInMainWorld("myWindowAPI", {
     BrowserWindow.getFocusedWindow().close();
   },
 });
+
+contextBridge.exposeInMainWorld("miniAvert", {
+  startMiniAvert() {
+    let win = new BrowserWindow({
+      webPreferences: {
+        nativeWindowOpen: false,
+
+        frameless: true,
+      },
+    });
+    // enable(win.webContents);
+    mainWindow.setMenuBarVisibility(false);
+    window.open(process.env.APP_URL + "/#/miniavert");
+  },
+});

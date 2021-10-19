@@ -48,13 +48,107 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> MAIN MENU </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item :clickable="false">
+          <q-item-section>
+            <a>
+              <q-btn
+                @click="test"
+                style="width: 200px"
+                icon="close_fullscreen"
+                label="miniAvert"
+                color="grey-9 q-mx-sm"
+                push
+              >
+              </q-btn
+            ></a>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/sync">
+              <q-btn
+                style="width: 200px"
+                icon="sync"
+                label="sync"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/transaction">
+              <q-btn
+                style="width: 200px"
+                icon="article"
+                label="transaction"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/visualize">
+              <q-btn
+                style="width: 200px"
+                icon="auto_graph"
+                label="visualize"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/delete">
+              <q-btn
+                style="width: 200px"
+                icon="delete"
+                label="delete"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/export">
+              <q-btn
+                style="width: 200px"
+                icon="north_east"
+                label="export"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/settings">
+              <q-btn
+                style="width: 200px"
+                icon="settings"
+                label="settings"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -99,10 +193,10 @@ const linksList = [
     link: "https://github.com/quasarframework",
   },
   {
-    title: "Discord Chat Channel",
+    title: "Avert",
     caption: "chat.quasar.dev",
     icon: "chat",
-    link: "https://chat.quasar.dev",
+    link: "http://localhost:8080/#/miniavert",
   },
   {
     title: "Forum",
@@ -132,14 +226,14 @@ const linksList = [
 
 import { defineComponent, ref } from "vue";
 import axios from "axios";
+import { useStore } from "vuex";
 export default defineComponent({
   name: "MainLayout",
 
-  components: {
-    EssentialLink,
-  },
+  components: {},
 
   setup() {
+    let store = useStore();
     let recordState = ref(false);
     let recordText = ref("Start Recording");
 
@@ -167,10 +261,11 @@ export default defineComponent({
     };
 
     function test() {
-      if (process.env.MODE === "electron") {
-        window.screenCaptureAPI.screenCapture();
-        // console.log(window.electron);
-      }
+      store.state.miniavert.miniavert_window = window.open(
+        process.env.APP_URL + "/#/miniavert",
+        "_black",
+        "top=500,left=200,frame=true,nodeIntegration=yes,height=500,widht=300,maxHeight=500,maxWidth=400,alwaysOnTop,closable=true"
+      );
     }
 
     function minimize() {

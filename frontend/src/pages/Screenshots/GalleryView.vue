@@ -1,8 +1,9 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="screenshot-card bg-grey-9">
-      <q-img :src="url + image_id"> </q-img>
-      {{ image_id }}
+      <q-img :src="'data:image/jpeg;base64,' + ScreenshotFile"> </q-img>
+
+      {{ id }}
     </q-card>
   </div>
 </template>
@@ -11,15 +12,17 @@
 import { ref } from "vue";
 export default {
   props: {
-    image_id: {
+    id: {
+      type: String,
+      required: true,
+    },
+    ScreenshotFile: {
       type: String,
       required: true,
     },
   },
   setup(props) {
-    return {
-      url: ref("http://localhost:5000/screenshots/image?id="),
-    };
+    return {};
   },
 };
 </script>
@@ -27,5 +30,5 @@ export default {
 <style lang="sass" scoped>
 .screenshot-card
   width: 100%
-  max-width: 150px
+  max-width: 250px
 </style>
