@@ -2,11 +2,9 @@ from flask import Flask
 
 import pymongo
 
-
-client = pymongo.MongoClient(host="localhost", port=27017)
+client = pymongo.MongoClient(host="54.215.46.201", port=27017)
 
 db = client.AVERT
-
 
 
 def create_app():
@@ -25,5 +23,5 @@ def create_app():
     app.register_blueprint(recorder)
     app.register_blueprint(process)
     app.register_blueprint(systemcall)
-    
+
     return app

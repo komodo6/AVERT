@@ -1,5 +1,6 @@
 from app import db
 
+
 class ProcessDAO:
     def __init__(self) -> None:
         self.db = db.Processes
@@ -23,6 +24,16 @@ class ProcessDAO:
             update = { '$set': process.toJSON() }
             self.db.update_one(query ,update, upsert=True)
             
+        else:
+            raise Exception("Cannot update, Mouse Action is empty")
+
+    def update_tag(self, id, tags):
+        if id is not None:
+            self.db.update({'id': id}, {
+                "$set": {
+                    'tags': tags
+                }
+            }, upsert=False, multi=False)
         else:
             raise Exception("Cannot update, Mouse Action is empty")
 
