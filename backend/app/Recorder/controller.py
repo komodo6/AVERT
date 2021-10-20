@@ -3,12 +3,23 @@ import json
 from .KeystrokeRecorder import KeystrokeRecorder
 from .MouseActionRecorder import MouseActionRecorder
 from .ProcessRecorder import ProcessRecorder
+from .WindowHistoryRecorder import WindowHistoryRecorder
 
 bp = Blueprint('recording', __name__, url_prefix='/recording')
 
 recorders = {'keystrokes': KeystrokeRecorder(), 'mouse': MouseActionRecorder(), 'processes': ProcessRecorder()}
 
+wh = WindowHistoryRecorder()
+@bp.route('/window_history/start', methods=['GET'])
+def window_start():
+    wh.start()
+    return ('start', 200)
 
+@bp.route('/window_history/stop', methods=['GET'])
+def window_stop():
+    wh.stop()
+    return ('start', 200)
+    
 @bp.route('/', methods=['POST'])
 def index():
     try:
