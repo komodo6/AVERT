@@ -12,4 +12,4 @@ class SystemCall(Artifact):
         self.SystemCallType = SystemCallType
 
     def toDict(self):
-        return __dict__
+        return self.__dict__
