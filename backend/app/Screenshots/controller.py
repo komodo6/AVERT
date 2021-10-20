@@ -69,9 +69,9 @@ def update_image():
     return "Missings id", 400
 
 
-@bp.route('/image', methods=['DELETE'])
-def delete_image():
-    img = request.args.get("id") if "id" in request.args else None
+@bp.route('/image/<id>', methods=['DELETE'])
+def delete_image(id):
+    img = id
     if img:
         dao.delete(img)
         return img, 200

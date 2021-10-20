@@ -62,8 +62,9 @@ export default {
         "http://localhost:5000/screenshots/images"
       );
       console.log(data);
-      images.value = data;
       store.state.screenshots.screenshots = data;
+      images.value = store.state.screenshots.screenshots;
+      console.log(images.value)
     };
 
     const switchViews = () => {

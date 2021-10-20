@@ -25,8 +25,8 @@ class ProcessRecorder(Recorder):
         # Checking  if thread should stop
         while not self.exit_event.is_set():
         # Finding all processes
-            try:
-                for proc in psutil.process_iter():
+            for proc in psutil.process_iter():
+                try:
                     if proc not in self.pro_dict:
                         # Getting all relevant process information
                         new_process = Process(
@@ -34,27 +34,28 @@ class ProcessRecorder(Recorder):
                             super().get_ip(),
                             super().get_mac(),
                             None,
+                            None,
                             proc.name(),
                             proc.username(),
                             proc.pid,
                             proc.ppid(),
                             proc.create_time(),
                             proc.cmdline(),
-                            proc.terminal(),
+                            None,
                             proc.status(),
                             proc.status(),
                             proc.memory_percent(),
-                            proc.terminal(),
+                            proc.threads(),
                             proc.cpu_percent(),
-                            os.getuid() == 0,
+                            None,
                             proc.nice()
                         )
                         self.process_collection.create(new_process)
                         self.pro_dict[new_process] = proc.pid
                     else:
                         pass
-            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-                pass
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                    pass
         self.pro_dict = {}
         sys.exit()
 
