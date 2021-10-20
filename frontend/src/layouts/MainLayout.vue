@@ -43,9 +43,15 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
-                <q-btn color="grey-9 q-mx-sm">
+        <q-btn color="grey-9 q-mx-sm">
           <router-link to="/visualize"> Visualize </router-link>
         </q-btn>
+        <router-link to="/processes">
+          <q-btn color="grey-9 q-mx-sm"> Processes</q-btn>
+        </router-link>
+        <router-link to="/systemcalls">
+          <q-btn color="grey-9 q-mx-sm"> System Calls</q-btn>
+        </router-link>
       </q-toolbar>
     </q-header>
 
