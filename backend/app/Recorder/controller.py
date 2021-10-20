@@ -17,10 +17,13 @@ def index():
         print(toggles)
 
         for key in toggles:
-            if toggles[key] and key in recorders:
-                recorders[key].start()
-            elif not toggles[key] and key in recorders:
-                recorders[key].stop()
+            try:
+                if toggles[key] and key in recorders:
+                    recorders[key].start()
+                elif not toggles[key] and key in recorders:
+                    recorders[key].stop()
+            except Exception as e:
+                pass
 
         return json.dumps({'msg': 'ok'})
     except Exception as e:
