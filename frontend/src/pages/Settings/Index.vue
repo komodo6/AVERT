@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="text-h2">
+      SETTINGS
+    </div>
     <div class="row">
       <div class="col">
         <div class="row">
@@ -82,10 +85,74 @@
           </div>
         </div>
       </div>
-      <div class="col">.col</div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <q-list bordered>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>Frame Rate</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>Resolution</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>Video Length</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-input color="primary" v-model="text" />
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
+          <div class="col">
+            <q-list bordered>
+              <q-item>
+                <q-item-section>
+                  <q-item-label>File Type</q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-select
+                    v-model="model"
+                    :options="options"
+                    label="Interval"
+                  />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
-      <div class="col">.col</div>
+      <div class="col">
+        <img src="./pie-chart.png">
+      </div>
     </div>
   </div>
 </template>
