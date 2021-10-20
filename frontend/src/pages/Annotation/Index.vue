@@ -8,7 +8,8 @@
           :rows="rows"
           row-key="id"
           :filter="filter"
-
+          selection="multiple"
+          v-model:selected="selected"
         >
           <template v-slot:top-right>
             <q-input
@@ -23,17 +24,10 @@
               </template>
             </q-input>
           </template>
-          <template v-slot:body="props ">
-          <q-tr :props="props" @click="props.selected = true">
-        <q-td>
-          <q-checkbox v-model="props.selected" color="primary" />
-        </q-td>
-        <q-td v-for="col in props.cols" :key="col.name" :props="props">{{
-          col.value
-        }}</q-td>
-      </q-tr>
+          <template v-slot:body="props">
+          <q-checkbox v-model="props.selected" />
             <q-tr :props="props">
-              <q-td key="timestamp" :props="props">
+              <q-td key="timestamp" :props="props"><!--This is the line to add the checkboxes to the rows-->
                 {{ props.row.timestamp }}
               </q-td>
               <q-td key="ip_address" :props="props">
@@ -67,13 +61,6 @@ const columns = [
     field: "timestamp",
     sortable: true,
     align: "center",
-  },
-  {
-    name: "Selected",
-    label: "Selected",
-    field: "Selected",
-    align: "center",
-    sortable: true,
   },
   {
     name: "ip_address",
