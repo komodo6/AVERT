@@ -272,6 +272,7 @@ export default defineComponent({
 
     const captureScreenshot = async () => {
       axios.get("http://localhost:5000/screenshots/capture");
+      location.reload()
     };
 
     const leftDrawerOpen = ref(false);
