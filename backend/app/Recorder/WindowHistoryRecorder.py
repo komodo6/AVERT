@@ -10,7 +10,7 @@ import time #TODO: Delete Later
 from .Recorder import Recorder
 import subprocess
 from ..models.WindowHistory import WindowHistory
-from ..Process.ProcessDAO import ProcessDAO
+from ..WindowHistory.WindowHistoryDAO import WindowHistoryDAO
 
 class WindowHistoryRecorder(Recorder):
     
@@ -28,35 +28,35 @@ class WindowHistoryRecorder(Recorder):
     def creation(self,this_screen: Wnck.Screen, opened_window: Wnck.Window):
         if self.rec:
             try:
+
                 print('hello') # TODO: delete
                 new_window = WindowHistory(
                     self.get_timestamp(),
                     self.get_ip(),
                     self.get_mac(),
+                    None, #TODO: Add annotations
+                    None, #TODO: Add tags
+                    self.res,
                     None,
-                    None,
-                    self.res
+                    None, # TODO: Figure out how to get visibility
+                    None, # TODO: Window Placement command
+                    not opened_window.is_maximized(),
+                    opened_window.is_maximized(),
+                    opened_window.get_application().get_name(),
+                    opened_window.get_window_type(),
+                    opened_window.get_name(),
+                    self.get_timestamp(),
+                    None
+
                 )
-                self.wh_dict[new_window] = {new_window}
-                print(self.res)
-                # app: self.Wnck.Application = opened_window.get_application()
-                # app_name = app.get_name()
-                # print('app name -> ' + app_name)
-                # print('window name -> ' + opened_window.get_name())
+                self.wh_dict[opened_window.get_xid()] = new_window
             except AttributeError:
                 pass
 
     def destruction(self,this_screen: Wnck.Screen, closed_window: Wnck.Window):
         if self.rec:
-            try:
-                print('goodbye')
-                print(closed_window.get_name())
-                # app: self.Wnck.Application = closed_window.get_application()
-                # app_name = app.get_name()
-                # print('app name -> ' + app_name)
-                # print('window name -> ' + closed_window.get_name())
-            except AttributeError:
-                pass
+            print('goodbye')
+            self.wh_dict[closed_window.get_xid()].window_destruction = self.get_timestamp()
 
     def run_gui_thread(self):
         from gi.repository import GObject
@@ -74,6 +74,7 @@ class WindowHistoryRecorder(Recorder):
                 self.Gtk.main_iteration()
 
     def __init__(self):
+        self.db = WindowHistoryDAO()
         self.wh_dict = {}
         self.res = self.get_screen_res()
         self.rec = False
@@ -93,9 +94,9 @@ class WindowHistoryRecorder(Recorder):
 
     def stop(self):
         self.rec = False
-
+        print('Stopping')
         # TODO: put everything in the database
         for key in self.wh_dict:
-            print(key.toJSON())
+            self.db.create(self.wh_dict[key])
 
         self.dict = {}
