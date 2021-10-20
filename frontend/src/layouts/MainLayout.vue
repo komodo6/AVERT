@@ -1,6 +1,15 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
+      <q-bar class="q-electron-drag bg-black">
+        <div>AVERT</div>
+
+        <q-space />
+
+        <q-btn dense flat icon="minimize" @click="minimize" />
+        <q-btn dense flat icon="crop_square" @click="toggleMaximize" />
+        <q-btn dense flat icon="close" @click="closeApp" />
+      </q-bar>
       <q-toolbar class="bg-dark">
         <q-btn
           flat
@@ -10,8 +19,6 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title> AVERT </q-toolbar-title>
 
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/"> Home </router-link>
@@ -36,20 +43,134 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
+                <q-btn color="grey-9 q-mx-sm">
+          <router-link to="/visualize"> Visualize </router-link>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> MAIN MENU </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item :clickable="false">
+          <q-item-section>
+            <a>
+              <q-btn
+                @click="test"
+                style="width: 200px"
+                icon="close_fullscreen"
+                label="miniAvert"
+                color="grey-9 q-mx-sm"
+                push
+              >
+              </q-btn
+            ></a>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/sync">
+              <q-btn
+                style="width: 200px"
+                icon="sync"
+                label="sync"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/transaction">
+              <q-btn
+                style="width: 200px"
+                icon="article"
+                label="transaction"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/visualize">
+              <q-btn
+                style="width: 200px"
+                icon="auto_graph"
+                label="visualize"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/delete">
+              <q-btn
+                style="width: 200px"
+                icon="delete"
+                label="delete"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/export">
+              <q-btn
+                style="width: 200px"
+                icon="north_east"
+                label="export"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/settings">
+              <q-btn
+                style="width: 200px"
+                icon="settings"
+                label="settings"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
+
+    <q-footer elevated>
+      <q-toolbar class="bg-dark">
+        <q-toolbar-title></q-toolbar-title>
+        <q-btn class="q-ma-md" @click="captureScreenshot" color="grey-9">
+          Capture Screenshot
+        </q-btn>
+        <q-btn
+          class="q-ma-md"
+          :class="{ recording: recordState }"
+          color="grey-9"
+          @click="startRecording"
+        >
+          {{ recordText }}
+        </q-btn>
+      </q-toolbar>
+    </q-footer>
 
     <q-page-container>
       <router-view />
@@ -75,10 +196,10 @@ const linksList = [
     link: "https://github.com/quasarframework",
   },
   {
-    title: "Discord Chat Channel",
+    title: "Avert",
     caption: "chat.quasar.dev",
     icon: "chat",
-    link: "https://chat.quasar.dev",
+    link: "http://localhost:8080/#/miniavert",
   },
   {
     title: "Forum",
@@ -99,23 +220,40 @@ const linksList = [
     link: "https://facebook.quasar.dev",
   },
   {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
+    title: "Settings",
+    caption: "",
+    icon: "settings",
     link: "https://awesome.quasar.dev",
   },
 ];
 
 import { defineComponent, ref } from "vue";
-
+import axios from "axios";
+import { useStore } from "vuex";
 export default defineComponent({
   name: "MainLayout",
 
-  components: {
-    EssentialLink,
-  },
+  components: {},
 
   setup() {
+    let store = useStore();
+    let recordState = ref(false);
+    let recordText = ref("Start Recording");
+
+    const startRecording = () => {
+      if (recordState.value) {
+        recordState.value = false;
+        recordText.value = "Start Recording";
+      } else {
+        recordState.value = true;
+        recordText.value = "Stop Recording";
+      }
+    };
+
+    const captureScreenshot = async () => {
+      axios.get("http://localhost:5000/screenshots/capture");
+    };
+
     const leftDrawerOpen = ref(false);
 
     const moveTo = () => {
@@ -125,7 +263,41 @@ export default defineComponent({
       });
     };
 
+    function test() {
+      store.state.miniavert.miniavert_window = window.open(
+        process.env.APP_URL + "/#/miniavert",
+        "_black",
+        "top=500,left=200,frame=true,nodeIntegration=yes,height=500,widht=300,maxHeight=500,maxWidth=400,alwaysOnTop,closable=true"
+      );
+    }
+
+    function minimize() {
+      if (process.env.MODE === "electron") {
+        window.myWindowAPI.minimize();
+      }
+    }
+
+    function toggleMaximize() {
+      if (process.env.MODE === "electron") {
+        window.myWindowAPI.toggleMaximize();
+      }
+    }
+
+    function closeApp() {
+      if (process.env.MODE === "electron") {
+        window.myWindowAPI.close();
+      }
+    }
+
     return {
+      captureScreenshot,
+      recordState,
+      recordText,
+      startRecording,
+      minimize,
+      toggleMaximize,
+      closeApp,
+      test,
       essentialLinks: linksList,
       moveTo,
       leftDrawerOpen,
@@ -138,6 +310,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.recording {
+  background-color: red !important;
+}
 a {
   text-decoration: none;
   color: white;

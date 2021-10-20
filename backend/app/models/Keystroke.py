@@ -1,10 +1,10 @@
 import json
-from models.Artifact import Artifact
+from .Artifact import Artifact
 
 class Keystroke(Artifact):
 
-    def __init__(self, timestamp, ip_address, mac_address, annotations, key, active_window=None):
-        super().__init__(timestamp, ip_address, mac_address, annotations, active_window)
+    def __init__(self, timestamp, ip_address, mac_address, annotations, tags, key, active_window=None):
+        super().__init__(timestamp, ip_address, mac_address, annotations, tags)
         self.key = key
     
 

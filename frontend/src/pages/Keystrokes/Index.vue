@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <q-table
-          title="Keystrokes"
+          title="Key Strokes"
           :columns="columns"
           :rows="rows"
           row-key="id"
@@ -30,6 +30,44 @@
               @click="exportTable"
             >
             </q-btn>
+          </template>
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td key="timestamp" :props="props">
+                {{ props.row.timestamp }}
+              </q-td>
+              <q-td key="ip_address" :props="props">
+                {{ props.row.ip_address }}
+              </q-td>
+              <q-td key="mac_address" :props="props">
+                {{ props.row.mac_address }}
+              </q-td>
+              <q-td key="key" :props="props">
+                {{ props.row.key }}
+              </q-td>
+              <q-td key="active_window" :props="props">
+                {{ props.row.active_window }}
+              </q-td>
+              <q-td key="annotations" :props="props">
+                {{ props.row.annotations }}
+              </q-td>
+              <q-td key="tags" :props="props">
+                <q-select
+                  label="Tags"
+                  filled
+                  :v="props.row.tags"
+                  v-model="props.row.tags"
+                  @update:model-value="updateTags(props.row.tags, props.row.id)"
+                  use-input
+                  use-chips
+                  multiple
+                  hide-dropdown-icon
+                  input-debounce="0"
+                  new-value-mode="add"
+                  style="width: 250px"
+                />
+              </q-td>
+            </q-tr>
           </template>
         </q-table>
       </div>
@@ -74,7 +112,24 @@ const columns = [
     align: "center",
     sortable: false,
   },
+  {
+    name: "annotations",
+    label: "Annotations",
+    name: "annotations",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "tags",
+    label: "Tags",
+    name: "tags",
+    align: "center",
+    sortable: false,
+  },
 ];
+import axios from "axios";
+import { onMounted, ref } from "vue";
+import { exportFile, useQuasar } from "quasar";
 
 function wrapCsvValue(val, formatFn) {
   let formatted = formatFn !== void 0 ? formatFn(val) : val;
@@ -93,23 +148,32 @@ function wrapCsvValue(val, formatFn) {
   return `"${formatted}"`;
 }
 
-import axios from "axios";
-import { onMounted, ref } from "vue";
-import { exportFile, useQuasar } from "quasar";
 export default {
   setup() {
+    const updateTags = async (val, id) => {
+      if (!val) {
+        val = [];
+      }
+      await axios.post("http://localhost:5000/keystrokes/keystroke", {
+        id: id,
+        tags: val,
+      });
+      console.log(val, id);
+    };
+
     const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
+
     onMounted(() => {
-      fetchKeystrokes();
+      fetchMouseactions();
     });
-    const fetchKeystrokes = async () => {
+    const fetchMouseactions = async () => {
       const { data } = await axios.get("http://localhost:5000/keystrokes");
       rows.value = data;
-      console.log(rows.value);
     };
     return {
+      updateTags,
       filter,
       columns,
       rows,

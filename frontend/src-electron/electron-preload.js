@@ -15,3 +15,41 @@
  *     doAThing: () => {}
  *   })
  */
+
+import { contextBridge } from "electron";
+import { BrowserWindow } from "@electron/remote";
+
+contextBridge.exposeInMainWorld("myWindowAPI", {
+  minimize() {
+    BrowserWindow.getFocusedWindow().minimize();
+  },
+
+  toggleMaximize() {
+    const win = BrowserWindow.getFocusedWindow();
+
+    if (win.isMaximized()) {
+      win.unmaximize();
+    } else {
+      win.maximize();
+    }
+  },
+
+  close() {
+    BrowserWindow.getFocusedWindow().close();
+  },
+});
+
+contextBridge.exposeInMainWorld("miniAvert", {
+  startMiniAvert() {
+    let win = new BrowserWindow({
+      webPreferences: {
+        nativeWindowOpen: false,
+
+        frameless: true,
+      },
+    });
+    // enable(win.webContents);
+    mainWindow.setMenuBarVisibility(false);
+    window.open(process.env.APP_URL + "/#/miniavert");
+  },
+});

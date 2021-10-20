@@ -54,8 +54,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+<script>
+// const { desktopCapturer } = require("electron");
+import { defineComponent, ref, computed, onMounted } from "vue";
 
 const columns = [
   { name: "Checkboxes", label: "_", field: "Checkboxes", align: "left" },
@@ -85,12 +86,12 @@ const rows = [
   {name: "3/19/2021", Time: "12:45:32", DataType: "Keystroke", MACAddress: "30-65-EC-6F-C4-58", IPAddress: "129.102.99.234",},
 ];
 
-export default defineComponent({
+export default {
   setup() {
     let visibleColumns = ref(["Time","DataType","MACAddress","IPAddress","Date",]);
     const plusOne = computed(() => visibleColumns);
     console.log(plusOne);
     return {visibleColumns,rows,columns,text: ref(""),};
   },
-});
+};
 </script>

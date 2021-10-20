@@ -24,6 +24,16 @@ class KeystrokeDAO:
         else:
             raise Exception("Cannot update, keystroke is empty")
 
+    def update_tag(self, id, tags):
+        if id is not None:
+            self.db.update({'id': id}, {
+                "$set": {
+                    'tags': tags
+                }
+            }, upsert=False, multi=False)
+        else:
+            raise Exception("Cannot update, Mouse Action is empty")
+
     def delete(self, keystroke):
         if keystroke is not None:
             self.db.remove(keystroke.toJSON())
