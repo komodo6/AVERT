@@ -41,7 +41,7 @@ class ProcessRecorder(Recorder):
                             proc.ppid(),
                             proc.create_time(),
                             proc.cmdline(),
-                            proc.terminal(),
+                            None,
                             proc.status(),
                             proc.status(),
                             proc.memory_percent(),
