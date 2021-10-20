@@ -8,6 +8,7 @@
           :rows="rows"
           row-key="id"
           :filter="filter"
+
         >
           <template v-slot:top-right>
             <q-input
@@ -22,7 +23,15 @@
               </template>
             </q-input>
           </template>
-          <template v-slot:body="props">
+          <template v-slot:body="props ">
+          <q-tr :props="props" @click="props.selected = true">
+        <q-td>
+          <q-checkbox v-model="props.selected" color="primary" />
+        </q-td>
+        <q-td v-for="col in props.cols" :key="col.name" :props="props">{{
+          col.value
+        }}</q-td>
+      </q-tr>
             <q-tr :props="props">
               <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
@@ -32,6 +41,9 @@
               </q-td>
               <q-td key="mac_address" :props="props">
                 {{ props.row.mac_address }}
+              </q-td>
+              <q-td key="Type" :props="props">
+                {{ props.row.Type }}
               </q-td>
               <q-td key="key" :props="props">
                 {{ props.row.key }}
@@ -55,6 +67,13 @@ const columns = [
     field: "timestamp",
     sortable: true,
     align: "center",
+  },
+  {
+    name: "Selected",
+    label: "Selected",
+    field: "Selected",
+    align: "center",
+    sortable: true,
   },
   {
     name: "ip_address",
@@ -117,11 +136,26 @@ export default {
     const filter = ref("");
 
     onMounted(() => {
+      fetchKeystrokes();
       fetchMouseactions();
+      fetchSystemCalls();
+      fetchProcesses();
     });
-    const fetchMouseactions = async () => {
+    const fetchKeystrokes = async () => {
       const { data } = await axios.get("http://localhost:5000/keystrokes");
       rows.value = data;
+    };
+    const fetchSystemCalls = async () => {
+      const { data } = await axios.get("http://localhost:5000/systemcalls");
+      rows.value.concat(data);
+    };
+    const fetchProcesses = async () => {
+      const { data } = await axios.get("http://localhost:5000/processes");
+      rows.value.concat(data);
+    };
+    const fetchMouseactions = async () => {
+      const { data } = await axios.get("http://localhost:5000/mouseactions");
+      rows.value.concat(data);
     };
     return {
       updateTags,
