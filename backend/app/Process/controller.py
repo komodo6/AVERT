@@ -7,7 +7,7 @@ bp = Blueprint("process", __name__, url_prefix="/processes")
 ps = ProcessDAO()
 
 
-@bp.route("/")
+@bp.route("/", methods=['GET'])
 def index():
     all_processes = list(ps.read())
     return json.dumps(all_processes), 200
