@@ -43,47 +43,76 @@
 # Wnck.shutdown()
 
 import gi
+import gobject
 gi.require_version('Gtk','3.0')
 gi.require_version('Wnck','3.0')
 from gi.repository import Gtk, Wnck
 import time
-
-# while Gtk.events_pending():
-#     Gtk.main_iteration()
-
-global scr, rec_flag 
+import threading
 
 
-# def recording
-
-def init():
-    global src 
-    global rec_flag
-    # Gtk.init([rec_flag])
-    scr =  Wnck.Screen.get_default()
-    scr.connect("active-window-changed", window_switch_handler)
+# def window_switch_handler(screen, window):
+#     global rec_flag
+#     if rec_flag:
+#         try:
+#             cur_win=screen.get_active_window().get_application().get_name()
+#             print(cur_win)
+#         except AttributeError:
+#             pass
   
 
-def start():
-    global rec_flag
-    rec_flag = True
-    
-def stop():
-    global rec_flag
-    rec_flag = False    
 
-def window_switch_handler(screen, window):
-    global rec_flag
-    if rec_flag:
+def rec():
+    # scr = None
+    rec_flag  = False
+
+    # Gtk.g_idle_add()A
+
+
+    # def recording
+
+    # def init():
+        # Gtk.init([rec_flag])
+        # global src
+        # print(src)
+        # scr =  Wnck.Screen.get_default()
+        # scr.connect("active-window-changed", window_switch_handler)
+        # screen.force_update()
+  
+
+    # def start():
+    #     global rec_flag
+    #     rec_flag = True
+    #     while True:
+    #         # while Gtk.events_pending():
+    #         Gtk.main_iteration()
+    
+    # def stop():
+    #     global rec_flag
+    #     rec_flag = False    
+
+    def window_switch_handler(screen, window):
+        global rec_flag
+        # if rec_flag:
         try:
             cur_win=screen.get_active_window().get_application().get_name()
             print(cur_win)
         except AttributeError:
             pass
-  
-init()
-start()
-Gtk.main()
-# Gtk.main_quit()
+
+    scr =  Wnck.Screen.get_default()
+    scr.connect("active-window-changed", window_switch_handler)
+    Gtk.main()
+
+
+
+if __name__ == "__main__":
+    r = threading.Thread(target = rec())
+    exit_event = threading.Event()
+    r.start()
+    r.join
+    print('after thread')
+    # start()
+
 
 
