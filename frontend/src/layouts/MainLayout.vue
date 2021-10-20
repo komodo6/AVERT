@@ -133,6 +133,20 @@
 
         <q-item :clickable="false">
           <q-item-section>
+            <router-link to="/Annotation">
+              <q-btn
+                style="width: 200px"
+                icon="delete"
+                label="Annotate"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
             <router-link to="/export">
               <q-btn
                 style="width: 200px"

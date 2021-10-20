@@ -1,9 +1,9 @@
-<template>
+                                                                                                <template>
   <div class="q-pa-sm">
     <div class="row">
       <div class="col">
         <q-table
-          title="Keystrokes"
+          title="Annotations"
           :columns="columns"
           :rows="rows"
           row-key="id"
@@ -21,15 +21,6 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
-            <q-btn
-              class="q-mx-sm"
-              color="primary"
-              icon-right="archive"
-              label="Export to csv"
-              no-caps
-              @click="exportTable"
-            >
-            </q-btn>
           </template>
           <template v-slot:body="props">
             <q-tr :props="props">
@@ -44,32 +35,13 @@
               </q-td>
               <q-td key="key" :props="props">
                 {{ props.row.key }}
-              </q-td>
-              <q-td key="active_window" :props="props">
-                {{ props.row.active_window }}
-              </q-td>
-              <q-td key="annotations" :props="props">
-                {{ props.row.annotations }}
-              </q-td>
-              <q-td key="tags" :props="props">
-                <q-select
-                  label="Tags"
-                  filled
-                  :v="props.row.tags"
-                  v-model="props.row.tags"
-                  @update:model-value="updateTags(props.row.tags, props.row.id)"
-                  use-input
-                  use-chips
-                  multiple
-                  hide-dropdown-icon
-                  input-debounce="0"
-                  new-value-mode="add"
-                  style="width: 250px"
-                />
-              </q-td>
+
+              </q-td> <!-- Need to update the above to get the data type-->
             </q-tr>
           </template>
         </q-table>
+        <q-input class = "annotation" color = "amber" outlined v-model="text" label="Your annotation" />
+        <q-btn class = "annotateBtn" style="width: 200px" label="Add Annotation" color="grey-9 q-mx-sm" push/>
       </div>
     </div>
   </div>
@@ -99,32 +71,11 @@ const columns = [
     sortable: true,
   },
   {
-    name: "key",
-    label: "Key",
-    field: "key",
+    name: "Type",
+    label: "Type",
+    field: "Type",
     align: "center",
     sortable: true,
-  },
-  {
-    name: "active_window",
-    label: "Window",
-    name: "active_window",
-    align: "center",
-    sortable: false,
-  },
-  {
-    name: "annotations",
-    label: "Annotations",
-    name: "annotations",
-    align: "center",
-    sortable: false,
-  },
-  {
-    name: "tags",
-    label: "Tags",
-    name: "tags",
-    align: "center",
-    sortable: false,
   },
 ];
 import axios from "axios";
@@ -210,3 +161,13 @@ export default {
   },
 };
 </script>
+
+<style>
+  .annotation{
+    margin-top: 10px;
+  }
+  .annotateBtn{
+    margin-top: 10px;
+    float:right;
+  }
+</style>
