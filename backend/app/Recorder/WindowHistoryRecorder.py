@@ -7,10 +7,9 @@ gi.require_version('Wnck', '3.0')
 from gi.repository import GObject, Wnck
 
 import time #TODO: Delete Later
+from .Recorder import Recorder
 
-class WindowHistoryRecorder():
-
-
+class WindowHistoryRecorder(Recorder):
     def creation(self,this_screen: Wnck.Screen, opened_window: Wnck.Window):
         if self.rec:
             try:
@@ -43,15 +42,12 @@ class WindowHistoryRecorder():
         Gtk.main()
 
     def start_rec(self):
-        # self.rec = True
         self.scr =  self.Wnck.Screen.get_default()
         self.scr.connect("window-opened", self.creation)
         self.scr.connect("window-closed", self.destruction)
         while True:
             while self.Gtk.events_pending():
                 self.Gtk.main_iteration()
-        # print('Its YeahBoi')
-        # self.GLib.idle_add(self.Gtk.main_quit)
 
     def __init__(self):
         self.wh_dict = {}
