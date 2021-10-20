@@ -15,10 +15,11 @@ class WindowHistoryRecorder():
         if self.rec:
             try:
                 print('hello')
-                app: self.Wnck.Application = opened_window.get_application()
-                app_name = app.get_name()
-                print('app name -> ' + app_name)
-                print('window name -> ' + opened_window.get_name())
+                self.wh_dict[opened_window] = {opened_window.get_name()}
+                # app: self.Wnck.Application = opened_window.get_application()
+                # app_name = app.get_name()
+                # print('app name -> ' + app_name)
+                # print('window name -> ' + opened_window.get_name())
             except AttributeError:
                 pass
 
@@ -53,6 +54,7 @@ class WindowHistoryRecorder():
         # self.GLib.idle_add(self.Gtk.main_quit)
 
     def __init__(self):
+        self.wh_dict = {}
         self.rec = False
         self.gui_ready = threading.Event()
         self.gui_thread = threading.Thread(target=self.run_gui_thread)
@@ -71,9 +73,9 @@ class WindowHistoryRecorder():
 
     def stop(self):
         self.rec = False
-        # self.gui_ready = None
-        # self.gui_thread = None
-        # self.Wnck = None
-        # self.Gtk = None
-        # self.GLib = None
-        # self.worker = None
+
+        # TODO: put everything in the database
+        for key in self.wh_dict:
+            print(key)
+
+        self.dict = {}
