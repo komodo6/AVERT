@@ -4,18 +4,33 @@ import threading
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Wnck', '3.0') 
-from gi.repository import GObject
+from gi.repository import GObject, Wnck
 
 import time #TODO: Delete Later
 
 class WindowHistoryRecorder():
 
 
-    def window_switch_handler(self,screen, window):
+    def creation(self,this_screen: Wnck.Screen, opened_window: Wnck.Window):
         if self.rec:
             try:
-                cur_win=screen.get_active_window().get_application().get_name()
-                print(cur_win)
+                print('hello')
+                app: self.Wnck.Application = opened_window.get_application()
+                app_name = app.get_name()
+                print('app name -> ' + app_name)
+                print('window name -> ' + opened_window.get_name())
+            except AttributeError:
+                pass
+
+    def destruction(self,this_screen: Wnck.Screen, closed_window: Wnck.Window):
+        if self.rec:
+            try:
+                print('goodbye')
+                print(closed_window.get_name())
+                # app: self.Wnck.Application = closed_window.get_application()
+                # app_name = app.get_name()
+                # print('app name -> ' + app_name)
+                # print('window name -> ' + closed_window.get_name())
             except AttributeError:
                 pass
 
@@ -29,8 +44,8 @@ class WindowHistoryRecorder():
     def start_rec(self):
         # self.rec = True
         self.scr =  self.Wnck.Screen.get_default()
-        self.scr.connect("active-window-changed", self.window_switch_handler)
-        print('In start_rec',self.rec)
+        self.scr.connect("window-opened", self.creation)
+        self.scr.connect("window-closed", self.destruction)
         while True:
             while self.Gtk.events_pending():
                 self.Gtk.main_iteration()
