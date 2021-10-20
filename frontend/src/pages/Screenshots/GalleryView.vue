@@ -27,6 +27,7 @@ export default {
       required: true,
     }
   },
+
   setup(props) {
     let store = useStore();
     const deleteIMG = async (id) => {

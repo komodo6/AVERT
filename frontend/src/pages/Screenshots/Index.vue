@@ -28,8 +28,9 @@
       <div class="row">
         <GalleryView
           v-show="gallView"
-          v-for="image in images"
+          v-for="(image, index) in images"
           :key="image.id"
+          :index="index"
           v-bind="image"
         />
         <ListView v-show="listView" />
