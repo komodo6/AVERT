@@ -6,8 +6,10 @@
           title="Keystrokes"
           :columns="columns"
           :rows="rows"
-          row-key="id"
           :filter="filter"
+          selection="multiple"
+          v-model:selected="selected"
+          row-key="id"
         >
           <template v-slot:top-right>
             <q-input
@@ -31,8 +33,12 @@
             >
             </q-btn>
           </template>
+
           <template v-slot:body="props">
             <q-tr :props="props">
+              <q-td>
+                <q-checkbox v-model="props.selected"> </q-checkbox>
+              </q-td>
               <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
@@ -164,6 +170,7 @@ export default {
     const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
+    let selected = ref([]);
 
     onMounted(() => {
       fetchMouseactions();
@@ -173,6 +180,7 @@ export default {
       rows.value = data;
     };
     return {
+      selected,
       updateTags,
       filter,
       columns,

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <q-table
-          title="Processes"
+          title="System Calls"
           :columns="columns"
           :rows="rows"
           row-key="id"
@@ -61,48 +61,19 @@
                   style="width: 250px"
                 />
               </q-td>
-              <q-td key="proc_user" :props="props">
-                {{ props.row.proc_user }}
+              <q-td key="SystemCallName" :props="props">
+                {{ props.row.SystemCallName }}
               </q-td>
-              <q-td key="proc_name" :props="props">
-                {{ props.row.proc_name }}
+              <q-td key="SystemCallArgument" :props="props">
+                {{ props.row.SystemCallArgument }}
               </q-td>
-              <q-td key="proc_pid" :props="props">
-                {{ props.row.proc_pid }}
+              <q-td key="SystemCallReturnValue" :props="props">
+                {{ props.row.SystemCallReturnValue }}
               </q-td>
-              <q-td key="proc_parent" :props="props">
-                {{ props.row.proc_parent }}
+              <q-td key="SystemCallType" :props="props">
+                {{ props.row.SystemCallType }}
               </q-td>
-              <q-td key="proc_time_created" :props="props">
-                {{ props.row.proc_time_created }}
-              </q-td>
-              <q-td key="proc_cmdline" :props="props">
-                {{ props.row.proc_cmdline }}
-              </q-td>
-              <q-td key="proc_terminal" :props="props">
-                {{ props.row.proc_terminal }}
-              </q-td>
-              <q-td key="proc_status" :props="props">
-                {{ props.row.proc_status }}
-              </q-td>
-              <q-td key="proc_memory_percentage" :props="props">
-                {{ props.row.proc_memory_percentage }}
-              </q-td>
-              <q-td key="proc_threads" :props="props">
-                {{ props.row.proc_threads }}
-              </q-td>
-              <q-td key="proc_cpu_percentage" :props="props">
-                {{ props.row.proc_cpu_percentage }}
-              </q-td>
-              <q-td key="proc_privileges" :props="props">
-                {{ props.row.proc_privileges }}
-              </q-td>
-              <q-td key="proc_priority" :props="props">
-                {{ props.row.proc_priority }}
-              </q-td>
-              <q-td key="proc_type" :props="props">
-                {{ props.row.proc_type }}
-              </q-td>
+              
             </q-tr>
           </template>
         </q-table>
@@ -176,13 +147,7 @@ const columns = [
     align: "center",
     sortable: false,
   },
-  {
-    name: "proc_time_created",
-    label: "Process Start Time",
-    field: "proc_time_created",
-    align: "center",
-    sortable: false,
-  },
+
 ];
 import axios from "axios";
 import { onMounted, ref } from "vue";
