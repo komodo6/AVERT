@@ -1,4 +1,4 @@
-                                                                                                <template>
+<template>
   <div class="q-pa-sm">
     <div class="row">
       <div class="col">
@@ -6,10 +6,10 @@
           title="Annotations"
           :columns="columns"
           :rows="rows"
-          row-key="id"
           :filter="filter"
           selection="multiple"
           v-model:selected="selected"
+          row-key="id"
         >
           <template v-slot:top-right>
             <q-input
@@ -23,11 +23,23 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
+            <q-btn
+              class="q-mx-sm"
+              color="primary"
+              icon-right="archive"
+              label="Export to csv"
+              no-caps
+              @click="exportTable"
+            >
+            </q-btn>
           </template>
+
           <template v-slot:body="props">
-          <q-checkbox v-model="props.selected" />
             <q-tr :props="props">
-              <q-td key="timestamp" :props="props"><!--This is the line to add the checkboxes to the rows-->
+              <q-td>
+                <q-checkbox v-model="props.selected"> </q-checkbox>
+              </q-td>
+              <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
               <q-td key="ip_address" :props="props">
@@ -36,22 +48,19 @@
               <q-td key="mac_address" :props="props">
                 {{ props.row.mac_address }}
               </q-td>
-              <q-td key="Type" :props="props">
-                {{ props.row.Type }}
+              <q-td key="annotations" :props="props">
+                {{ props.row.annotations }}
               </q-td>
-              <q-td key="key" :props="props">
-                {{ props.row.key }}
-
-              </q-td> <!-- Need to update the above to get the data type-->
             </q-tr>
           </template>
         </q-table>
-        <q-input class = "annotation" color = "amber" outlined v-model="text" label="Your annotation" />
-        <q-btn class = "annotateBtn" style="width: 200px" label="Add Annotation" color="grey-9 q-mx-sm" push/>
+        <q-input class = "annotation" color = "amber" outlined v-model="text" label="Your Annotation" :dense="dense" />
+        <q-btn class = "annotateBtn" color="grey-9 q-mx-sm" label = "Add Annotation"/>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 const columns = [
@@ -76,12 +85,12 @@ const columns = [
     align: "center",
     sortable: true,
   },
-  {
-    name: "Type",
-    label: "Type",
-    field: "Type",
+    {
+    name: "annotations",
+    label: "Annotations",
+    name: "annotations",
     align: "center",
-    sortable: true,
+    sortable: false,
   },
 ];
 import axios from "axios";
@@ -107,6 +116,7 @@ function wrapCsvValue(val, formatFn) {
 
 export default {
   setup() {
+    let selected = ref([]);
     const updateTags = async (val, id) => {
       if (!val) {
         val = [];
@@ -145,6 +155,7 @@ export default {
       rows.value.concat(data);
     };
     return {
+      selected,
       updateTags,
       filter,
       columns,
