@@ -5,6 +5,7 @@ from .MouseActionRecorder import MouseActionRecorder
 from .ProcessRecorder import ProcessRecorder
 from .WindowHistoryRecorder import WindowHistoryRecorder
 
+
 bp = Blueprint('recording', __name__, url_prefix='/recording')
 
 recorders = {'keystrokes': KeystrokeRecorder(), 'mouse': MouseActionRecorder(), 'processes': ProcessRecorder(), 'window_history': WindowHistoryRecorder()}
