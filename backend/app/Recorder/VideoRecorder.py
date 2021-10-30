@@ -4,22 +4,19 @@ import numpy as np
 import time
 
 SCREEN_SIZE = pyautogui.size()
+FPS = 60
 
-fourcc = cv2.VideoWriter_fourcc(*"XVID")
-out = cv2.VideoWriter("output.avi", fourcc, 20.0, (SCREEN_SIZE))
-
-fps = 120
-prev = 0
+codec = cv2.VideoWriter_fourcc(*"XVID")
+out = cv2.VideoWriter("output.avi", codec, FPS, SCREEN_SIZE)
 
 while True:
-    time_elapsed = time.time() - prev
+    img = pyautogui.screenshot()
 
-    img = pyautogui.screenshot()q
+    frame = np.array(img)
 
-    if time_elapsed > 1.0/fps:
-        prev = time.time()
-        frame = np.array(img)
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    out.write(frame)
+
+    cv2.imshow('Live', frame)
 
     if cv2.waitKey(1) == ord("q"):
         break
