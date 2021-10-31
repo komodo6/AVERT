@@ -51,6 +51,22 @@
               <q-td key="annotations" :props="props">
                 {{ props.row.annotations }}
               </q-td>
+              <q-td key="tags" :props="props">
+                <q-select
+                  label="Tags"
+                  filled
+                  :v="props.row.tags"
+                  v-model="props.row.tags"
+                  @update:model-value="updateTags(props.row.tags, props.row.id)"
+                  use-input
+                  use-chips
+                  multiple
+                  hide-dropdown-icon
+                  input-debounce="0"
+                  new-value-mode="add"
+                  style="width: 250px"
+                />
+              </q-td>
             </q-tr>
           </template>
         </q-table>
@@ -89,6 +105,13 @@ const columns = [
     name: "annotations",
     label: "Annotations",
     name: "annotations",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "tags",
+    label: "Tags",
+    name: "tags",
     align: "center",
     sortable: false,
   },
