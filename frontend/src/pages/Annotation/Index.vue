@@ -72,7 +72,7 @@
         </q-table>
         <q-input class = "annotation" color = "amber" outlined v-model="text" label="Your Annotation" :dense="dense" />
 
-        <q-btn class="annotateBtn" color="grey-9 q-mx-sm" @clicked=printSelected label = "Add Annotation"/>
+        <q-btn class="annotateBtn" color="grey-9 q-mx-sm" @clicked="printSelected()" label = "Add Annotation"/>
       </div>
     </div>
   </div>
@@ -138,6 +138,10 @@ function wrapCsvValue(val, formatFn) {
   return `"${formatted}"`;
 }
 
+function printSelected(){
+   console.log('hi');
+}
+
 export default {
   setup() {
     let selected = ref([]);
@@ -151,9 +155,7 @@ export default {
       });
       console.log(val, id);
     };
-  const printSelected = (selected) => {
-    console.log(selected);
-  }
+
     const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
