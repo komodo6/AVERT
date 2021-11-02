@@ -52,16 +52,20 @@ export default {
   },
   setup() {
     let store = useStore();
+    let main = {
+      bgVideo: require('../../assets/src/homepage.mp4'),
+    }
 
     let gallView = ref(true);
     let listView = ref(false);
     let viewState = ref("List View");
     let images = ref([]);
     const getImages = async () => {
-      let { data } =
-        "/home/addy/Desktop/AVERT/backend/app/Recorder/Video/Videos/";
-      console.log(data);
-      store.state.videos.videos = data;
+      let main = {
+        bgVideo: require('../../../../backend/app/Recorder/Video/Videos/<>.avi'),
+      }
+      console.log(main.bgVideo);
+      store.state.videos.videos = main.bgVideo;
       images.value = store.state.videos.videos;
       console.log(images.value)
     };
