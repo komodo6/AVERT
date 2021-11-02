@@ -4,11 +4,11 @@ from .KeystrokeRecorder import KeystrokeRecorder
 from .MouseActionRecorder import MouseActionRecorder
 from .ProcessRecorder import ProcessRecorder
 from .WindowHistoryRecorder import WindowHistoryRecorder
-from app.Screenshots.ScreenShotRecorder import ScreenShotRecorder
+from ..Screenshots.ScreenshotRecorder import ScreenshotRecorder
 
 bp = Blueprint('recording', __name__, url_prefix='/recording')
 
-recorders = {'keystrokes': KeystrokeRecorder(), 'mouse': MouseActionRecorder(), 'processes': ProcessRecorder(), 'window_history': WindowHistoryRecorder(), 'screenshots': ScreenShotRecorder()}
+recorders = {'keystrokes': KeystrokeRecorder(), 'mouse': MouseActionRecorder(), 'processes': ProcessRecorder(), 'window_history': WindowHistoryRecorder(), 'screenshots': ScreenshotRecorder()}
     
 @bp.route('/', methods=['POST'])
 def index():
