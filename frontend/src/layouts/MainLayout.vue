@@ -43,7 +43,15 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
-                
+        <q-btn color="grey-9 q-mx-sm">
+          <router-link to="/visualize"> Visualize </router-link>
+        </q-btn>
+        <router-link to="/processes">
+          <q-btn color="grey-9 q-mx-sm"> Processes</q-btn>
+        </router-link>
+        <router-link to="/systemcalls">
+          <q-btn color="grey-9 q-mx-sm"> System Calls</q-btn>
+        </router-link>
       </q-toolbar>
     </q-header>
 
@@ -116,6 +124,20 @@
                 style="width: 200px"
                 icon="delete"
                 label="delete"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/Annotation">
+              <q-btn
+                style="width: 200px"
+                icon="delete"
+                label="Annotate"
                 color="grey-9 q-mx-sm"
                 push
               />
@@ -250,6 +272,7 @@ export default defineComponent({
 
     const captureScreenshot = async () => {
       axios.get("http://localhost:5000/screenshots/capture");
+      location.reload()
     };
 
     const leftDrawerOpen = ref(false);

@@ -41,6 +41,18 @@ const routes = [
         path: "/delete",
         component: () => import("pages/Delete/Index.vue"),
       },
+      {
+        path: "/Annotation",
+        component: () => import("pages/Annotation/Index.vue"),
+      },
+      {
+        path: "/processes",
+        component: () => import("pages/Processes/Index.vue"),
+      },
+      {
+        path: "/systemcalls",
+        component: () => import("pages/SystemCalls/Index.vue"),
+      },
     ],
   },
   {

@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "dev:electron": "quasar dev -m electron",
+    "build:electron": "quasar build -m electron",
     "dev": "quasar dev",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
@@ -21,13 +22,14 @@
     "electron-vue-screen-capture": "0.0.10",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "quasar": "^2.0.0",
+    "quasar": "^2.1.7",
     "vuex": "^4.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
     "@quasar/app": "^3.0.0",
     "electron": "^15.1.1",
+    "electron-packager": "^15.4.0",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.0.0",

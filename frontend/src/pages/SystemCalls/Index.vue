@@ -3,13 +3,11 @@
     <div class="row">
       <div class="col">
         <q-table
-          title="Keystrokes"
+          title="System Calls"
           :columns="columns"
           :rows="rows"
-          :filter="filter"
-          selection="multiple"
-          v-model:selected="selected"
           row-key="id"
+          :filter="filter"
         >
           <template v-slot:top-right>
             <q-input
@@ -33,12 +31,8 @@
             >
             </q-btn>
           </template>
-
           <template v-slot:body="props">
             <q-tr :props="props">
-              <q-td>
-                <q-checkbox v-model="props.selected"> </q-checkbox>
-              </q-td>
               <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
@@ -47,12 +41,6 @@
               </q-td>
               <q-td key="mac_address" :props="props">
                 {{ props.row.mac_address }}
-              </q-td>
-              <q-td key="key" :props="props">
-                {{ props.row.key }}
-              </q-td>
-              <q-td key="active_window" :props="props">
-                {{ props.row.active_window }}
               </q-td>
               <q-td key="annotations" :props="props">
                 {{ props.row.annotations }}
@@ -73,6 +61,19 @@
                   style="width: 250px"
                 />
               </q-td>
+              <q-td key="SystemCallName" :props="props">
+                {{ props.row.SystemCallName }}
+              </q-td>
+              <q-td key="SystemCallArgument" :props="props">
+                {{ props.row.SystemCallArgument }}
+              </q-td>
+              <q-td key="SystemCallReturnValue" :props="props">
+                {{ props.row.SystemCallReturnValue }}
+              </q-td>
+              <q-td key="SystemCallType" :props="props">
+                {{ props.row.SystemCallType }}
+              </q-td>
+              
             </q-tr>
           </template>
         </q-table>
@@ -105,33 +106,48 @@ const columns = [
     sortable: true,
   },
   {
-    name: "key",
-    label: "Key",
-    field: "key",
-    align: "center",
-    sortable: true,
-  },
-  {
-    name: "active_window",
-    label: "Window",
-    name: "active_window",
-    align: "center",
-    sortable: false,
-  },
-  {
     name: "annotations",
     label: "Annotations",
-    name: "annotations",
+    field: "annotations",
     align: "center",
     sortable: false,
   },
   {
     name: "tags",
     label: "Tags",
-    name: "tags",
+    field: "tags",
     align: "center",
     sortable: false,
   },
+  {
+    name: "SystemCallName",
+    label: "SystemCall Name",
+    field: "SystemCallName",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "SystemCallArgument",
+    label: "SystemCall Argument",
+    field: "SystemCallArgument",
+    align: "center",
+    sortable: true,
+  },
+  {
+    name: "SystemCallReturnValue",
+    label: "SystemCallReturn Value",
+    field: "SystemCallReturnValue",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "SystemCallType",
+    label: "SystemCall Type ",
+    field: "SystemCallType",
+    align: "center",
+    sortable: false,
+  },
+
 ];
 import axios from "axios";
 import { onMounted, ref } from "vue";
@@ -160,7 +176,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/keystrokes/keystroke", {
+      await axios.post("http://localhost:5000/systemcalls/systemcall", {
         id: id,
         tags: val,
       });
@@ -170,17 +186,15 @@ export default {
     const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
-    let selected = ref([]);
 
     onMounted(() => {
-      fetchMouseactions();
+      fetchProcesses();
     });
-    const fetchMouseactions = async () => {
-      const { data } = await axios.get("http://localhost:5000/keystrokes");
+    const fetchProcesses = async () => {
+      const { data } = await axios.get("http://localhost:5000/systemcalls");
       rows.value = data;
     };
     return {
-      selected,
       updateTags,
       filter,
       columns,
@@ -204,7 +218,7 @@ export default {
           )
           .join("\r\n");
 
-        const status = exportFile("keystrokes.csv", content, "text/csv");
+        const status = exportFile("systemcall.csv", content, "text/csv");
 
         if (status !== true) {
           $q.notify({
