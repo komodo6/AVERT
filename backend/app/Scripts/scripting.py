@@ -1,73 +1,27 @@
-# TODO: delete all the below
+import datetime
 import pynput
 from pynput import mouse 
 from pynput.keyboard import Key
 from pynput.mouse import Listener, Button, Controller
-import datetime
-import time
-import enum
-global keystrokes
-global mouseactions
-global actions
-global left_stop
+import pymongo
+client = pymongo.MongoClient(host="54.215.46.201", port=27017)
+db = client.AVERT
 
-left_stop = 0
-
-actions = []
 mouseactions = []
 keystrokes = []
-
-def on_move(x, y):
-    global mouseactions
-    print('Pointer moved to {0}'.format(
-        (x, y)))
-    utc = datetime.datetime.utcnow()
-    mouseactions = mouseactions + [{'type':'on_move', 'coords':[x,y],'timestamp':utc},]
-    
-
-def on_click(x, y, button, pressed):
-    global mouseactions
-    global left_stop
-    # print('{0} at {1}'.format(
-    #     'Pressed' if pressed else 'Released',
-    #     (x, y)))
-    print(left_stop)
-    
-
-    but = ''
-    if button == Button.right:
-        but = 'right'
-    if button == Button.left:
-        but = 'left'
-    
-    mouseactions = mouseactions + [{'type':'on_click','coords':[x,y],'button':but, 'pressed': pressed, 'timestamp':datetime.datetime.utcnow()}]
-
-    if button == Button.right :
-        left_stop = left_stop + 1
-    if left_stop == 4:
-        return False
-
-def on_scroll(x, y, dx, dy):
-    global mouseactions
-    print('Scrolled {0}'.format(
-        (x, y)))
-    mouseactions = mouseactions + [{'type':'on_scroll', 'coords':[x,y], 'scroll':dy, 'timestamp':datetime.datetime.utcnow()}]
-
-def on_release(key):
-    global keystrokes
-    print(isinstance(key, enum.Enum)  )
-    keystrokes = keystrokes + [{ 'key':key, 'timestamp':datetime.datetime.utcnow()}]
-    if key == Key.esc:
-        return False
-
-with pynput.keyboard.Listener(on_release=on_release) as k_listener, pynput.mouse.Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as m_listener:
-    k_listener.join()
-    m_listener.join()
+actions = []
 
 
-# print(mouseactions)
-# print()
-# print(keystrokes)
+ma  = db.MouseActions.find({})
+for doc in ma:
+    mouseactions.append(doc)
+print(mouseactions)
+
+k = db.Keystrokes.find({})
+for doc in k:
+    keystrokes.append(doc)
+print(keystrokes)
+
 
 # Organizing the two database collection
 keystrokes_len = len(keystrokes) -1
@@ -99,10 +53,18 @@ while current_keystroke_index < keystrokes_len or current_mouseaction_index < mo
         if smallest_artifact['artifact'] == None:
             smallest_artifact = artifact
             continue
+        if artifact['artifact'] == None:
+            smallest_artifact = smallest_artifact
+            continue
+        try:
+            if artifact['artifact']['timestamp'] < smallest_artifact['artifact']['timestamp']:
+                smallest_artifact = artifact
+        except TypeError:
+            print('smallest_artifact:', smallest_artifact )
+            print('artifact:', artifact)
+            exit()
 
-        if artifact['artifact']['timestamp'] < smallest_artifact['artifact']['timestamp']:
-            smallest_artifact = artifact
-    
+        
 
     # update the smallest artifact type index
     if smallest_artifact['type'] == 'mouseaction':
@@ -114,6 +76,11 @@ while current_keystroke_index < keystrokes_len or current_mouseaction_index < mo
     # Put the smallest time stamp in the actiosn list {'type of artifact': {artifact it self}}
     actions.append(smallest_artifact)
 
+for action in actions:
+    print('type', action['type'])
+    print('timesstamp',action['artifact']['timestamp'])
+
+
 # making the file
 outF = open("myOutFile.py", "w")
 
@@ -124,10 +91,10 @@ outF.write('\n')
 outF.write('mouse = Controller()\n')
 outF.write('keyboard = K_Controller()\n')
 
-prev_time = float(actions[0]['artifact']['timestamp'].strftime("%S.%f"))
-
+# prev_time = float(actions[0]['artifact']['timestamp'].strftime("%S.%f"))
+prev_time = float(datetime.datetime.strptime(actions[0]['artifact']['timestamp'],"%Y-%m-%d %H:%M:%S.%f").strftime("%S.%f"))
 for action in actions:
-    current_time = float(action['artifact']['timestamp'].strftime("%S.%f"))
+    current_time = float(datetime.datetime.strptime(action['artifact']['timestamp'],"%Y-%m-%d %H:%M:%S.%f").strftime("%S.%f"))
     time_diff =  current_time - prev_time
     if action['type'] == 'mouseaction':
         if action['artifact']['type'] == 'on_move':
@@ -143,6 +110,7 @@ for action in actions:
         # if action['type'] == 'on_scroll':
             
         if action['artifact']['type'] == 'on_click':
+            print(action['artifact'])
             if action['artifact']['button'] == 'left':
                 button = 'Button.left'
             
@@ -168,9 +136,9 @@ for action in actions:
 
         # # write_key = 
         # type_write = 'keyboard.press(\'{}\')\n'.format(action['artifact']['key'])
-        outF.write('keyboard.press({})\n'.format(action['artifact']['key']))
+        outF.write('keyboard.press(\'{}\')\n'.format(action['artifact']['key']))
         # type_write = 'keyboard.press(\'{}\')\n'.format(action['artifact']['key'])
-        outF.write('keyboard.release({})\n'.format(action['artifact']['key']))
+        outF.write('keyboard.release(\'{}\')\n'.format(action['artifact']['key']))
    
     prev_time = current_time
 

@@ -21,6 +21,7 @@ class MouseActionRecorder(Recorder):
 
     def __init__(self) -> None:
         super().__init__()
+        self.ma_list = []
         self.ip = super().get_ip()
         self.mac = super().get_mac()
         self.mouse_action_collection = MouseActionsDAO()
@@ -38,18 +39,28 @@ class MouseActionRecorder(Recorder):
 
     def stop(self):
         self.running = False
+        for ma in self.ma_list:
+
+            print(ma)
+            mouseaction = MouseAction(ma['timestamp'], ma['ip'], ma['mac'], ma['annotations'], ma['tags'], ma['type'], coord_x=ma['x'], coord_y=ma['y'], pressed=ma['pressed'], button=ma['button'], scroll=ma['scroll'],active_window=None)
+            self.mouse_action_collection.create(mouseaction)
+        self.ma_list = []
 
     def on_move(self, x, y):
+        print('on_move: ', x," ",y)
         if self.running:
-            a = Annotation(self.ip, None)
-            self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, [], [], type='on_move', coord_x=x, coord_y=y, active_window=None))
+            # a = Annotation(self.ip, None)
+            # self.mouse_action_collection.create(MouseAction(super().get_timestamp(
+            # ), self.ip, self.mac, [], [], type='on_move', coord_x=x, coord_y=y, active_window=None))
+            self.ma_list = self.ma_list + [{'timestamp':super().get_timestamp(), 'ip':self.ip, 'mac':self.mac, 'annotations':[], 'tags':[], 'type': 'on_move', 'x':x, 'y':y, 'pressed': False, 'button':"", 'scroll':0}]
 
     def on_click(self, x, y, button, pressed):
+        print('on_click: ', x," ",y)
         if self.running:
-            a = Annotation(self.ip, None)
-            self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, [], [], type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=None))
+            # a = Annotation(self.ip, None)
+            # self.mouse_action_collection.create(MouseAction(super().get_timestamp(
+            # ), self.ip, self.mac, [], [], type='on_click', coord_x=x, coord_y=y, pressed=pressed, button=button.name, active_window=None))
+            self.ma_list = self.ma_list + [{'timestamp':super().get_timestamp(), 'ip':self.ip, 'mac':self.mac, 'annotations':[], 'tags':[], 'type': 'on_click', 'x':x, 'y':y, 'pressed': pressed, 'button':button.name, 'scroll':0}]
 
     def on_scroll(self, x, y, dx, dy):
         if self.running:
