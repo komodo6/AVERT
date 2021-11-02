@@ -71,7 +71,8 @@
           </template>
         </q-table>
         <q-input class = "annotation" color = "amber" outlined v-model="text" label="Your Annotation" :dense="dense" />
-        <q-btn class = "annotateBtn" color="grey-9 q-mx-sm" label = "Add Annotation"/>
+
+        <q-btn class="annotateBtn" color="grey-9 q-mx-sm" @clicked=printSelected label = "Add Annotation"/>
       </div>
     </div>
   </div>
@@ -150,7 +151,9 @@ export default {
       });
       console.log(val, id);
     };
-
+  const printSelected = (selected) => {
+    console.log(selected);
+  }
     const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
@@ -177,12 +180,14 @@ export default {
       const { data } = await axios.get("http://localhost:5000/mouseactions");
       rows.value.concat(data);
     };
+
     return {
       selected,
       updateTags,
       filter,
       columns,
       rows,
+      printSelected,
       exportTable() {
         // naive encoding to csv format
         const content = [columns.map((col) => wrapCsvValue(col.label))]
