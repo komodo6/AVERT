@@ -9,7 +9,6 @@ class ScreenshotRecorder():
         self.mouse_listener = mouse.Listener(on_click=self.on_click)
         self.keyboard_listener = keyboard.Listener(on_release=self.on_release)
         self.running = False
-        self.run()
 
     def on_release(self, key):
         if self.running:
@@ -32,10 +31,8 @@ class ScreenshotRecorder():
 
     def start(self):
         self.running = True
+        self.run()
 
     def run(self):
-        # Collect events until released
         self.mouse_listener.start()
         self.keyboard_listener.start()
-        self.mouse_listener.join()
-        self.keyboard_listener.join()
