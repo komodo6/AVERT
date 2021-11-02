@@ -64,8 +64,8 @@
               <q-td key="screen_res" :props="props">
                 {{ props.row.screen_res }}
               </q-td>
-              <q-td key="windo_pos" :props="props">
-                {{ props.row.windo_pos[0].width }}x{{ props.row.windo_pos[0].height }}
+              <q-td key="window_pos" :props="props">
+                {{ props.row.window_pos }}
               </q-td>
               <q-td key="is_visible" :props="props">
                 {{ props.row.is_visible }}
