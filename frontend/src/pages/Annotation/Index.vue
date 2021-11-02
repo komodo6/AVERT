@@ -72,7 +72,7 @@
         </q-table>
         <q-input class = "annotation" color = "amber" outlined v-model="annotation" label="Your Annotation" :dense="dense" />
 
-        <q-btn class="annotateBtn" color="grey-9 q-mx-sm" @click="printSelected(selected, annotation)" label = "Add Annotation"/>
+        <q-btn class="annotateBtn" color="grey-9 q-mx-sm" @click="saveAnnotation(selected, annotation)" label = "Add Annotation"/>
       </div>
     </div>
   </div>
@@ -138,10 +138,11 @@ function wrapCsvValue(val, formatFn) {
   return `"${formatted}"`;
 }
 
-function printSelected(selected, annotation){
+function saveAnnotation(selected, annotation){
    console.log(selected);
    for(let i = 0; i < selected.length; i++){
     selected[i].annotations=annotation;
+    updateAnnotations(annotation, selected[i].id);
    }
 
 }
@@ -155,6 +156,17 @@ export default {
         val = [];
       }
       await axios.post("http://localhost:5000/keystrokes/keystroke", {
+        id: id,
+        tags: val,
+      });
+      console.log(val, id);
+    };
+
+    const updateAnnotations = async (val, id) => {
+      if (!val) {
+        val = [];
+      }
+      await axios.post("http://localhost:5000/keystrokes/annotation", {
         id: id,
         tags: val,
       });
@@ -195,7 +207,8 @@ export default {
       filter,
       columns,
       rows,
-      printSelected,
+      saveAnnotation,
+      updateAnnotations,
       exportTable() {
         // naive encoding to csv format
         const content = [columns.map((col) => wrapCsvValue(col.label))]
