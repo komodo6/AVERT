@@ -138,15 +138,6 @@ function wrapCsvValue(val, formatFn) {
   return `"${formatted}"`;
 }
 
-function saveAnnotation(selected, annotation){
-   console.log(selected);
-   for(let i = 0; i < selected.length; i++){
-    selected[i].annotations=annotation;
-    updateAnnotations(annotation, selected[i].id);
-   }
-
-}
-
 export default {
   setup() {
     let selected = ref([]);
@@ -172,6 +163,14 @@ export default {
       });
       console.log(val, id);
     };
+
+    const saveAnnotation = (selected, annotation) =>{
+      console.log(selected);
+      for(let i = 0; i < selected.length; i++){
+        selected[i].annotations=annotation;
+        updateAnnotations(annotation, selected[i].id);
+      }
+    }
 
     const $q = useQuasar();
     let rows = ref([]);
