@@ -167,7 +167,7 @@ export default {
       }
       await axios.post("http://localhost:5000/keystrokes/annotation", {
         id: id,
-        tags: val,
+        annotation: val,
       });
       console.log(val, id);
     };

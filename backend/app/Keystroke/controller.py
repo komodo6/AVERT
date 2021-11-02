@@ -31,6 +31,7 @@ def update_keystroke_tag():
             return "Missings tags", 400
 
     return "Missings id", 400
+
 @bp.route('/annotation', methods=['POST'])
 def update_annotation():
     id = request.get_json()["id"] if "id" in request.get_json() else None
