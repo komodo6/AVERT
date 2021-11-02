@@ -153,7 +153,7 @@ export default {
       console.log(val, id);
     };
 
-    const updateAnnotations = async (val, id) => {
+    function updateAnnotations(val, id) {
       if (!val) {
         val = [];
       }
@@ -207,7 +207,6 @@ export default {
       columns,
       rows,
       saveAnnotation,
-      updateAnnotations,
       exportTable() {
         // naive encoding to csv format
         const content = [columns.map((col) => wrapCsvValue(col.label))]
