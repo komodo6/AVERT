@@ -55,4 +55,4 @@ class MouseActionRecorder(Recorder):
         if self.running:
             a = Annotation(self.ip, None)
             self.mouse_action_collection.create(MouseAction(super().get_timestamp(
-            ), self.ip, self.mac, [], [], type='on_click', coord_x=x, coord_y=y, scroll=dy, active_window=None))
+            ), self.ip, self.mac, [], [], type='on_scroll', coord_x=x, coord_y=y, scroll=dy, active_window=None))
