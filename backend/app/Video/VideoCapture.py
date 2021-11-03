@@ -80,7 +80,7 @@ class VideoCapture(Thread):
         self.vdao.create(s)
 
     def stop(self):
-        self.capture = False
+        self.capture = True
     
     def start(self):
         self.capture = True

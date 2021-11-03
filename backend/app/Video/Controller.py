@@ -23,7 +23,7 @@ def start_recording():
     
     # start here
     cs.start()
-    return 'capture',200
+    return('capture',200)
 
 @bp.route('/stop', methods=['GET'])
 def stop_recording():
@@ -33,6 +33,7 @@ def stop_recording():
     # stop here
     cs.stop()
     print('in stop')
+    return('stop',200)
  
 
 
