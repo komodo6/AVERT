@@ -59,15 +59,15 @@ export default {
     let gallView = ref(true);
     let listView = ref(false);
     let viewState = ref("List View");
-    let images = ref([]);
+    let videos = ref([]);
     const getImages = async () => {
       let { data } = await axios.get(
         "http://127.0.0.1:5000/Videos/videos"
       );
       console.log(data);
       store.state.Videos.Videos = data;
-      images.value = store.state.screenshots.screenshots;
-      console.log(images.value)
+      videos.value = store.state.Videos.Videos;
+      console.log(videos.value)
     };
 
     const switchViews = () => {

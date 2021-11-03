@@ -97,7 +97,7 @@ export default {
   setup() {
     let store = useStore();
 
-    let Videos = computed(() => store.state.screenshots.screenshots);
+    let Videos = computed(() => store.state.Videos.Videos);
 
     let selectedVideos = ref(null);
 

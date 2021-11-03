@@ -36,9 +36,9 @@ export default {
         "http://127.0.0.1:5000/Videos/video"+ id
       );
       console.log(data);
-      store.state.screenshots.screenshots.forEach( (element, index) => {
+      store.state.Videos.Videos.forEach( (element, index) => {
         if (element.id == id) {
-          store.state.screenshots.screenshots.splice(index, 1)
+          store.state.Videos.Videos.splice(index, 1)
         }
       });
     };
