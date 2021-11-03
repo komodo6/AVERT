@@ -1,9 +1,7 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="video-card bg-grey-9">
-      <video class="video" controls>
-        <source src="http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4">
-      </video> 
+       <q-video :src="'video/mp4,' + VideoFile"> </q-video>
       <q-card-section>
         {{ id }}
       </q-card-section>
@@ -33,7 +31,7 @@ export default {
     let store = useStore();
     const deleteIMG = async (id) => {
       let { data } = await axios.delete(
-        "http://127.0.0.1:5000/Videos/video"+ id
+        "http://127.0.0.1:5000/videos/video"+ id
       );
       console.log(data);
       store.state.Videos.Videos.forEach( (element, index) => {
@@ -58,4 +56,3 @@ export default {
 .q-btn
   flex: 1
 </style>
-

@@ -43,7 +43,6 @@
 
 <script>
 import { ref, onMounted, computed } from "vue";
-
 import { useStore } from "vuex";
 import GalleryView from "./GalleryView.vue";
 import ListView from "./ListView.vue";
@@ -55,21 +54,19 @@ export default {
   },
   setup() {
     let store = useStore();
-
     let gallView = ref(true);
     let listView = ref(false);
     let viewState = ref("List View");
     let videos = ref([]);
     const getImages = async () => {
       let { data } = await axios.get(
-        "http://127.0.0.1:5000/Videos/videos"
+        "http://127.0.0.1:5000/videos/videos"
       );
       console.log(data);
       store.state.Videos.Videos = data;
       videos.value = store.state.Videos.Videos;
       console.log(videos.value)
     };
-
     const switchViews = () => {
       if (gallView.value) {
         viewState.value = "Gallery View";
@@ -81,13 +78,11 @@ export default {
         listView.value = false;
       }
     };
-
     onMounted(() => {
       getImages();
     });
-
     return {
-      images,
+      videos,
       text: ref(""),
       gallView,
       listView,
