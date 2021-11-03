@@ -5,32 +5,50 @@ import json
 import os
 import bson
 from werkzeug.wsgi import ClosingIterator, wrap_file
+from .VideoDAO import VideoDAO
 bp = Blueprint('videos', __name__, url_prefix='/videos')
 
-# Getting Screenshots
+# Getting vids
+vdao = VideoDAO()
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 @bp.route('/capture', methods=['GET'])
-def screenshot_capture():
+def start_recording():
+    # TODO: 
+    # import capture videop
+    # start here
+    
+    return "ok", 200
+
+@bp.route('/stop', methods=['GET'])
+def start_recording():
+    # TODO: 
+    # import capture videop
+    # start here
+
+    vid.stop()
+    
     return "ok", 200
 
 
 @bp.route('/videos', methods=['GET'])
 def get_images():
-    return "ok"
+    videos = list(vdao.read_all())
+    return dumps(videos)
 
 
 @bp.route('/video', methods=['GET'])
 def get_image():
     img = request.args.get("id") if "id" in request.args else None
     if img:
+        
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        VIDEOS_FOLDER = '../Recorder/Videos/Videos'
-        path = os.path.join(current_dir,"Output.mp4")
-        print(os.path.isfile(path))
-        video_path = os.path.join(VIDEOS_FOLDER, img)
+        
+        path = os.path.join(current_dir,f"./videos/{id}.mp4")
+        
+        
         resp = make_response(send_file(path))
         resp.headers['Content-Disposition'] = 'inline'
         return resp
