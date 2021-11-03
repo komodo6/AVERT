@@ -188,15 +188,15 @@ export default {
     };
     const fetchSystemCalls = async () => {
       const { data } = await axios.get("http://localhost:5000/systemcalls");
-      rows.value.concat(data);
+      rows.value = rows.value.concat(data);
     };
     const fetchProcesses = async () => {
       const { data } = await axios.get("http://localhost:5000/processes");
-      rows.value.concat(data);
+      rows.value = rows.value.concat(data);
     };
     const fetchMouseactions = async () => {
       const { data } = await axios.get("http://localhost:5000/mouseactions");
-      rows.value.concat(data);
+      rows.value = rows.value.concat(data);
     };
 
     return {
