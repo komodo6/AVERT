@@ -227,6 +227,8 @@ export default {
           )
           .join("\r\n");
 
+        console.log(content)
+
         const status = exportFile("mouseactions.csv", content, "text/csv");
 
         if (status !== true) {
