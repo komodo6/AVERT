@@ -1,7 +1,8 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="screenshot-card bg-grey-9">
-      <q-img :src="'data:image/jpeg;base64,' + ScreenshotFile"> </q-img>
+      <!-- <q-img :src="'data:image/jpeg;base64,' + ScreenshotFile"> </q-img> -->
+      <!-- <q-video src="http://localhost:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" class="video" /> -->
       <q-card-section>
         {{ id }}
       </q-card-section>

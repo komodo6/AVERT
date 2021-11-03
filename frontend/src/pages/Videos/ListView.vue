@@ -9,6 +9,7 @@
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="timestamp" :props="props">
+              <q-video src='./../../../../backend/app/Recorder/Video/Videos' class="video"/>
             {{ props.row.timestamp }}
           </q-td>
           <q-td key="ip_address" :props="props">
@@ -17,10 +18,10 @@
           <q-td key="mac_address" :props="props">
             {{ props.row.mac_address }}
           </q-td>
-          <q-td key="ScreenshotSize" :props="props">
+          <q-td key="VideoSize" :props="props">
             {{ props.row.ScreenshotSize }}
           </q-td>
-          <q-td key="ScreenshotFormat" :props="props">
+          <q-td key="VideoFormat" :props="props">
             {{ props.row.ScreenshotFormat }}
           </q-td>
           <q-td key="annotations" :props="props">
@@ -72,16 +73,16 @@ const columns = [
     sortable: true,
   },
   {
-    name: "ScreenshotSize",
-    label: "Screenshot Size",
-    field: "ScreenshotSize",
+    name: "VideoSize",
+    label: "Video Size",
+    field: "VideoSize",
     align: "center",
     sortable: true,
   },
   {
-    name: "ScreenshotFormat",
-    label: "Screenshot Format",
-    field: "ScreenshotFormat",
+    name: "Video Format",
+    label: "Video Format",
+    field: "VideoFormat",
     align: "center",
     sortable: true,
   },
