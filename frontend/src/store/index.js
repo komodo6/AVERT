@@ -19,6 +19,13 @@ const screenshots = {
   },
 };
 
+const Videos = {
+  namespace: true,
+  state: {
+    Videos: [],
+  },
+};
+
 const miniavert = {
   namespace: true,
   state: {
@@ -31,6 +38,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       screenshots,
       miniavert,
+      Videos
       // example
     },
 

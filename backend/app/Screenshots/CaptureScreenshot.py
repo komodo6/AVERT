@@ -12,6 +12,7 @@ from ..Recorder.Recorder import Recorder
 r = Recorder()
 
 
+
 class CaptureScreenshot(Thread):
     def __init__(self):
         Thread.__init__(self)
