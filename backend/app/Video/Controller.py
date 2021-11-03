@@ -5,6 +5,7 @@ import json
 import os
 import bson
 from werkzeug.wsgi import ClosingIterator, wrap_file
+from .VideoCapture import VideoCapture
 from .VideoDAO import VideoDAO
 bp = Blueprint('videos', __name__, url_prefix='/videos')
 
@@ -18,19 +19,17 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 def start_recording():
     # TODO: 
     # import capture videop
+    cs = VideoCapture()
     # start here
-    
-    return "ok", 200
+    cs.start()
 
 @bp.route('/stop', methods=['GET'])
-def start_recording():
+def stop_recording():
     # TODO: 
     # import capture videop
-    # start here
-
-    vid.stop()
-    
-    return "ok", 200
+    #cs = VideoCapture
+    # stop here
+    cs.stop()
 
 
 @bp.route('/videos', methods=['GET'])
@@ -66,7 +65,7 @@ def update_image():
         tags = request.get_json(
         )["tags"] if "tags" in request.get_json() else None
         if tags is not None:
-            vdao.update_tag(id, tags)
+            dao.update_tag(id, tags)
             return "Updated", 200
         else:
             return "Missings tags", 400
