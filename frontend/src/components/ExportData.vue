@@ -26,6 +26,10 @@
 <script>
 import { exportFile } from "quasar";
 export default {
+  props: {
+      rowData: {},
+      headers: {},
+  },
   setup(props) {
     function wrapCsvValue(val, formatFn) {
       let formatted = formatFn !== void 0 ? formatFn(val) : val;
