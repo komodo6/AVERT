@@ -138,15 +138,6 @@ function wrapCsvValue(val, formatFn) {
   return `"${formatted}"`;
 }
 
-function saveAnnotation(selected, annotation){
-   console.log(selected);
-   for(let i = 0; i < selected.length; i++){
-    selected[i].annotations=annotation;
-    updateAnnotations(annotation, selected[i].id);
-   }
-
-}
-
 export default {
   setup() {
     let selected = ref([]);
@@ -162,13 +153,21 @@ export default {
       console.log(val, id);
     };
 
+    const saveAnnotation = (selected, annotation) =>{
+      console.log(selected);
+      for(let i = 0; i < selected.length; i++){
+        selected[i].annotations=annotation;
+        updateAnnotations(annotation, selected[i].id);
+      }
+    }
+
     const updateAnnotations = async (val, id) => {
       if (!val) {
         val = [];
       }
       await axios.post("http://localhost:5000/keystrokes/annotation", {
         id: id,
-        tags: val,
+        annotation: val,
       });
       console.log(val, id);
     };
@@ -208,7 +207,6 @@ export default {
       columns,
       rows,
       saveAnnotation,
-      updateAnnotations,
       exportTable() {
         // naive encoding to csv format
         const content = [columns.map((col) => wrapCsvValue(col.label))]
