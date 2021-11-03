@@ -16,6 +16,7 @@ def create_app():
     from app.Screenshots.controller import bp as screenshots
     from app.Process.controller import bp as process
     from app.SystemCalls.controller import bp as systemcall
+    from app.Scripts.controller import bp as scripting
 
     app.register_blueprint(keystrokes)
     app.register_blueprint(MouseActions)
@@ -23,5 +24,6 @@ def create_app():
     app.register_blueprint(recorder)
     app.register_blueprint(process)
     app.register_blueprint(systemcall)
+    app.register_blueprint(scripting)
 
     return app
