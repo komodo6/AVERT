@@ -40,14 +40,15 @@ class MouseActionRecorder(Recorder):
     def stop(self):
         self.running = False
         for ma in self.ma_list:
-
-            print(ma)
+            # print(ma)
             mouseaction = MouseAction(ma['timestamp'], ma['ip'], ma['mac'], ma['annotations'], ma['tags'], ma['type'], coord_x=ma['x'], coord_y=ma['y'], pressed=ma['pressed'], button=ma['button'], scroll=ma['scroll'],active_window=None)
             self.mouse_action_collection.create(mouseaction)
+        print('Done putting in all the mouse actions in the database')
+        print('The first timestamp: ', self.ma_list[0])
+        print('The last timestamp: ', self.ma_list[-1])
         self.ma_list = []
 
     def on_move(self, x, y):
-        print('on_move: ', x," ",y)
         if self.running:
             # a = Annotation(self.ip, None)
             # self.mouse_action_collection.create(MouseAction(super().get_timestamp(
@@ -55,7 +56,6 @@ class MouseActionRecorder(Recorder):
             self.ma_list = self.ma_list + [{'timestamp':super().get_timestamp(), 'ip':self.ip, 'mac':self.mac, 'annotations':[], 'tags':[], 'type': 'on_move', 'x':x, 'y':y, 'pressed': False, 'button':"", 'scroll':0}]
 
     def on_click(self, x, y, button, pressed):
-        print('on_click: ', x," ",y)
         if self.running:
             # a = Annotation(self.ip, None)
             # self.mouse_action_collection.create(MouseAction(super().get_timestamp(
