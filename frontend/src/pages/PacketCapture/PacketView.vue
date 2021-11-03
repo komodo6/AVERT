@@ -7,40 +7,17 @@
           :rows="rows"
           selection="multiple"
           v-model:selected="selected"
-          :filter="filter"
         >
           <template v-slot:top="">
-            <!-- <div>
+            <div>
               <q-btn color="primary" class="q-ma-sm" @click="annotation = true"
                 >Add Annotation</q-btn
               >
               <q-btn color="primary" class="q-ma-sm" @click="tag = true"
                 >Add Tag</q-btn
               >
-            </div> -->
-
-            <q-input
-              borderless
-              dense
-              debounce="300"
-              v-model="filter"
-              placeholder="Search"
-            >
-              <template v-slot:append>
-                <q-icon name="search"> </q-icon>
-              </template>
-            </q-input>
-            <q-btn
-              class="q-mx-sm"
-              color="primary"
-              icon-right="archive"
-              label="Export to csv"
-              no-caps
-              @click="exportTable"
-            >
-            </q-btn>
+            </div>
           </template>
-
           <template v-slot:body="props">
             <q-tr :props="props">
               <q-td>
@@ -66,14 +43,6 @@
               </q-td>
               <q-td key="annotations" :props="props">
                 {{ props.row.annotations }}
-                <q-popup-edit v-model="props.row.fat">
-                  <q-input
-                    type="textarea"
-                    v-model="props.row.annotations"
-                    dense
-                    autofocus
-                  />
-                </q-popup-edit>
               </q-td>
               <q-td key="tags" :props="props">
                 <q-select
@@ -93,33 +62,17 @@
               </q-td>
             </q-tr>
           </template>
-          <template v-slot:body-cell-action="props">
-            <q-tr :props="props">
-              <q-td>
-                <q-btn
-                  color="negative"
-                  label="dasd"
-                  no-caps
-                  flat
-                  dense
-                  @click="packetView(props.row)"
-                  >adadas</q-btn
-                >
-              </q-td>
-            </q-tr>
-          </template>
         </q-table>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        {{ packets }}
-        <!-- <tree /> -->
+        <tree />
       </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-12">asda</div>
-    </div> -->
+    </div>
     <q-dialog v-model="annotation">
       <q-card style="width: 700px; max-width: 80vw">
         <q-card-section>
@@ -215,17 +168,16 @@ const columns = [
     align: "center",
     sortable: true,
   },
-  { name: "action", label: "Action", field: "action" },
 ];
 export default {
-  components: {},
+  components: {
+    tree,
+  },
   setup() {
-    const filter = ref("");
     let selected = ref([]);
     let rows = ref([]);
     let annotation = ref(false);
     let tag = ref(false);
-    let packets = ref(null);
     const fetchPCAPS = async () => {
       let { data } = await axios.get("http://192.168.169.128:5000/networkdata");
       rows.value = data;
@@ -235,7 +187,8 @@ export default {
       let { data } = await axios.get(
         "http://192.168.169.128:5000/networkdata/pcap?filename=ca89bba5-268f-459e-b44a-d18fb28af141.pcap"
       );
-      packets.value = data;
+      rows.value = data;
+      console.log(data);
     };
 
     const updateTags = async (val, id) => {
@@ -249,14 +202,9 @@ export default {
       console.log(val, id);
     };
 
-    const packetView = (row) => {
-      console.log(row);
-    };
-
     onMounted(() => {
       // fetchData();
       fetchPCAPS();
-      fetchPackets();
     });
 
     return {
@@ -266,38 +214,6 @@ export default {
       selected,
       annotation,
       tag,
-      packetView,
-      packets,
-      filter,
-      exportTable() {
-        // naive encoding to csv format
-        const content = [columns.map((col) => wrapCsvValue(col.label))]
-          .concat(
-            rows.value.map((row) =>
-              columns
-                .map((col) =>
-                  wrapCsvValue(
-                    typeof col.field === "function"
-                      ? col.field(row)
-                      : row[col.field === void 0 ? col.name : col.field],
-                    col.format
-                  )
-                )
-                .join(",")
-            )
-          )
-          .join("\r\n");
-
-        const status = exportFile("keystrokes.csv", content, "text/csv");
-
-        if (status !== true) {
-          $q.notify({
-            message: "Browser denied file download...",
-            color: "negative",
-            icon: "warning",
-          });
-        }
-      },
     };
   },
 };
