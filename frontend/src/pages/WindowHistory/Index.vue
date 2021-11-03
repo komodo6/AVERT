@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <q-table
-          title="Mouse Actions"
+          title="WindowHistory"
           :columns="columns"
           :rows="rows"
           row-key="id"
@@ -34,21 +34,6 @@
               <q-td key="mac_address" :props="props">
                 {{ props.row.mac_address }}
               </q-td>
-              <q-td key="type" :props="props">
-                {{ props.row.type }}
-              </q-td>
-              <q-td key="coords" :props="props">
-                {{ props.row.coords }}
-              </q-td>
-              <q-td key="pressed" :props="props">
-                {{ props.row.pressed }}
-              </q-td>
-              <q-td key="scroll" :props="props">
-                {{ props.row.scroll }}
-              </q-td>
-              <q-td key="active_window" :props="props">
-                {{ props.row.active_window }}
-              </q-td>
               <q-td key="annotations" :props="props">
                 {{ props.row.annotations }}
               </q-td>
@@ -67,6 +52,39 @@
                   new-value-mode="add"
                   style="width: 250px"
                 />
+              </q-td>
+              <q-td key="screen_res" :props="props">
+                {{ props.row.screen_res }}
+              </q-td>
+              <q-td key="window_pos" :props="props">
+                {{ props.row.window_pos }}
+              </q-td>
+              <q-td key="is_visible" :props="props">
+                {{ props.row.is_visible }}
+              </q-td>
+              <q-td key="wp_command" :props="props">
+                {{ props.row.wp_command }}
+              </q-td>
+              <q-td key="minimize" :props="props">
+                {{ props.row.minimize }}
+              </q-td>
+              <q-td key="maximize" :props="props">
+                {{ props.row.maximize }}
+              </q-td>
+              <q-td key="app_name" :props="props">
+                {{ props.row.app_name }}
+              </q-td>
+              <q-td key="window_type" :props="props">
+                {{ props.row.window_type }}
+              </q-td>
+              <q-td key="window_title" :props="props">
+                {{ props.row.window_title }}
+              </q-td>
+              <q-td key="window_creation" :props="props">
+                {{ props.row.window_creation }}
+              </q-td>
+              <q-td key="window_destruction" :props="props">
+                {{ props.row.window_destruction }}
               </q-td>
             </q-tr>
           </template>
@@ -100,52 +118,100 @@ const columns = [
     sortable: true,
   },
   {
-    name: "type",
-    label: "Type",
-    field: "type",
-    align: "center",
-    sortable: true,
-  },
-  {
-    name: "coords",
-    label: "Coordinates",
-    field: "coords",
-    align: "center",
-    sortable: true,
-    format: (val, row) => val.join(", "),
-  },
-  {
-    name: "pressed",
-    label: "Pressed",
-    field: "pressed",
-    align: "center",
-    sortable: true,
-  },
-  {
-    name: "scroll",
-    label: "Scroll",
-    field: "scroll",
-    align: "center",
-    sortable: true,
-  },
-  {
-    name: "active_window",
-    label: "Window",
-    name: "active_window",
-    align: "center",
-    sortable: false,
-  },
-  {
     name: "annotations",
     label: "Annotations",
-    name: "annotations",
+    field: "annotations",
     align: "center",
     sortable: false,
   },
   {
     name: "tags",
     label: "Tags",
-    name: "tags",
+    field: "tags",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "screen_res",
+    label: "Screen Resolution",
+    field: "screen_res",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_pos",
+    label: "Window Position",
+    field: "window_pos",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_pos",
+    label: "Window Position",
+    field: "window_pos",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "is_visible",
+    label: "Visible",
+    field: "is_visible",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "wp_command",
+    label: "Window Placement Command",
+    field: "wp_command",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "minimize",
+    label: "Minimized",
+    field: "minimize",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "maximize",
+    label: "Maximized",
+    field: "maximize",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "app_name",
+    label: "App Name",
+    field: "app_name",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_type",
+    label: "Window Type",
+    field: "window_type",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_title",
+    label: "Window Title",
+    field: "window_title",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_creation",
+    label: "Window Creation",
+    field: "window_creation",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_destruction",
+    label: "Window Destruction",
+    field: "window_destruction",
     align: "center",
     sortable: false,
   },
@@ -164,7 +230,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/mouseactions/mouseaction", {
+      await axios.post("http://localhost:5000/windows/window", {
         id: id,
         tags: val,
       });
@@ -176,10 +242,10 @@ export default {
     const filter = ref("");
 
     onMounted(() => {
-      fetchMouseactions();
+      fetchWindows();
     });
-    const fetchMouseactions = async () => {
-      const { data } = await axios.get("http://localhost:5000/mouseactions");
+    const fetchWindows = async () => {
+      const { data } = await axios.get("http://localhost:5000/windows");
       rows.value = data;
     };
     return {
