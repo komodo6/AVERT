@@ -26,7 +26,7 @@
 <script>
 import { exportFile } from "quasar";
 export default {
-  setup() {
+  setup(props) {
     function wrapCsvValue(val, formatFn) {
       let formatted = formatFn !== void 0 ? formatFn(val) : val;
 
@@ -44,7 +44,7 @@ export default {
       return `"${formatted}"`;
     }
     const exportJSON = () => {
-      let data = JSON.stringify(rows.value, null, 2);
+      let data = JSON.stringify(props.rows.value, null, 2);
 
       const status = exportFile("mouseactions.json", data, "‘application/json");
 
@@ -58,9 +58,9 @@ export default {
     };
     const exportTable = () => {
       // naive encoding to csv format
-      const content = [columns.map((col) => wrapCsvValue(col.label))]
+      const content = [props.columns.map((col) => wrapCsvValue(col.label))]
         .concat(
-          rows.value.map((row) =>
+          props.rows.value.map((row) =>
             columns
               .map((col) =>
                 wrapCsvValue(
