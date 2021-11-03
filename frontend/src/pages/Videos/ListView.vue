@@ -2,27 +2,23 @@
   <div>
     <q-table
       :columns="columns"
-      :rows="screenshots"
-      v-model="selectedScreenshots"
+      :rows="Videos"
+      v-model="selectedVideos"
       row-key="name"
     >
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="timestamp" :props="props">
-              <q-video src='./../../../../backend/app/Recorder/Video/Videos' class="video"/>
             {{ props.row.timestamp }}
           </q-td>
-          <q-td key="ip_address" :props="props">
-            {{ props.row.ip_address }}
+          <q-td key="filename" :props="props">
+            {{ props.row.filename }}
           </q-td>
-          <q-td key="mac_address" :props="props">
-            {{ props.row.mac_address }}
+          <q-td key="resolution" :props="props">
+            {{ props.row.resultion }}
           </q-td>
-          <q-td key="VideoSize" :props="props">
-            {{ props.row.ScreenshotSize }}
-          </q-td>
-          <q-td key="VideoFormat" :props="props">
-            {{ props.row.ScreenshotFormat }}
+          <q-td key="frame_rate" :props="props">
+            {{ props.row.frame_rate }}
           </q-td>
           <q-td key="annotations" :props="props">
             {{ props.row.annotations }}
@@ -59,30 +55,23 @@ const columns = [
     align: "center",
   },
   {
-    name: "ip_address",
-    label: "IP Address",
-    field: "ip_address",
+    name: "filename",
+    label: "File Name",
+    field: "filename",
     align: "center",
     sortable: true,
   },
   {
-    name: "mac_address",
-    label: "MAC Address",
-    field: "mac_address",
+    name: "resolution",
+    label: "Resolution",
+    field: "resolution",
     align: "center",
     sortable: true,
   },
   {
-    name: "VideoSize",
-    label: "Video Size",
-    field: "VideoSize",
-    align: "center",
-    sortable: true,
-  },
-  {
-    name: "Video Format",
-    label: "Video Format",
-    field: "VideoFormat",
+    name: "frame_rate",
+    label: "Frame Rate",
+    field: "frame_rate",
     align: "center",
     sortable: true,
   },
@@ -108,15 +97,15 @@ export default {
   setup() {
     let store = useStore();
 
-    let screenshots = computed(() => store.state.screenshots.screenshots);
+    let Videos = computed(() => store.state.screenshots.screenshots);
 
-    let selectedScreenshots = ref(null);
+    let selectedVideos = ref(null);
 
     const updateTags = async (val, id) => {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/screenshots/image", {
+      await axios.post("http://127.0.0.1:5000/Videos/video", {
         id: id,
         tags: val,
       });
@@ -124,9 +113,9 @@ export default {
     };
     return {
       updateTags,
-      screenshots,
+      Videos,
       columns,
-      selectedScreenshots,
+      selectedVideos,
     };
   },
 };

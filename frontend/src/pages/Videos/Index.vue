@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-sm videos">
+  <div class="q-pa-sm Videos">
     <q-toolbar>
       <q-input
         dark
@@ -24,32 +24,30 @@
         {{ viewState }}
       </q-btn>
     </q-toolbar>
-    
-    <div class="q-pa-md videos">
+    <div class="q-pa-md Videos">
       <div class="row">
         <GalleryView
           v-show="gallView"
-          v-for="image in images"
-          :key="image.id"
-          v-bind="image"
+          v-for="video in videos"
+          :key="video.id"
+          v-bind="video"
         />
         <ListView v-show="listView" />
-      </div> 
-      <q-video src="http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" class="video" />
-        <video class="video" controls>
-        <source src="http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4"> 
-        </video>
+        <!-- <video class="video" controls>
+          <source src="http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4">
+        </video> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { ref, onMounted, computed } from "vue";
+
 import { useStore } from "vuex";
 import GalleryView from "./GalleryView.vue";
 import ListView from "./ListView.vue";
 import axios from "axios";
-
 export default {
   components: {
     GalleryView,
@@ -63,12 +61,12 @@ export default {
     let viewState = ref("List View");
     let images = ref([]);
     const getImages = async () => {
-    // let { data } = await axios.get(
-    //     "http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4"
-    //   );
-    //   console.log(data);
-    //   store.state.screenshots.screenshots = data;
-    //   images.value = store.state.screenshots.screenshots;
+      let { data } = await axios.get(
+        "http://127.0.0.1:5000/Videos/videos"
+      );
+      console.log(data);
+      store.state.Videos.Videos = data;
+      images.value = store.state.screenshots.screenshots;
       console.log(images.value)
     };
 
@@ -100,3 +98,9 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.Videos {
+  width: 100%;
+  height: 100%;
+}
+</style>
