@@ -45,7 +45,7 @@ export default {
     }
     const exportJSON = () => {
       console.log(props)
-      let data = JSON.stringify(props.rows.value, null, 2);
+      let data = JSON.stringify(props.rowData.value, null, 2);
 
       const status = exportFile("mouseactions.json", data, "‘application/json");
 
@@ -59,10 +59,10 @@ export default {
     };
     const exportTable = () => {
       // naive encoding to csv format
-      const content = [props.columns.map((col) => wrapCsvValue(col.label))]
+      const content = [props.headers.map((col) => wrapCsvValue(col.label))]
         .concat(
-          props.rows.value.map((row) =>
-            columns
+          props.rowData.value.map((row) =>
+            headers
               .map((col) =>
                 wrapCsvValue(
                   typeof col.field === "function"

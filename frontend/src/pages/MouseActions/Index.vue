@@ -21,7 +21,7 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
-            <ExportData :props="props"/>
+            <ExportData :rowData="rows" :headers="columns"/>
           </template>
           <template v-slot:body="props">
             <q-tr :props="props">
