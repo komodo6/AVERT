@@ -1,14 +1,19 @@
 from flask import Flask
-
+from flask_socketio import SocketIO
 import pymongo
 
 client = pymongo.MongoClient(host="54.215.46.201", port=27017)
 
 db = client.AVERT
 
+socketio = SocketIO()
+
 
 def create_app():
     app = Flask(__name__)
+
+    # for websockets
+    socketio.init_app(app)
 
     from app.Keystroke.controller import bp as keystrokes
     from app.MouseAction.controller import bp as MouseActions
@@ -19,6 +24,7 @@ def create_app():
     from app.Video.Controller import bp as videos
     from app.Scripts.controller import bp as scripting
     from app.WindowHistory.controller import bp as windowhistory
+    from app.PacketCapture.controller import bp as networkdata
 
     app.register_blueprint(keystrokes)
     app.register_blueprint(MouseActions)
@@ -29,5 +35,6 @@ def create_app():
     app.register_blueprint(videos)
     app.register_blueprint(scripting)
     app.register_blueprint(windowhistory)
+    app.register_blueprint(networkdata)
 
     return app
