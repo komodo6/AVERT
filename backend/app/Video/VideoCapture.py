@@ -80,6 +80,9 @@ class VideoCapture(Thread):
         self.vdao.create(s)
 
     def stop(self):
+        self.capture = False
+    
+    def start(self):
         self.capture = True
 
     def get_file_size_in_bytes(self, file_path):

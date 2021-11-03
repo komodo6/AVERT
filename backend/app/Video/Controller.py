@@ -11,7 +11,7 @@ bp = Blueprint('videos', __name__, url_prefix='/videos')
 
 # Getting vids
 vdao = VideoDAO()
-
+cs = VideoCapture()
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -20,16 +20,16 @@ def start_recording():
     # TODO: 
     # import capture videop
     print('in capture')
-    cs = VideoCapture()
+    
     # start here
     cs.start()
     return 'capture',200
 
 @bp.route('/stop', methods=['GET'])
-def stop_recording(cs):
+def stop_recording():
     # TODO: 
     # import capture videop
-    cs = VideoCapture
+    #cs = VideoCapture
     # stop here
     cs.stop()
     print('in stop')
@@ -61,7 +61,7 @@ def get_image():
         return "Image does not exist", 404
 
 
-@bp.route('/image', methods=['POST'])
+@bp.route('/videos', methods=['POST'])
 def update_image():
 
     id = request.get_json()["id"] if "id" in request.get_json() else None
