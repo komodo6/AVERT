@@ -44,6 +44,7 @@ export default {
       return `"${formatted}"`;
     }
     const exportJSON = () => {
+      console.log(props)
       let data = JSON.stringify(props.rows.value, null, 2);
 
       const status = exportFile("mouseactions.json", data, "‘application/json");
