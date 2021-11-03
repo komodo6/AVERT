@@ -21,15 +21,27 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
-            <q-btn
-              class="q-mx-sm"
-              color="primary"
-              icon-right="archive"
-              label="Export to csv"
-              no-caps
-              @click="exportTable"
-            >
-            </q-btn>
+             <q-btn-dropdown 
+                class="q-mx-sm"
+                color="primary"
+                icon-right="archive"
+                label="Export to File"
+                no-caps
+              >
+              <q-list>
+                <q-item clickable v-close-popup @click="exportJSON">
+                  <q-item-section>
+                    <q-item-label>JSON</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup @click="exportTable">
+                  <q-item-section>
+                    <q-item-label>CSV</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </template>
           <template v-slot:body="props">
             <q-tr :props="props">
@@ -203,11 +215,26 @@ export default {
       const { data } = await axios.get("http://localhost:5000/mouseactions");
       rows.value = data;
     };
+
+    const exportJSON = () => {
+      let data = JSON.stringify(rows.value)
+
+      const status = exportFile("mouseactions.json", data, "‘application/json");
+
+      if (status !== true) {
+        $q.notify({
+          message: "Browser denied file download...",
+          color: "negative",
+          icon: "warning",
+        });
+      }
+    }
     return {
       updateTags,
       filter,
       columns,
       rows,
+      exportJSON,
       exportTable() {
         // naive encoding to csv format
         const content = [columns.map((col) => wrapCsvValue(col.label))]
@@ -226,8 +253,6 @@ export default {
             )
           )
           .join("\r\n");
-
-        console.log(content)
 
         const status = exportFile("mouseactions.csv", content, "text/csv");
 
