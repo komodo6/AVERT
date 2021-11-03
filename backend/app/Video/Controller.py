@@ -66,7 +66,7 @@ def update_image():
         tags = request.get_json(
         )["tags"] if "tags" in request.get_json() else None
         if tags is not None:
-            dao.update_tag(id, tags)
+            vdao.update_tag(id, tags)
             return "Updated", 200
         else:
             return "Missings tags", 400
