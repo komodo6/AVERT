@@ -48,10 +48,10 @@ export default {
       return `"${formatted}"`;
     }
     const exportJSON = () => {
-      console.log(props)
-      let data = JSON.stringify(props.rowData.value, null, 2);
+      console.log(props.rowData)
+      let data = JSON.stringify(props.rowData, null, 2);
 
-      const status = exportFile("mouseactions.json", data, "‘application/json");
+      const status = exportFile("mouseactions.json", data, "application/json");
 
       if (status !== true) {
         $q.notify({
@@ -62,11 +62,12 @@ export default {
       }
     };
     const exportTable = () => {
+      console.log(props.rowData)
       // naive encoding to csv format
       const content = [props.headers.map((col) => wrapCsvValue(col.label))]
         .concat(
-          props.rowData.value.map((row) =>
-            headers
+          props.rowData.map((row) =>
+            props.headers
               .map((col) =>
                 wrapCsvValue(
                   typeof col.field === "function"
