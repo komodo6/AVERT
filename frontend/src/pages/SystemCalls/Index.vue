@@ -21,15 +21,7 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
-            <q-btn
-              class="q-mx-sm"
-              color="primary"
-              icon-right="archive"
-              label="Export to csv"
-              no-caps
-              @click="exportTable"
-            >
-            </q-btn>
+            <ExportData :rowData="rows" :headers="columns"/>
           </template>
           <template v-slot:body="props">
             <q-tr :props="props">
@@ -152,25 +144,12 @@ const columns = [
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import { exportFile, useQuasar } from "quasar";
-
-function wrapCsvValue(val, formatFn) {
-  let formatted = formatFn !== void 0 ? formatFn(val) : val;
-
-  formatted =
-    formatted === void 0 || formatted === null ? "" : String(formatted);
-
-  formatted = formatted.split('"').join('""');
-  /**
-   * Excel accepts \n and \r in strings, but some other CSV parsers do not
-   * Uncomment the next two lines to escape new lines
-   */
-  // .split('\n').join('\\n')
-  // .split('\r').join('\\r')
-
-  return `"${formatted}"`;
-}
+import ExportData from "../../components/ExportData.vue";
 
 export default {
+  components: {
+    ExportData,
+  },
   setup() {
     const updateTags = async (val, id) => {
       if (!val) {
@@ -199,35 +178,6 @@ export default {
       filter,
       columns,
       rows,
-      exportTable() {
-        // naive encoding to csv format
-        const content = [columns.map((col) => wrapCsvValue(col.label))]
-          .concat(
-            rows.value.map((row) =>
-              columns
-                .map((col) =>
-                  wrapCsvValue(
-                    typeof col.field === "function"
-                      ? col.field(row)
-                      : row[col.field === void 0 ? col.name : col.field],
-                    col.format
-                  )
-                )
-                .join(",")
-            )
-          )
-          .join("\r\n");
-
-        const status = exportFile("systemcall.csv", content, "text/csv");
-
-        if (status !== true) {
-          $q.notify({
-            message: "Browser denied file download...",
-            color: "negative",
-            icon: "warning",
-          });
-        }
-      },
     };
   },
 };
