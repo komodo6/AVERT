@@ -227,13 +227,13 @@ export default {
     let tag = ref(false);
     let packets = ref(null);
     const fetchPCAPS = async () => {
-      let { data } = await axios.get("http://192.168.169.128:5000/networkdata");
+      let { data } = await axios.get("http://127.0.0.1:5000/networkdata");
       rows.value = data;
       console.log(data);
     };
     const fetchPackets = async () => {
       let { data } = await axios.get(
-        "http://192.168.169.128:5000/networkdata/pcap?filename=ca89bba5-268f-459e-b44a-d18fb28af141.pcap"
+        "http://127.0.0.1:5000/networkdata/pcap?filename=ca89bba5-268f-459e-b44a-d18fb28af141.pcap"
       );
       packets.value = data;
     };
