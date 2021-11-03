@@ -9,7 +9,7 @@ r = Recorder()
 
 
 # define dimensions of screen w.r.t to given monitor to be captured
-options = {"top": 40, "left": 0, "width": 100, "height": 100}
+options = {"top": 40, "left": 100, "width": 100, "height": 100}
 
 # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
 output_params = {"-vcodec": "libx264", "-crf": 0, "-preset": "fast"}
