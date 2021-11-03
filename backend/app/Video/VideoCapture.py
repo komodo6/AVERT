@@ -32,9 +32,11 @@ class VideoCapture(Thread):
 
     def run(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
+        #output_params = {"-fourcc":"MJPG"}
         
         id = str(uuid.uuid4())
-        writer = WriteGear(output_filename=f"./videos/{id}.mp4", logging=False, **output_params)
+        writer = WriteGear(output_filename=f"{id}.mp4", compression_mode=True, custom_ffmpeg='', logging=False, **output_params)
+        #writer = __init__(self, output_filename='', compression_mode=True, custom_ffmpeg='', logging=False, **output_params)
         # loop over
         while True:
 
@@ -54,7 +56,7 @@ class VideoCapture(Thread):
             writer.write(frame)
 
             # Show output window
-            cv2.imshow("Output Gray Frame", frame)
+            #cv2.imshow("Output Gray Frame", frame)
 
             # check for 'q' key if pressed
             key = cv2.waitKey(1) & 0xFF
@@ -74,7 +76,7 @@ class VideoCapture(Thread):
 
      # TODO: fix attributes
         s = Video(r.get_timestamp(), r.get_ip(),
-                        r.get_mac(), [], [], resolution="idk", frameRate="id", filename=f"{id}.mp4")
+                        r.get_mac(), [], [], resolution="1080p", frameRate="30", filename=f"{id}.mp4")
         self.vdao.create(s)
 
     def stop(self):

@@ -19,17 +19,21 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 def start_recording():
     # TODO: 
     # import capture videop
+    print('in capture')
     cs = VideoCapture()
     # start here
     cs.start()
+    return 'capture',200
 
 @bp.route('/stop', methods=['GET'])
-def stop_recording():
+def stop_recording(cs):
     # TODO: 
     # import capture videop
-    #cs = VideoCapture
+    cs = VideoCapture
     # stop here
     cs.stop()
+    print('in stop')
+ 
 
 
 @bp.route('/videos', methods=['GET'])
