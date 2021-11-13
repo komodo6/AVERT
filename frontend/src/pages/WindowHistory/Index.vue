@@ -3,13 +3,11 @@
     <div class="row">
       <div class="col">
         <q-table
-          title="Annotations"
+          title="WindowHistory"
           :columns="columns"
           :rows="rows"
-          :filter="filter"
-          selection="multiple"
-          v-model:selected="selected"
           row-key="id"
+          :filter="filter"
         >
           <template v-slot:top-right>
             <q-input
@@ -33,12 +31,8 @@
             >
             </q-btn>
           </template>
-
           <template v-slot:body="props">
             <q-tr :props="props">
-              <q-td>
-                <q-checkbox v-model="props.selected"> </q-checkbox>
-              </q-td>
               <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
@@ -67,17 +61,46 @@
                   style="width: 250px"
                 />
               </q-td>
+              <q-td key="screen_res" :props="props">
+                {{ props.row.screen_res }}
+              </q-td>
+              <q-td key="window_pos" :props="props">
+                {{ props.row.window_pos }}
+              </q-td>
+              <q-td key="is_visible" :props="props">
+                {{ props.row.is_visible }}
+              </q-td>
+              <q-td key="wp_command" :props="props">
+                {{ props.row.wp_command }}
+              </q-td>
+              <q-td key="minimize" :props="props">
+                {{ props.row.minimize }}
+              </q-td>
+              <q-td key="maximize" :props="props">
+                {{ props.row.maximize }}
+              </q-td>
+              <q-td key="app_name" :props="props">
+                {{ props.row.app_name }}
+              </q-td>
+              <q-td key="window_type" :props="props">
+                {{ props.row.window_type }}
+              </q-td>
+              <q-td key="window_title" :props="props">
+                {{ props.row.window_title }}
+              </q-td>
+              <q-td key="window_creation" :props="props">
+                {{ props.row.window_creation }}
+              </q-td>
+              <q-td key="window_destruction" :props="props">
+                {{ props.row.window_destruction }}
+              </q-td>
             </q-tr>
           </template>
         </q-table>
-        <q-input class = "annotation" color = "amber" outlined v-model="annotation" label="Your Annotation" :dense="dense" />
-
-        <q-btn class="annotateBtn" color="grey-9 q-mx-sm" @click="saveAnnotation(selected, annotation)" label = "Add Annotation"/>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 const columns = [
@@ -102,17 +125,101 @@ const columns = [
     align: "center",
     sortable: true,
   },
-    {
+  {
     name: "annotations",
     label: "Annotations",
-    name: "annotations",
+    field: "annotations",
     align: "center",
     sortable: false,
   },
   {
     name: "tags",
     label: "Tags",
-    name: "tags",
+    field: "tags",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "screen_res",
+    label: "Screen Resolution",
+    field: "screen_res",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_pos",
+    label: "Window Position",
+    field: "window_pos",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_pos",
+    label: "Window Position",
+    field: "window_pos",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "is_visible",
+    label: "Visible",
+    field: "is_visible",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "wp_command",
+    label: "Window Placement Command",
+    field: "wp_command",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "minimize",
+    label: "Minimized",
+    field: "minimize",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "maximize",
+    label: "Maximized",
+    field: "maximize",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "app_name",
+    label: "App Name",
+    field: "app_name",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_type",
+    label: "Window Type",
+    field: "window_type",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_title",
+    label: "Window Title",
+    field: "window_title",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_creation",
+    label: "Window Creation",
+    field: "window_creation",
+    align: "center",
+    sortable: false,
+  },
+  {
+    name: "window_destruction",
+    label: "Window Destruction",
+    field: "window_destruction",
     align: "center",
     sortable: false,
   },
@@ -140,34 +247,13 @@ function wrapCsvValue(val, formatFn) {
 
 export default {
   setup() {
-    let selected = ref([]);
-    let annotation = ref('');
     const updateTags = async (val, id) => {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/keystrokes/keystroke", {
+      await axios.post("http://localhost:5000/windows/window", {
         id: id,
         tags: val,
-      });
-      console.log(val, id);
-    };
-
-    const saveAnnotation = (selected, annotation) =>{
-      console.log(selected);
-      for(let i = 0; i < selected.length; i++){
-        selected[i].annotations=annotation;
-        updateAnnotations(annotation, selected[i].id);
-      }
-    }
-
-    const updateAnnotations = async (val, id) => {
-      if (!val) {
-        val = [];
-      }
-      await axios.post("http://localhost:5000/keystrokes/annotation", {
-        id: id,
-        annotation: val,
       });
       console.log(val, id);
     };
@@ -177,36 +263,17 @@ export default {
     const filter = ref("");
 
     onMounted(() => {
-      fetchKeystrokes();
-      fetchMouseactions();
-      fetchSystemCalls();
-      fetchProcesses();
+      fetchWindows();
     });
-    const fetchKeystrokes = async () => {
-      const { data } = await axios.get("http://localhost:5000/keystrokes");
+    const fetchWindows = async () => {
+      const { data } = await axios.get("http://localhost:5000/windows");
       rows.value = data;
     };
-    const fetchSystemCalls = async () => {
-      const { data } = await axios.get("http://localhost:5000/systemcalls");
-      rows.value.concat(data);
-    };
-    const fetchProcesses = async () => {
-      const { data } = await axios.get("http://localhost:5000/processes");
-      rows.value.concat(data);
-    };
-    const fetchMouseactions = async () => {
-      const { data } = await axios.get("http://localhost:5000/mouseactions");
-      rows.value.concat(data);
-    };
-
     return {
-      selected,
-      annotation,
       updateTags,
       filter,
       columns,
       rows,
-      saveAnnotation,
       exportTable() {
         // naive encoding to csv format
         const content = [columns.map((col) => wrapCsvValue(col.label))]
@@ -240,13 +307,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .annotation{
-    margin-top: 10px;
-  }
-  .annotateBtn{
-    margin-top: 10px;
-    float:right;
-  }
-</style>

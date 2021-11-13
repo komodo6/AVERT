@@ -52,6 +52,9 @@
         <router-link to="/systemcalls">
           <q-btn color="grey-9 q-mx-sm"> System Calls</q-btn>
         </router-link>
+        <router-link to="/windows">
+          <q-btn color="grey-9 q-mx-sm"> Window History</q-btn>
+        </router-link>
       </q-toolbar>
     </q-header>
 
