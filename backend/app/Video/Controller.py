@@ -11,12 +11,25 @@ bp = Blueprint('videos', __name__, url_prefix='/videos')
 
 # Getting vids
 vdao = VideoDAO()
-cs = VideoCapture()
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
+
+videoOFF = True
 
 
 @bp.route('/capture', methods=['GET'])
 def start_recording():
+    global videoOFF, cs
+    if videoOFF:
+        cs = VideoCapture()
+        cs.start()
+        videoOFF = False
+        return "capturing"
+    else:
+        videoOFF = True
+        cs.stop()
+        return "Stopped reoording"
+        
     # TODO: 
     # import capture videop
     print('in capture')
@@ -49,8 +62,9 @@ def get_image():
     if img:
         
         current_dir = os.path.dirname(os.path.abspath(__file__))
+        print(img)
         
-        path = os.path.join(current_dir,f"./videos/{id}.mp4")
+        path = os.path.join(current_dir,f"./videos/{img}")
         
         
         resp = make_response(send_file(path))
@@ -78,3 +92,12 @@ def update_image():
     return "Missings id", 400
 
 
+@bp.route('/video', methods=['DELETE'])
+def remove_image():
+
+    id = request.args.get("id") if "id" in request.args else None
+    if id:
+        vdao.delete(id)
+        return f"removed, {id}", 200
+
+    return "Missings id", 400

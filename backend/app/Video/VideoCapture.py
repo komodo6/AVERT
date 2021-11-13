@@ -31,11 +31,13 @@ class VideoCapture(Thread):
         self.capture = False
 
     def run(self):
+        print("dads")
         current_dir = os.path.dirname(os.path.abspath(__file__))
         #output_params = {"-fourcc":"MJPG"}
         
-        id = str(uuid.uuid4())
-        writer = WriteGear(output_filename=f"{id}.mp4", compression_mode=True, custom_ffmpeg='', logging=False, **output_params)
+        img_id = str(uuid.uuid4())
+        path = os.path.join(current_dir,f"./videos/{img_id}.mp4")
+        writer = WriteGear(output_filename=path, compression_mode=True, custom_ffmpeg='', logging=False, **output_params)
         #writer = __init__(self, output_filename='', compression_mode=True, custom_ffmpeg='', logging=False, **output_params)
         # loop over
         while True:
@@ -50,7 +52,7 @@ class VideoCapture(Thread):
             # {do something with the frame here}
             # lets convert frame to gray for this example
             #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
             # write gray frame to writer
             writer.write(frame)
@@ -76,14 +78,13 @@ class VideoCapture(Thread):
 
      # TODO: fix attributes
         s = Video(r.get_timestamp(), r.get_ip(),
-                        r.get_mac(), [], [], resolution="1080p", frameRate="30", filename=f"{id}.mp4")
+                        r.get_mac(), [], [], resolution="1080p", frameRate="30", filename=f"{img_id}.mp4")
         self.vdao.create(s)
 
     def stop(self):
         self.capture = True
     
-    def start(self):
-        self.capture = True
+     
 
     def get_file_size_in_bytes(self, file_path):
         size = os.path.getsize(file_path)

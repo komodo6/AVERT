@@ -1,12 +1,14 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="video-card bg-grey-9">
-       <q-video :src="'video/mp4,' + VideoFile"> </q-video>
+      <q-video :src="`http://127.0.0.1:5000/videos/video?id=${filename}`">
+      </q-video>
+
       <q-card-section>
-        {{ id }}
+        {{ filename }}
       </q-card-section>
       <q-card-actions align="center">
-        <q-btn flat @click='deleteIMG(id)'>Delete</q-btn>
+        <q-btn flat @click="deleteIMG(id)">Delete</q-btn>
       </q-card-actions>
     </q-card>
   </div>
@@ -22,26 +24,26 @@ export default {
       type: String,
       required: true,
     },
-    VideoFile: {
+    filename: {
       type: String,
       required: true,
-    }
+    },
   },
   setup(props) {
     let store = useStore();
     const deleteIMG = async (id) => {
       let { data } = await axios.delete(
-        "http://127.0.0.1:5000/videos/video"+ id
+        "http://127.0.0.1:5000/videos/video?id=" + id
       );
       console.log(data);
-      store.state.Videos.Videos.forEach( (element, index) => {
+      store.state.Videos.Videos.forEach((element, index) => {
         if (element.id == id) {
-          store.state.Videos.Videos.splice(index, 1)
+          store.state.Videos.Videos.splice(index, 1);
         }
       });
     };
     return {
-      deleteIMG
+      deleteIMG,
     };
   },
 };
