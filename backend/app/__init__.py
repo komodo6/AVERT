@@ -16,11 +16,12 @@ def create_app():
     from app.Screenshots.controller import bp as screenshots
     from app.Process.controller import bp as process
     from app.SystemCalls.controller import bp as systemcall
-<<<<<<< HEAD
     from app.Video.Controller import bp as videos
-=======
     from app.WindowHistory.controller import bp as windowhistory
->>>>>>> origin/develop
+    from app.Video.Controller import bp as videos
+    from app.Scripts.controller import bp as scripting
+    from app.WindowHistory.controller import bp as windowhistory
+
 
     app.register_blueprint(keystrokes)
     app.register_blueprint(MouseActions)
@@ -28,10 +29,10 @@ def create_app():
     app.register_blueprint(recorder)
     app.register_blueprint(process)
     app.register_blueprint(systemcall)
-<<<<<<< HEAD
     app.register_blueprint(videos)
-=======
     app.register_blueprint(windowhistory)
->>>>>>> origin/develop
+    app.register_blueprint(videos)
+    app.register_blueprint(scripting)
+    app.register_blueprint(windowhistory)
 
     return app
