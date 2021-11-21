@@ -127,19 +127,28 @@ export default {
     ]);
 
     const fetchKeystrokes = async () => {
-      const { data } = await axios.get("http://localhost:5000/keystrokes");
+      let { data } = await axios.get("http://localhost:5000/keystrokes");
+      for (const d of data) {
+        d["type"] = "keystrokes";
+      }
       rows.value = data;
-    };
-    const fetchSystemCalls = async () => {
-      const { data } = await axios.get("http://localhost:5000/systemcalls");
+
+      data = await axios.get("http://localhost:5000/systemcalls");
+      for (const d of data) {
+        d["type"] = "systemcalls";
+      }
       rows.value.concat(data);
-    };
-    const fetchProcesses = async () => {
-      const { data } = await axios.get("http://localhost:5000/processes");
+
+      data = await axios.get("http://localhost:5000/processes");
+      for (const d of data) {
+        d["type"] = "processes";
+      }
       rows.value.concat(data);
-    };
-    const fetchMouseactions = async () => {
-      const { data } = await axios.get("http://localhost:5000/mouseactions");
+
+      data = await axios.get("http://localhost:5000/mouseactions");
+      for (const d of data) {
+        d["type"] = "mouseactions";
+      }
       rows.value.concat(data);
     };
 
