@@ -126,7 +126,7 @@ export default {
       "iron",
     ]);
 
-    const fetchKeystrokes = async () => {
+    const fetchAll = async () => {
       let { data } = await axios.get("http://localhost:5000/keystrokes");
       for (const d of data) {
         d["type"] = "keystrokes";
@@ -155,10 +155,7 @@ export default {
     let rows = ref([]);
 
     onMounted(() => {
-      fetchKeystrokes();
-      fetchMouseactions();
-      fetchSystemCalls();
-      fetchProcesses();
+      fetchAll();
     });
 
     const plusOne = computed(() => visibleColumns);
