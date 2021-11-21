@@ -43,9 +43,8 @@
         <q-btn color="grey-9 q-mx-sm">
           <router-link to="/videos"> Videos </router-link>
         </q-btn>
-        <router-link to="/processes">
-          <q-btn color="grey-9 q-mx-sm"> Processes</q-btn>
-        </router-link>
+        
+          <q-btn color="grey-9 q-mx-sm"> <router-link to="/processes">Processes</router-link></q-btn>
         <router-link to="/systemcalls">
           <q-btn color="grey-9 q-mx-sm"> System Calls</q-btn>
         </router-link>
@@ -172,6 +171,21 @@
             </router-link>
           </q-item-section>
         </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/scripts">
+              <q-btn
+                style="width: 200px"
+                icon="history_edu"
+                label="scripts"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
       </q-list>
     </q-drawer>
 

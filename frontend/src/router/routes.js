@@ -46,7 +46,7 @@ const routes = [
         component: () => import("pages/Annotation/Index.vue"),
       },
       {
-        path: "/processes",
+        path: "/process{es",
         component: () => import("pages/Processes/Index.vue"),
       },
       {
@@ -56,6 +56,11 @@ const routes = [
       {
         path: "/windows",
         component: () => import("pages/WindowHistory/Index.vue"),
+      },
+      {
+        path: "/scripts",
+        component: () => import("pages/Scripts/Index.vue")
+        
       },
     ],
   },
