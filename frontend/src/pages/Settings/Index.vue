@@ -159,7 +159,12 @@
 <script>
 import { ref } from "vue";
 import axios from "axios";
+import VueApexCharts from 'vue3-apexcharts'
 export default {
+  name: 'Chart',
+  components:{
+    apexcharts: VueApexCharts,
+  },
   data() {
     return {
       items: [
