@@ -114,6 +114,7 @@ import { exportFile, useQuasar } from "quasar";
 
 export default {
   setup() {
+    let rows = ref([]);
     let selected = ref([]);
     let visibleColumns = ref([
       "calories",
@@ -126,50 +127,35 @@ export default {
       "iron",
     ]);
 
-    const fetchKeystrokes = async () => {
+    const fetchAll = async () => {
       let { data } = await axios.get("http://localhost:5000/keystrokes");
-      if (data.length != 0) {
-        for (const d of data) {
-          d["type"] = "keystrokes";
-        }
-        rows.value = data;
+      for (const d of data) {
+        d["type"] = "keystrokes";
       }
-    };
-    const fetchSystemCalls = async () => {
-      let { data } = await axios.get("http://localhost:5000/systemcalls");
-      if (data.length != 0) {
-        for (const d of data) {
-          d["type"] = "systemcalls";
-        }
-        rows.value.concat = data;
-      }
-    };
-    const fetchProcesses = async () => {
-      let { data } = await axios.get("http://localhost:5000/processes");
-      if (data.length != 0) {
-        for (const d of data) {
-          d["type"] = "processes";
-        }
-        rows.value.concat = data;
-      }
-    };
-    const fetchMouseactions = async () => {
-      let { data } = await axios.get("http://localhost:5000/mouseactions");
-      if (data.length != 0) {
-        for (const d of data) {
-          d["type"] = "mouseactions";
-        }
-        rows.value.concat = data;
-      }
-    };
+      rows.value = data;
 
-    let rows = ref([]);
+      let { data2 } = await axios.get("http://localhost:5000/systemcalls");
+      for (const d of data2) {
+        d["type"] = "systemcalls";
+      }
+      rows.value.concat(data2);
+
+      let { data3 } = await axios.get("http://localhost:5000/processes");
+      for (const d of data3) {
+        d["type"] = "processes";
+      }
+      rows.value.concat(data3);
+
+      let { data4 } = await axios.get("http://localhost:5000/mouseactions");
+      for (const d of data4) {
+        d["type"] = "mouseactions";
+      }
+      rows.value.concat(data4);
+      console.log(rows.value)
+    };
 
     onMounted(() => {
-      fetchKeystrokes();
-      fetchSystemCalls();
-      fetchProcesses();
-      fetchMouseactions();
+      fetchAll();
     });
 
     const plusOne = computed(() => visibleColumns);
