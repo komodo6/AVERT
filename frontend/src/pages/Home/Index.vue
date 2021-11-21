@@ -128,31 +128,39 @@ export default {
 
     const fetchKeystrokes = async () => {
       let { data } = await axios.get("http://localhost:5000/keystrokes");
-      for (const d of data) {
-        d["type"] = "keystrokes";
+      if (data.length != 0) {
+        for (const d of data) {
+          d["type"] = "keystrokes";
+        }
+        rows.value = data;
       }
-      rows.value = data;
     };
     const fetchSystemCalls = async () => {
       let { data } = await axios.get("http://localhost:5000/systemcalls");
-      for (const d of data) {
-        d["type"] = "systemcalls";
+      if (data.length != 0) {
+        for (const d of data) {
+          d["type"] = "systemcalls";
+        }
+        rows.value.concat = data;
       }
-      rows.value.concat(data);
     };
     const fetchProcesses = async () => {
       let { data } = await axios.get("http://localhost:5000/processes");
-      for (const d of data) {
-        d["type"] = "processes";
+      if (data.length != 0) {
+        for (const d of data) {
+          d["type"] = "processes";
+        }
+        rows.value.concat = data;
       }
-      rows.value.concat(data);
     };
     const fetchMouseactions = async () => {
       let { data } = await axios.get("http://localhost:5000/mouseactions");
-      for (const d of data) {
-        d["type"] = "mouseactions";
+      if (data.length != 0) {
+        for (const d of data) {
+          d["type"] = "mouseactions";
+        }
+        rows.value.concat = data;
       }
-      rows.value.concat(data);
     };
 
     let rows = ref([]);
