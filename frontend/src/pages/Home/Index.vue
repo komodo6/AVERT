@@ -58,8 +58,8 @@
               <q-td key="mac_address" :props="props">
                 {{ props.row.mac_address }}
               </q-td>
-              <q-td key="Type" :props="props">
-                {{ props.row.Type }}
+              <q-td key="type" :props="props">
+                {{ props.row.type }}
               </q-td>
               <q-td key="key" :props="props">
                 {{ props.row.key }}
@@ -100,9 +100,9 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Type",
+    name: "type",
     label: "Type",
-    field: "Type",
+    field: "type",
     align: "center",
     sortable: true,
   },
