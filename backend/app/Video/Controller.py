@@ -76,7 +76,7 @@ def get_image():
         return "Image does not exist", 404
 
 
-@bp.route('/videos', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_image():
 
     id = request.get_json()["id"] if "id" in request.get_json() else None
@@ -84,7 +84,7 @@ def update_image():
         tags = request.get_json(
         )["tags"] if "tags" in request.get_json() else None
         if tags is not None:
-            dao.update_tag(id, tags)
+            vdao.update_tag(id, tags)
             return "Updated", 200
         else:
             return "Missings tags", 400

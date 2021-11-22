@@ -228,7 +228,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post(`http://localhost:5000/${artifact}/annotations`, {
+      await axios.post(`http://localhost:5000/${artifact}s/annotations`, {
         id: id,
         annotation: val,
       });
@@ -239,7 +239,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post(`http://localhost:5000/${artifact}/tags`, {
+      await axios.post(`http://localhost:5000/${artifact}s/tags`, {
         id: id,
         tags: val,
       });
@@ -265,7 +265,7 @@ export default {
     const fetchProcesses = async () => {
       const { data } = await axios.get("http://192.168.19.132:5000/processes");
       for (const d of data) {
-        d["artifact"] = "process";
+        d["artifact"] = "processe";
       }
       rows.value = rows.value.concat(data);
     };
