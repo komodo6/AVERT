@@ -53,6 +53,10 @@ const routes = [
         path: "/systemcalls",
         component: () => import("pages/SystemCalls/Index.vue"),
       },
+      {
+        path: "/scripts",
+        component: () => import("pages/Scripts/Index.vue")
+      },
     ],
   },
   {
