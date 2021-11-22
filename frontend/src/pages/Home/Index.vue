@@ -10,6 +10,7 @@
           color="amber"
           selection="multiple"
           v-model:selected="selected"
+          :filter="filter"
           row-key="id"
         >
           <template v-slot:top>
@@ -17,18 +18,18 @@
               dark
               dense
               standout
-              v-model="text"
+              v-model="filter"
               input-class="text-right"
               class="q-ml-md"
               label="Search"
             >
               <template v-slot:append>
-                <q-icon v-if="text === ''" name="search" />
+                <q-icon v-if="filter === ''" name="search" />
                 <q-icon
                   v-else
                   name="clear"
                   class="cursor-pointer"
-                  @click="text = ''"
+                  @click="filter = ''"
                 />
               </template>
             </q-input>
@@ -43,13 +44,38 @@
             </div>
           </template>
 
+          <template v-slot:header="props">
+            <q-tr :props="props">
+              <q-th auto-width>
+                <q-checkbox v-model="props.selected" />
+              </q-th>
+              <q-th auto-width />
+
+              <q-th v-for="col in props.cols" :key="col.name" :props="props">
+                {{ col.label }}
+              </q-th>
+            </q-tr>
+          </template>
+
           <template v-slot:body="props">
             <q-tr :props="props">
               <q-td>
                 <q-checkbox v-model="props.selected" />
               </q-td>
-              <q-td key="timestamp" :props="props"
-                ><!--This is the line to add the checkboxes to the rows-->
+              <q-td auto-width>
+                <q-btn
+                  size="sm"
+                  color="accent"
+                  round
+                  dense
+                  @click="props.expand = !props.expand"
+                  :icon="props.expand ? 'remove' : 'add'"
+                />
+              </q-td>
+              <q-td key="artifact" :props="props">
+                {{ props.row.artifact }}
+              </q-td>
+              <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
               <q-td key="ip_address" :props="props">
@@ -58,16 +84,62 @@
               <q-td key="mac_address" :props="props">
                 {{ props.row.mac_address }}
               </q-td>
-              <q-td key="type" :props="props">
-                {{ props.row.type }}
-              </q-td>
               <q-td key="key" :props="props">
                 {{ props.row.key }}
               </q-td>
-              <!-- Need to update the above to get the data type-->
+              <q-td key="annotations" :props="props">
+                <div v-for="annotation in props.row.annotations" :key="annotation">
+                  {{annotation}}
+                </div>
+              </q-td>
+              <q-td key="tags" :props="props">
+                <q-select
+                  class="align-right"
+                  label="Tags"
+                  filled
+                  :v="props.row.tags"
+                  v-model="props.row.tags"
+                  @update:model-value="updateTags(props.row.tags, props.row.id, props.row.artifact)"
+                  use-input
+                  use-chips
+                  multiple
+                  hide-dropdown-icon
+                  input-debounce="0"
+                  new-value-mode="add"
+                  style="width: 250px"
+                />
+              </q-td>
+            </q-tr>
+            <q-tr v-show="props.expand" :props="props">
+              <q-td colspan="100%">
+                <div class="row">
+                  <div
+                    class="col-5"
+                    v-for="(value, key) in props.row"
+                    :key="key"
+                  >
+                    {{ key }} : {{ value }}
+                  </div>
+                </div>
+              </q-td>
             </q-tr>
           </template>
         </q-table>
+        <q-input
+          class="annotation"
+          color="amber"
+          outlined
+          v-model="annotation"
+          label="Your Annotation"
+          :dense="dense"
+        />
+
+        <q-btn
+          class="annotateBtn"
+          color="grey-9 q-mx-sm"
+          @click="saveAnnotation()"
+          label="Add Annotation"
+        />
       </div>
     </div>
   </div>
@@ -78,6 +150,13 @@
 import { defineComponent, ref, computed, onMounted } from "vue";
 
 const columns = [
+  {
+    name: "artifact",
+    label: "Artifact",
+    field: "artifact",
+    align: "center",
+    sortable: true,
+  },
   {
     name: "timestamp",
     label: "Date/Tme",
@@ -100,9 +179,16 @@ const columns = [
     sortable: true,
   },
   {
-    name: "type",
-    label: "Type",
-    field: "type",
+    name: "annotations",
+    label: "Annotations",
+    field: "annotations",
+    align: "center",
+    sortable: true,
+  },
+  {
+    name: "tags",
+    label: "Tags",
+    field: "tags",
     align: "center",
     sortable: true,
   },
@@ -116,6 +202,8 @@ export default {
   setup() {
     let rows = ref([]);
     let selected = ref([]);
+    let filter = ref("");
+    let annotation = ref("");
     let visibleColumns = ref([
       "calories",
       "desc",
@@ -127,35 +215,103 @@ export default {
       "iron",
     ]);
 
-    const fetchAll = async () => {
-      let { data } = await axios.get("http://localhost:5000/keystrokes");
+    const saveAnnotation = () => {
+      console.log(selected.value);
+      for (const s of selected.value) {
+        s.annotations = s.annotations.concat(annotation.value);
+        updateAnnotations(s.annotations, s.id, s.artifact);
+      }
+      annotation.value = "";
+    };
+
+    const updateAnnotations = async (val, id, artifact) => {
+      if (!val) {
+        val = [];
+      }
+      await axios.post(`http://localhost:5000/${artifact}/annotations`, {
+        id: id,
+        annotation: val,
+      });
+      console.log(val, id);
+    };
+
+    const updateTags = async (val, id, artifact) => {
+      if (!val) {
+        val = [];
+      }
+      await axios.post(`http://localhost:5000/${artifact}/tags`, {
+        id: id,
+        tags: val,
+      });
+      console.log(val, id);
+    };
+
+    const fetchKeystrokes = async () => {
+      const { data } = await axios.get("http://192.168.19.132:5000/keystrokes");
       for (const d of data) {
-        d["type"] = "keystrokes";
+        d["artifact"] = "keystroke";
       }
       rows.value = data;
-
-      let { data2 } = await axios.get("http://localhost:5000/systemcalls");
-      for (const d of data2) {
-        d["type"] = "systemcalls";
+    };
+    const fetchSystemCalls = async () => {
+      const { data } = await axios.get(
+        "http://192.168.19.132:5000/systemcalls"
+      );
+      for (const d of data) {
+        d["artifact"] = "systemcall";
       }
-      rows.value.concat(data2);
-
-      let { data3 } = await axios.get("http://localhost:5000/processes");
-      for (const d of data3) {
-        d["type"] = "processes";
+      rows.value = rows.value.concat(data);
+    };
+    const fetchProcesses = async () => {
+      const { data } = await axios.get("http://192.168.19.132:5000/processes");
+      for (const d of data) {
+        d["artifact"] = "process";
       }
-      rows.value.concat(data3);
-
-      let { data4 } = await axios.get("http://localhost:5000/mouseactions");
-      for (const d of data4) {
-        d["type"] = "mouseactions";
+      rows.value = rows.value.concat(data);
+    };
+    const fetchMouseactions = async () => {
+      const { data } = await axios.get(
+        "http://192.168.19.132:5000/mouseactions"
+      );
+      for (const d of data) {
+        d["artifact"] = "mouseaction";
       }
-      rows.value.concat(data4);
-      console.log(rows.value)
+      rows.value = rows.value.concat(data);
+    };
+    const fetchImages = async () => {
+      let { data } = await axios.get(
+        "http://192.168.19.132:5000/screenshots/images"
+      );
+      for (const d of data) {
+        d["artifact"] = "screenshot";
+      }
+      rows.value = rows.value.concat(data);
+    };
+    const fetchWindows = async () => {
+      let { data } = await axios.get("http://192.168.19.132:5000/windows");
+      for (const d of data) {
+        d["artifact"] = "window";
+      }
+      rows.value = rows.value.concat(data);
+    };
+    const fetchVideos = async () => {
+      let { data } = await axios.get(
+        "http://192.168.19.132:5000/videos/videos"
+      );
+      for (const d of data) {
+        d["artifact"] = "video";
+      }
+      rows.value = rows.value.concat(data);
     };
 
     onMounted(() => {
-      fetchAll();
+      fetchKeystrokes();
+      fetchMouseactions();
+      fetchSystemCalls();
+      fetchProcesses();
+      fetchImages();
+      fetchWindows();
+      fetchVideos();
     });
 
     const plusOne = computed(() => visibleColumns);
@@ -165,7 +321,10 @@ export default {
       visibleColumns,
       rows,
       columns,
-      text: ref(""),
+      filter,
+      updateTags,
+      saveAnnotation,
+      annotation,
     };
   },
 };

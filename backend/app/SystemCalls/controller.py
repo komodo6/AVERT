@@ -32,7 +32,7 @@ def kill_syscall():
     return "das", 200
 
 
-@bp.route('/systemcall', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_image():
 
     id = request.get_json()["id"] if "id" in request.get_json() else None

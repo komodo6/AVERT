@@ -18,7 +18,7 @@ def index():
         return 'error'
 
 
-@bp.route('/keystroke', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_keystroke_tag():
     id = request.get_json()["id"] if "id" in request.get_json() else None
     if id:
@@ -32,7 +32,7 @@ def update_keystroke_tag():
 
     return "Missings id", 400
 
-@bp.route('/annotation', methods=['POST'])
+@bp.route('/annotations', methods=['POST'])
 def update_annotation():
     id = request.get_json()["id"] if "id" in request.get_json() else None
     if id:
@@ -42,6 +42,6 @@ def update_annotation():
             ks.update_annotation(id, annotation)
             return "Updated", 200
         else:
-            return "Missings tags", 400
+            return "Missings annotation", 400
 
     return "Missings id", 400

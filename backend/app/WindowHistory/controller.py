@@ -13,7 +13,7 @@ def index():
     return json.dumps(all_windows), 200
 
 
-@bp.route('/window', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_windows_tag():
     id = request.get_json()["id"] if "id" in request.get_json() else None
     if id:

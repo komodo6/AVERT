@@ -53,7 +53,7 @@ def get_image():
         return "Image does not exist", 404
 
 
-@bp.route('/image', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_image():
 
     id = request.get_json()["id"] if "id" in request.get_json() else None

@@ -13,7 +13,7 @@ def index():
     return json.dumps(all_processes), 200
 
 
-@bp.route('/process', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_mouseaction_tag():
     id = request.get_json()["id"] if "id" in request.get_json() else None
     if id:
