@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="text-h2">
-      SETTINGS
-    </div>
+    <div class="text-h2">SETTINGS</div>
     <div class="row">
       <div class="col">
         <div class="row">
@@ -149,117 +147,131 @@
         </div>
       </div>
     </div>
-    <div :style="{position: 'absolute', right: '200px', bottom: '100px'}">
-      <apexcharts width="450" type="pie" :options="chartOptions" :series="series"></apexcharts>
+    <div :style="{ position: 'absolute', right: '200px', bottom: '100px' }">
+      <apexcharts
+        width="450"
+        type="pie"
+        :options="chartOptions"
+        :series="[avertStore.state.keystrokes, 55, 41, 17, 15, 25]"
+      ></apexcharts>
     </div>
   </div>
 </template>
 <script>
-import { onMounted,ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
-import VueApexCharts from 'vue3-apexcharts'
-import {fetchKeystrokes} from 'src/utils/request.js';
-import avertStore from 'src/avertStore';
+import VueApexCharts from "vue3-apexcharts";
+import { fetchKeystrokes } from "src/utils/request.js";
+import avertStore from "src/avertStore";
 
 export default {
-  name: 'Chart',
-  components:{
+  name: "Chart",
+  components: {
     apexcharts: VueApexCharts,
   },
   setup() {
-    let series = ref([]);
-    onMounted(() =>{
-      fetchKeystrokes()
-      conosole.log('onMounted')
-    });
-    
-  },
-  mounted(){
-    console.log(avertStore)
-  },
-  data() {
-    return {
-      chartOptions: {
-        chart: {
-              width: 380,
-              type: 'pie',
-            },
-            labels: ['Keystrokes', 'System Calls', 'Processes', 'Mouse Actions', 'Network Data'],
-            responsive: [{
-              breakpoint: 480,
-              options: {
-                chart: {
-                  width: 200
-                },
-                legend: {
-                  position: 'bottom'
-                }
-              }
-            }],
-            dataLabels: {
-              style: {
-                colors:[]
-              }
-            }
+    let chartOptions = {
+      chart: {
+        width: 380,
+        type: "pie",
       },
-
-      series: [44, 55, 41, 17, 15],
-      // series,
-      items: [
-        { active: false, label: 'Record Keystrokes' }, 
-        { active: false, label: 'Record Mouse' },
-        { active: false, label: 'Record Screenshots' }, 
-        { active: false, label: 'Record Processes' }, 
-        { active: false, label: 'Record Window History' }, 
-        { active: false, label: 'Record System Calls' },
-        { active: false, label: 'Record Video' },
-        { active: false, label: 'Record PCAP' },
+      labels: [
+        "Keystrokes",
+        "System Calls",
+        "Processes",
+        "Mouse Actions",
+        "Network Data",
+        "Total Size",
       ],
-      all: ref(false),
-      options: ["Minutes", "Seconds"],
-      text: ref(""),
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: "bottom",
+            },
+          },
+        },
+      ],
+      dataLabels: {
+        style: {
+          colors: [],
+        },
+      },
     };
-  },
-  methods: {
-    async toggleAll() {
+
+    let items = [
+      { active: false, label: "Record Keystrokes" },
+      { active: false, label: "Record Mouse" },
+      { active: false, label: "Record Screenshots" },
+      { active: false, label: "Record Processes" },
+      { active: false, label: "Record Window History" },
+      { active: false, label: "Record System Calls" },
+      { active: false, label: "Record Video" },
+      { active: false, label: "Record PCAP" },
+    ];
+    let all = ref(false);
+    let options = ["Minutes", "Seconds"]
+    let text = ref("");
+
+    onMounted(() => {
+      fetchKeystrokes();
+      console.log("onMounted");
+    });
+
+    const toggleAll = async () => {
       if (this.all) {
-        this.items.forEach(element => {
+        this.items.forEach((element) => {
           element.active = true;
         });
       } else {
-        this.items.forEach(element => {
+        this.items.forEach((element) => {
           element.active = false;
         });
       }
       this.toggle();
-    },
-    async toggle() {
+    };
+
+    const toggle = async () => {
       let post_data = {
-        keystrokes: false, 
+        keystrokes: false,
         mouse: false,
-        screenshots: false, 
-        processes: false, 
-        window_history: false, 
-        system_calls: false, 
-        video: false, 
-        pcap: false
+        screenshots: false,
+        processes: false,
+        window_history: false,
+        system_calls: false,
+        video: false,
+        pcap: false,
       };
       let i = 0;
       for (var key in post_data) {
-        if(!post_data.hasOwnProperty(key))
-          continue;
+        if (!post_data.hasOwnProperty(key)) continue;
         post_data[key] = this.items[i].active;
         i++;
       }
 
-      console.log(post_data)
+      console.log(post_data);
 
       const response = await axios.post(
         "http://localhost:5000/recording/",
         post_data
       );
       console.log(response);
-    },
+    };
+
+    return {
+      toggleAll,
+      toggle,
+      items,
+      all,
+      options,
+      text,
+      chartOptions,
+      avertStore,
+    };
   },
 };
 </script>

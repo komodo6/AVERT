@@ -18,6 +18,10 @@ class KeystrokeDAO:
         else:
             return self.db.find({"id": keystroke_id}, {'_id': False})
 
+    def get_size(self):
+        print(self.db.dataSize())
+        return self.db.dataSize()
+
     def update(self, keystroke):
         if keystroke is not None:
             self.db.save(keystroke.toJSON())
