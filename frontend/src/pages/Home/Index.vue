@@ -88,8 +88,11 @@
                 {{ props.row.key }}
               </q-td>
               <q-td key="annotations" :props="props">
-                <div v-for="annotation in props.row.annotations" :key="annotation">
-                  {{annotation}}
+                <div
+                  v-for="annotation in props.row.annotations"
+                  :key="annotation"
+                >
+                  {{ annotation }}
                 </div>
               </q-td>
               <q-td key="tags" :props="props">
@@ -99,7 +102,9 @@
                   filled
                   :v="props.row.tags"
                   v-model="props.row.tags"
-                  @update:model-value="updateTags(props.row.tags, props.row.id, props.row.artifact)"
+                  @update:model-value="
+                    updateTags(props.row.tags, props.row.id, props.row.artifact)
+                  "
                   use-input
                   use-chips
                   multiple
@@ -218,6 +223,9 @@ export default {
     const saveAnnotation = () => {
       console.log(selected.value);
       for (const s of selected.value) {
+        if (!s.annotations) {
+          s.annotations = [];
+        }
         s.annotations = s.annotations.concat(annotation.value);
         updateAnnotations(s.annotations, s.id, s.artifact);
       }
@@ -225,10 +233,7 @@ export default {
     };
 
     const updateAnnotations = async (val, id, artifact) => {
-      if (!val) {
-        val = [];
-      }
-      await axios.post(`http://localhost:5000/${artifact}s/annotations`, {
+      await axios.post(`http://192.168.19.132:5000/${artifact}s/annotations`, {
         id: id,
         annotation: val,
       });
@@ -239,7 +244,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post(`http://localhost:5000/${artifact}s/tags`, {
+      await axios.post(`http://192.168.19.132:5000/${artifact}s/tags`, {
         id: id,
         tags: val,
       });
