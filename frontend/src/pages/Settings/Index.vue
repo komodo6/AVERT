@@ -149,24 +149,62 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <img src="./pie-chart.png">
-      </div>
+    <div :style="{position: 'absolute', right: '200px', bottom: '100px'}">
+      <apexcharts width="450" type="pie" :options="chartOptions" :series="series"></apexcharts>
     </div>
   </div>
 </template>
 <script>
-import { ref } from "vue";
+import { onMounted,ref } from "vue";
 import axios from "axios";
 import VueApexCharts from 'vue3-apexcharts'
+import {fetchKeystrokes} from 'src/utils/request.js';
+import avertStore from 'src/avertStore';
+
 export default {
   name: 'Chart',
   components:{
     apexcharts: VueApexCharts,
   },
+  setup() {
+    let series = ref([]);
+    onMounted(() =>{
+      fetchKeystrokes()
+      conosole.log('onMounted')
+    });
+    
+  },
+  mounted(){
+    console.log(avertStore)
+  },
   data() {
     return {
+      chartOptions: {
+        chart: {
+              width: 380,
+              type: 'pie',
+            },
+            labels: ['Keystrokes', 'System Calls', 'Processes', 'Mouse Actions', 'Network Data'],
+            responsive: [{
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 200
+                },
+                legend: {
+                  position: 'bottom'
+                }
+              }
+            }],
+            dataLabels: {
+              style: {
+                colors:[]
+              }
+            }
+      },
+
+      series: [44, 55, 41, 17, 15],
+      // series,
       items: [
         { active: false, label: 'Record Keystrokes' }, 
         { active: false, label: 'Record Mouse' },
