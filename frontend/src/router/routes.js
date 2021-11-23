@@ -57,6 +57,10 @@ const routes = [
         path: "/scripts",
         component: () => import("pages/Scripts/Index.vue")
       },
+      {
+        path: "/windows",
+        component: () => import("pages/WindowHistory/Index.vue"),
+      },
     ],
   },
   {
