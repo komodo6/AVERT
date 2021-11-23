@@ -2,7 +2,7 @@ from flask import Flask
 
 import pymongo
 
-client = pymongo.MongoClient(host="54.162.46.215", port=27017)
+client = pymongo.MongoClient('mongodb://root:p%40ss4now@128.199.10.49:27017')
 
 db = client.AVERT
 

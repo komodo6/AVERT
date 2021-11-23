@@ -159,9 +159,12 @@ export default {
   },
   methods:{
     sendDates(){
-      console.log("This dateTimeFrom " + this.dateTimeFrom)
-      console.log("This dataTimeTo " + this.dateTimeTo)
+      console.log("This dateTimeFrom " + this.dateTimeFrom.replace('T',' '))
+      console.log("This dataTimeTo " + this.dateTimeTo.replace('T',' '))
       console.log('Sending Dates')
+      axios.get(`http://10.0.2.15:5000/script/?start_range=${this.dateTimeFrom.replace('T',' ')}&end_range=${this.dateTimeTo.replace('T',' ')}`).catch(e => {
+        console.log(e)
+      })
     }
 
   }
