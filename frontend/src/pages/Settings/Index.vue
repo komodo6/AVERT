@@ -212,7 +212,7 @@ export default {
       console.log(post_data)
 
       const response = await axios.post(
-        "http://localhost:5000/recording/",
+        "http://192.168.19.132:5000/recording/",
         post_data
       );
       console.log(response);

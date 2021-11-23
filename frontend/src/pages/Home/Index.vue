@@ -33,15 +33,6 @@
                 />
               </template>
             </q-input>
-
-            <div class="row">
-              <div class="datetime-from col-12">
-                <input type="datetime-local" name="" id="" />
-              </div>
-              <div class="datetime-to col-12">
-                <input type="datetime-local" name="" id="" />
-              </div>
-            </div>
           </template>
 
           <template v-slot:header="props">
@@ -123,7 +114,10 @@
                     v-for="(value, key) in props.row"
                     :key="key"
                   >
-                    {{ key }} : {{ value }}
+                  <q-img v-if="key == 'ScreenshotFile'" :src="'data:image/jpeg;base64,'+ value"> </q-img>
+                  <div v-else>
+                    {{key}} : {{value}}
+                  </div>
                   </div>
                 </div>
               </q-td>
@@ -287,6 +281,7 @@ export default {
       let { data } = await axios.get(
         "http://192.168.19.132:5000/screenshots/images"
       );
+      console.log(data)
       for (const d of data) {
         d["artifact"] = "screenshot";
       }
