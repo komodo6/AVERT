@@ -152,7 +152,7 @@
         width="450"
         type="pie"
         :options="chartOptions"
-        :series="[avertStore.state.keystrokes, 55, 41, 17, 15, 25]"
+        :series="[avertStore.state.keystrokes, avertStore.state.systemcalls, avertStore.state.processes, avertStore.state.mouseactions, 15, avertStore.state.screenshots, avertStore.state.windowhistory, 10, 10]"
       ></apexcharts>
     </div>
   </div>
@@ -161,7 +161,7 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import VueApexCharts from "vue3-apexcharts";
-import { fetchKeystrokes } from "src/utils/request.js";
+import { fetchKeystrokes, fetchMouseActions, fetchScreenshots, fetchProcesses, fetchWindowHistory, fetchSystemCalls } from "src/utils/request.js";
 import avertStore from "src/avertStore";
 
 export default {
@@ -181,7 +181,10 @@ export default {
         "Processes",
         "Mouse Actions",
         "Network Data",
-        "Total Size",
+        "Screenshots",
+        "Window History",
+        "Video",
+        "Remaining Storage"
       ],
       responsive: [
         {
@@ -219,8 +222,14 @@ export default {
 
     onMounted(() => {
       fetchKeystrokes();
+      fetchMouseActions();
+      fetchScreenshots();
+      fetchProcesses();
+      fetchWindowHistory();
+      fetchSystemCalls();
       console.log("onMounted");
     });
+
 
     const toggleAll = async () => {
       if (this.all) {
