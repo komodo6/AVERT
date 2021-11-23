@@ -42,3 +42,16 @@ def get_count_keystrokes():
     except Exception as e:
         print(e)
         return 'error'
+@bp.route('/annotation', methods=['POST'])
+def update_annotation():
+    id = request.get_json()["id"] if "id" in request.get_json() else None
+    if id:
+        annotation = request.get_json(
+        )["annotation"] if "annotation" in request.get_json() else None
+        if annotation is not None:
+            ks.update_annotation(id, annotation)
+            return "Updated", 200
+        else:
+            return "Missings tags", 400
+
+    return "Missings id", 400

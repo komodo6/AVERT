@@ -1,9 +1,11 @@
 from flask import Flask
-from app import create_app
+from app import create_app, socketio
 from flask_cors import CORS
 
 
+
 app = create_app()
+
 CORS(app)
 
 
@@ -14,4 +16,4 @@ def index():
 
 if __name__ == '__main__':
     # print(test)
-    app.run(host="0.0.0.0", port=5000)
+    socketio.run(app, host="0.0.0.0", port=5000)

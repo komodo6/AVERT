@@ -23,6 +23,17 @@ class WindowHistoryDAO:
         else:
             raise Exception("Cannot update, Mouse Action is empty")
 
+    
+    def update_tag(self, id, tags):
+        if id is not None:
+            self.db.update({'id': id}, {
+                "$set": {
+                    'tags': tags
+                }
+            }, upsert=False, multi=False)
+        else:
+            raise Exception("Cannot update, Mouse Action is empty")
+
     def delete(self, wh):
         if wh is not None:
             self.db.remove(wh.toJSON())
