@@ -18,9 +18,9 @@ class KeystrokeDAO:
         else:
             return self.db.find({"id": keystroke_id}, {'_id': False})
 
-    def get_size(self):
-        print(self.db.dataSize())
-        return self.db.dataSize()
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()
 
     def update(self, keystroke):
         if keystroke is not None:

@@ -56,3 +56,14 @@ def delete_image(id):
         return img, 200
     else:
         return "Image does not exist", 404
+
+@bp.route('/count', methods=['GET'])
+def get_count_systemcalls():
+    try:
+        count = scd.get_count()
+        print(count)
+        return json.dumps(count)
+        # return list(ks.read())
+    except Exception as e:
+        print(e)
+        return 'error'

@@ -39,3 +39,8 @@ class MouseActionsDAO:
             self.db.remove(mouse_action.toJSON())
         else:
             raise Exception("Cannot Delete, Mouse Action is empty")
+
+    
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()

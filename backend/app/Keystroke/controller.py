@@ -32,12 +32,12 @@ def update_keystroke_tag():
 
     return "Missings id", 400
 
-@bp.route('/size', methods=['GET'])
+@bp.route('/count', methods=['GET'])
 def get_count_keystrokes():
     try:
-        size = int(ks.get_size()/1024)
-        print(size)
-        return json.dumps(size)
+        count = ks.get_count()
+        print(count)
+        return json.dumps(count)
         # return list(ks.read())
     except Exception as e:
         print(e)
