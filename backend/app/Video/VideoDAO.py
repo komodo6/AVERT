@@ -39,3 +39,7 @@ class VideoDAO:
             self.db.remove({'id': video})
         else:
             raise Exception("Cannot Delete, Mouse Action is empty")
+
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()

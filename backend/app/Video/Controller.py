@@ -101,3 +101,14 @@ def remove_image():
         return f"removed, {id}", 200
 
     return "Missings id", 400
+
+@bp.route('/count', methods=['GET'])
+def get_count_videos():
+    try:
+        count = vdao.get_count()
+        print(count)
+        return json.dumps(count)
+        # return list(ks.read())
+    except Exception as e:
+        print(e)
+        return 'error'

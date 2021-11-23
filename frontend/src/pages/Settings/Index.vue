@@ -149,10 +149,10 @@
     </div>
     <div :style="{ position: 'absolute', right: '200px', bottom: '100px' }">
       <apexcharts
-        width="450"
+        width="550"
         type="pie"
         :options="chartOptions"
-        :series="[avertStore.state.keystrokes, avertStore.state.systemcalls, avertStore.state.processes, avertStore.state.mouseactions, 15, avertStore.state.screenshots, avertStore.state.windowhistory, 10, 10]"
+        :series="[avertStore.state.keystrokes, avertStore.state.systemcalls, avertStore.state.processes, avertStore.state.mouseactions, 0, avertStore.state.screenshots, avertStore.state.windowhistory, avertStore.state.videos, 10]"
       ></apexcharts>
     </div>
   </div>
@@ -161,7 +161,7 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import VueApexCharts from "vue3-apexcharts";
-import { fetchKeystrokes, fetchMouseActions, fetchScreenshots, fetchProcesses, fetchWindowHistory, fetchSystemCalls } from "src/utils/request.js";
+import { fetchKeystrokes, fetchMouseActions, fetchScreenshots, fetchProcesses, fetchWindowHistory, fetchSystemCalls, fetchVideos} from "src/utils/request.js";
 import avertStore from "src/avertStore";
 
 export default {
@@ -172,7 +172,7 @@ export default {
   setup() {
     let chartOptions = {
       chart: {
-        width: 380,
+        width: 550,
         type: "pie",
       },
       labels: [
@@ -227,6 +227,7 @@ export default {
       fetchProcesses();
       fetchWindowHistory();
       fetchSystemCalls();
+      fetchVideos();
       console.log("onMounted");
     });
 

@@ -43,6 +43,13 @@ export const fetchSystemCalls = async () => {
         avertStore.state.systemcalls = response.data 
     })
 }
+
+export const fetchVideos = async () => {
+    await api.get('/videos/count').then((response) => {
+        console.log(response.data)
+        avertStore.state.videos = response.data 
+    })
+}
     
 
 
