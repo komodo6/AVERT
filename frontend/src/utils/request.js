@@ -19,9 +19,12 @@ export const fetchMouseActions = async () => {
 }
 
 export const fetchMouseActionsTimeline = async () =>{
-    await axios.post("http://localhost:5000/mouseactions/timeline", {
+    await api.post("http://localhost:5000/mouseactions/timeline", {
         start: 'start',
         end: 'end',
+      }).then((response) => {
+          console.log(response)
+          avertStore.state.mouseActionsTimeline = response.data
       });
 }
 

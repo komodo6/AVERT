@@ -18,7 +18,18 @@ class MouseActionsDAO:
         else:
             return self.db.find({"id": mouse_action_id}, {'_id': False})
 
-    # def read_time_interval(self, start, end):
+    def read_time_interval(self, end_range):
+        print('end_range in read interval',end_range.strftime("%Y-%m-%d %H:%M:%S.%f")) #TODO: Delete 
+        range = {
+            "timestamp":{
+                "$lt": end_range.strftime("%Y-%m-%d %H:%M:%S.%f")   
+            }
+        }
+        mouseactions_list = []
+        ma = self.db.find(range)
+        for doc in ma:
+            mouseactions_list = mouseactions_list + [doc]
+        return mouseactions_list
 
 
     def update(self, mouse_action):

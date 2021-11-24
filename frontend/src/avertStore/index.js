@@ -9,6 +9,7 @@ const state = reactive({
     networkdata: 0,
     systemcalls: 0,
     processes: 0,
+    mouseActionsTimeline:[]
 });
 
 export default {

@@ -1,6 +1,8 @@
 from flask import Blueprint, request
 import json
 from . import MouseActionsDAO
+import datetime
+
 
 bp = Blueprint('mouseactions', __name__, url_prefix='/mouseactions')
 
@@ -31,7 +33,29 @@ def update_mouseaction_tag():
 @bp.route('/timeline', methods=['POST'])
 def get_mouseaction_timeline():
     print('Made it in get_mouse)action')
-    print(request.get_json())
+    time_range = request.get_json()
+
+    print(time_range['start']) # TODO:Delete
+    print(time_range['end'])
+    start_date = datetime.datetime.strptime("2021-11-23 02:12:36.200","%Y-%m-%d %H:%M:%S.%f")
+    end_date = datetime.datetime.strptime("2021-11-23 02:12:37.100","%Y-%m-%d %H:%M:%S.%f")
+    increment = datetime.timedelta(milliseconds=100)
+    r_times = []
+    r_intervals = []
+
+    while start_date <= end_date:
+        r_times = r_times + [start_date.strftime("%Y-%m-%d %H:%M:%S.%f")]
+        r_intervals = r_intervals + [len(ma.read_time_interval(start_date))]
+        start_date =  start_date + increment
+
+    print(r_times)
+    print(r_intervals)
+    r = {'r_times':r_times, 'r_intervals':r_intervals}
+          
+
+    
+    
+
     # id = request.get_json()["id"] if "id" in request.get_json() else None
     # if id:
     #     tags = request.get_json(
@@ -42,7 +66,7 @@ def get_mouseaction_timeline():
     #     else:
     #         return "Missings tags", 400
 
-    return "MouseAction Timeline", 200
+    return json.dumps(r), 200
 
 
 @bp.route('/count', methods=['GET'])
