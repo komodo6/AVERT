@@ -7,6 +7,8 @@
           :columns="columns"
           :rows="rows"
           row-key="id"
+          selection="multiple"
+          v-model:selected="selected"
           :filter="filter"
         >
           <template v-slot:top-right>
@@ -21,10 +23,13 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
-            <ExportData :rowData="rows" :headers="columns"/>
+            <ExportData :rowData="rows" :headers="columns" />
           </template>
           <template v-slot:body="props">
             <q-tr :props="props">
+              <q-td>
+                <q-checkbox v-model="props.selected"> </q-checkbox>
+              </q-td>
               <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
@@ -46,11 +51,13 @@
               <q-td key="scroll" :props="props">
                 {{ props.row.scroll }}
               </q-td>
-              <q-td key="active_window" :props="props">
-                {{ props.row.active_window }}
-              </q-td>
               <q-td key="annotations" :props="props">
-                {{ props.row.annotations }}
+                <div
+                  v-for="annotation in props.row.annotations"
+                  :key="annotation"
+                >
+                  {{ annotation }}
+                </div>
               </q-td>
               <q-td key="tags" :props="props">
                 <q-select
@@ -129,13 +136,6 @@ const columns = [
     sortable: true,
   },
   {
-    name: "active_window",
-    label: "Window",
-    name: "active_window",
-    align: "center",
-    sortable: false,
-  },
-  {
     name: "annotations",
     label: "Annotations",
     name: "annotations",
@@ -154,39 +154,26 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { exportFile, useQuasar } from "quasar";
 import ExportData from "../../components/ExportData.vue";
+import { fetchMouseActions, updateTags } from "src/utils/request.js";
+import avertStore from "src/avertStore";
 
 export default {
   components: {
     ExportData,
   },
   setup() {
-    const updateTags = async (val, id) => {
-      if (!val) {
-        val = [];
-      }
-      await axios.post("http://localhost:5000/mouseactions/mouseaction", {
-        id: id,
-        tags: val,
-      });
-      console.log(val, id);
-    };
-
-    const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
+    let selected = ref([]);
 
-    onMounted(() => {
-      fetchMouseactions();
-    });
-    const fetchMouseactions = async () => {
-      const { data } = await axios.get("http://localhost:5000/mouseactions");
-      rows.value = data;
-    };
+    fetchMouseActions();
+    rows.value = avertStore.state.mouseactions;
     return {
       updateTags,
       filter,
       columns,
       rows,
+      selected,
     };
   },
 };

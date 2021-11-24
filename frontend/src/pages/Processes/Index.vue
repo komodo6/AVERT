@@ -7,6 +7,8 @@
           :columns="columns"
           :rows="rows"
           row-key="id"
+          selection="multiple"
+          v-model:selected="selected"
           :filter="filter"
         >
           <template v-slot:top-right>
@@ -21,10 +23,13 @@
                 <q-icon name="search"> </q-icon>
               </template>
             </q-input>
-            <ExportData :rowData="rows" :headers="columns"/>
+            <ExportData :rowData="rows" :headers="columns" />
           </template>
           <template v-slot:body="props">
             <q-tr :props="props">
+              <q-td>
+                <q-checkbox v-model="props.selected"> </q-checkbox>
+              </q-td>
               <q-td key="timestamp" :props="props">
                 {{ props.row.timestamp }}
               </q-td>
@@ -35,7 +40,12 @@
                 {{ props.row.mac_address }}
               </q-td>
               <q-td key="annotations" :props="props">
-                {{ props.row.annotations }}
+                <div
+                  v-for="annotation in props.row.annotations"
+                  :key="annotation"
+                >
+                  {{ annotation }}
+                </div>
               </q-td>
               <q-td key="tags" :props="props">
                 <q-select
@@ -243,39 +253,27 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { exportFile, useQuasar } from "quasar";
 import ExportData from "../../components/ExportData.vue";
+import { fetchProcesses, updateTags } from "src/utils/request.js";
+import avertStore from "src/avertStore";
 
 export default {
   components: {
     ExportData,
   },
   setup() {
-    const updateTags = async (val, id) => {
-      if (!val) {
-        val = [];
-      }
-      await axios.post("http://localhost:5000/processes/process", {
-        id: id,
-        tags: val,
-      });
-      console.log(val, id);
-    };
-
     const $q = useQuasar();
     let rows = ref([]);
     const filter = ref("");
+    let selected = ref([]);
 
-    onMounted(() => {
-      fetchProcesses();
-    });
-    const fetchProcesses = async () => {
-      const { data } = await axios.get("http://localhost:5000/processes");
-      rows.value = data;
-    };
+    fetchProcesses();
+    rows.value = avertStore.state.processes;
     return {
       updateTags,
       filter,
       columns,
       rows,
+      selected,
     };
   },
 };

@@ -16,13 +16,13 @@ import { onMounted, ref } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import avertStore from "src/avertStore";
 import {
-  fetchKeystrokes,
-  fetchMouseActions,
-  fetchScreenshots,
-  fetchProcesses,
-  fetchWindowHistory,
-  fetchSystemCalls,
-  fetchVideos,
+  fetchKeystrokesCount,
+  fetchMouseActionsCount,
+  fetchScreenshotsCount,
+  fetchProcessesCount,
+  fetchWindowHistoryCount,
+  fetchSystemCallsCount,
+  fetchVideosCount,
 } from "src/utils/request.js";
 import { chartOptions } from "./barchartoption";
 export default {
@@ -32,13 +32,13 @@ export default {
   },
   setup() {
     let series = ref([]);
-    fetchKeystrokes();
-    fetchMouseActions();
-    fetchScreenshots();
-    fetchProcesses();
-    fetchWindowHistory();
-    fetchSystemCalls();
-    fetchVideos();
+    fetchKeystrokesCount();
+    fetchMouseActionsCount();
+    fetchScreenshotsCount();
+    fetchProcessesCount();
+    fetchWindowHistoryCount();
+    fetchSystemCallsCount();
+    fetchVideosCount();
     onMounted(() => {
       series.value = [
         {

@@ -9,14 +9,14 @@ const state = reactive({
     networkdataCount: 0,
     systemcallsCount: 0,
     processesCount: 0,
-    keystrokes: {},
-    mouseactions: {},
-    windowhistory: {},
-    screenshots: {},
-    videos: {},
-    networkdata: {},
-    systemcalls: {},
-    processes: {},
+    keystrokes: [],
+    mouseactions: [],
+    windowhistory: [],
+    screenshots: [],
+    videos: [],
+    networkdata: [],
+    systemcalls: [],
+    processes: [],
 });
 
 export default {

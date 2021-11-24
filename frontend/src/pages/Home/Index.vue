@@ -13,7 +13,7 @@
           :filter="filter"
           row-key="id"
         >
-          <template v-slot:top>
+          <template v-slot:top-right>
             <q-input
               dark
               dense
@@ -33,6 +33,7 @@
                 />
               </template>
             </q-input>
+            <ExportData :rowData="rows" :headers="columns" />
           </template>
 
           <template v-slot:header="props">
@@ -149,6 +150,7 @@
 <script>
 // const { desktopCapturer } = require("electron");
 import { defineComponent, ref, computed, onMounted } from "vue";
+import ExportData from "../../components/ExportData.vue";
 
 const columns = [
   {
@@ -194,28 +196,37 @@ const columns = [
     sortable: true,
   },
 ];
-
-import axios from "axios";
+import { api } from "src/boot/axios";
 import {
-  fetchKeystrokes,
-  fetchMouseActions,
-  fetchScreenshots,
-  fetchProcesses,
-  fetchWindowHistory,
-  fetchSystemCalls,
-  fetchVideos,
   updateAnnotations,
   updateTags,
+  fetchKeystrokes,
+  fetchMouseActions,
+  fetchSystemCalls,
+  fetchProcesses,
+  fetchScreenshots,
+  fetchWindowHistory,
+  fetchVideos,
 } from "src/utils/request.js";
-import { exportFile, useQuasar } from "quasar";
 import avertStore from "src/avertStore";
 
 export default {
+  components: {
+    ExportData,
+  },
   setup() {
     let rows = ref([]);
     let selected = ref([]);
     let filter = ref("");
     let annotation = ref("");
+
+    fetchKeystrokes();
+    fetchMouseActions();
+    fetchSystemCalls();
+    fetchProcesses();
+    fetchScreenshots();
+    fetchWindowHistory();
+    fetchVideos();
 
     const saveAnnotation = () => {
       console.log(selected.value);
@@ -229,7 +240,7 @@ export default {
       annotation.value = "";
     };
 
-    const generateData = () => {
+    const addToTable = async () => {
       let data = [
         avertStore.state.keystrokes,
         avertStore.state.mouseactions,
@@ -240,23 +251,28 @@ export default {
         avertStore.state.systemcalls,
         avertStore.state.processes,
       ];
-      for (const d of data) {
-        if (Object.keys(d).length !== 0 ) {
-          console.log(d);
-          rows.value = rows.value.concat(d);
+      let artifact = [
+        'keystroke',
+        'mouseaction',
+        'window',
+        'screenshot',
+        'video',
+        'packet',
+        'systemcall',
+        'processe',
+      ];
+      let i = 0;
+      for (const artifacts of data) {
+        for(const a of artifacts) {
+          a["artifact"] = artifact[i];
         }
+        i++;
+        rows.value = rows.value.concat(artifacts);
       }
     };
 
     onMounted(() => {
-      fetchKeystrokes();
-      fetchMouseActions();
-      fetchSystemCalls();
-      fetchProcesses();
-      fetchScreenshots();
-      fetchWindowHistory();
-      fetchVideos();
-      generateData();
+      addToTable();
     });
 
     return {
@@ -267,35 +283,6 @@ export default {
       updateTags,
       saveAnnotation,
       annotation,
-      exportTable() {
-        // naive encoding to csv format
-        const content = [columns.map((col) => wrapCsvValue(col.label))]
-          .concat(
-            rows.value.map((row) =>
-              columns
-                .map((col) =>
-                  wrapCsvValue(
-                    typeof col.field === "function"
-                      ? col.field(row)
-                      : row[col.field === void 0 ? col.name : col.field],
-                    col.format
-                  )
-                )
-                .join(",")
-            )
-          )
-          .join("\r\n");
-
-        const status = exportFile("keystrokes.csv", content, "text/csv");
-
-        if (status !== true) {
-          $q.notify({
-            message: "Browser denied file download...",
-            color: "negative",
-            icon: "warning",
-          });
-        }
-      },
     };
   },
 };

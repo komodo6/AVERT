@@ -3,15 +3,43 @@ import avertStore from "src/avertStore";
 
 export const fetchKeystrokes = async () => {
   await api.get("/keystrokes").then((response) => {
-    response.data["artifact"] = "keystroke";
     avertStore.state.keystrokes = response.data;
   });
 };
 
 export const fetchMouseActions = async () => {
   await api.get("/mouseactions").then((response) => {
-    response.data["artifact"] = "mouseaction";
     avertStore.state.mouseactions = response.data;
+  });
+};
+
+export const fetchScreenshots = async () => {
+  await api.get("/screenshots").then((response) => {
+    avertStore.state.screenshots = response.data;
+  });
+};
+
+export const fetchProcesses = async () => {
+  await api.get("/processes").then((response) => {
+    avertStore.state.processes = response.data;
+  });
+};
+
+export const fetchWindowHistory = async () => {
+  await api.get("/windows").then((response) => {
+    avertStore.state.windowhistory = response.data;
+  });
+};
+
+export const fetchSystemCalls = async () => {
+  await api.get("/systemcalls").then((response) => {
+    avertStore.state.systemcalls = response.data;
+  });
+};
+
+export const fetchVideos = async () => {
+  await api.get("/videos").then((response) => {
+    avertStore.state.videos = response.data;
   });
 };
 
@@ -19,41 +47,6 @@ export const fetchMouseActionsTimeline = async () => {
   await api.post("/mouseactions/timeline", {
     start: "start",
     end: "end",
-  });
-};
-
-export const fetchScreenshots = async () => {
-  await api.get("/screenshots").then((response) => {
-    response.data["artifact"] = "screenshot";
-    avertStore.state.screenshots = response.data;
-  });
-};
-
-export const fetchProcesses = async () => {
-  await api.get("/processes").then((response) => {
-    response.data["artifact"] = "processe";
-    avertStore.state.processes = response.data;
-  });
-};
-
-export const fetchWindowHistory = async () => {
-  await api.get("/windows").then((response) => {
-    response.data["artifact"] = "window";
-    avertStore.state.windowhistory = response.data;
-  });
-};
-
-export const fetchSystemCalls = async () => {
-  await api.get("/systemcalls").then((response) => {
-    response.data["artifact"] = "systemcall";
-    avertStore.state.systemcalls = response.data;
-  });
-};
-
-export const fetchVideos = async () => {
-  await api.get("/videos").then((response) => {
-    response.data["artifact"] = "video";
-    avertStore.state.videos = response.data;
   });
 };
 
