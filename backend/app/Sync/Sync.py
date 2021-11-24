@@ -11,9 +11,10 @@ class Sync():
             client = MongoClient(host=self.ip, port=27017)
             remote_db = client.AVERT
             for c in self.collections:
-                docs = db[c].find()
-                if docs is not None:
-                    remote_db[c].insert_many(docs)
+                if c in db.list_collection_names():
+                    docs = db[c].find()
+                    if docs is not None:
+                        remote_db[c].insert_many(docs)
             return True
         except Exception as e:
             print(e)

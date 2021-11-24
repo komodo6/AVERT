@@ -227,7 +227,7 @@ export default {
     };
 
     const updateAnnotations = async (val, id, artifact) => {
-      await axios.post(`http://localhost:5000/${artifact}s/annotations`, {
+      await axios.post(`http://192.168.19.132:5000/${artifact}s/annotations`, {
         id: id,
         annotation: val,
       });
@@ -238,7 +238,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post(`http://localhost:5000/${artifact}s/tags`, {
+      await axios.post(`http://192.168.19.132:5000/${artifact}s/tags`, {
         id: id,
         tags: val,
       });
@@ -246,7 +246,7 @@ export default {
     };
 
     const fetchKeystrokes = async () => {
-      const { data } = await axios.get("http://localhost:5000/keystrokes");
+      const { data } = await axios.get("http://192.168.19.132:5000/keystrokes");
       for (const d of data) {
         d["artifact"] = "keystroke";
       }
@@ -254,7 +254,7 @@ export default {
     };
     const fetchSystemCalls = async () => {
       const { data } = await axios.get(
-        "http://localhost:5000/systemcalls"
+        "http://192.168.19.132:5000/systemcalls"
       );
       for (const d of data) {
         d["artifact"] = "systemcall";
@@ -262,7 +262,7 @@ export default {
       rows.value = rows.value.concat(data);
     };
     const fetchProcesses = async () => {
-      const { data } = await axios.get("http://localhost:5000/processes");
+      const { data } = await axios.get("http://192.168.19.132:5000/processes");
       for (const d of data) {
         d["artifact"] = "processe";
       }
@@ -270,7 +270,7 @@ export default {
     };
     const fetchMouseactions = async () => {
       const { data } = await axios.get(
-        "http://localhost:5000/mouseactions"
+        "http://192.168.19.132:5000/mouseactions"
       );
       for (const d of data) {
         d["artifact"] = "mouseaction";
@@ -279,7 +279,7 @@ export default {
     };
     const fetchImages = async () => {
       let { data } = await axios.get(
-        "http://localhost:5000/screenshots/images"
+        "http://192.168.19.132:5000/screenshots/images"
       );
       console.log(data)
       for (const d of data) {
@@ -288,7 +288,7 @@ export default {
       rows.value = rows.value.concat(data);
     };
     const fetchWindows = async () => {
-      let { data } = await axios.get("http://localhost:5000/windows");
+      let { data } = await axios.get("http://192.168.19.132:5000/windows");
       for (const d of data) {
         d["artifact"] = "window";
       }
@@ -296,7 +296,7 @@ export default {
     };
     const fetchVideos = async () => {
       let { data } = await axios.get(
-        "http://localhost:5000/videos/videos"
+        "http://192.168.19.132:5000/videos/videos"
       );
       for (const d of data) {
         d["artifact"] = "video";
