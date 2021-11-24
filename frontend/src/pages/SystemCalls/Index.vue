@@ -141,10 +141,11 @@ const columns = [
   },
 
 ];
-import axios from "axios";
+import { api } from "src/boot/axios";
 import { onMounted, ref } from "vue";
 import { exportFile, useQuasar } from "quasar";
 import ExportData from "../../components/ExportData.vue";
+
 
 export default {
   components: {
@@ -155,7 +156,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/systemcalls/systemcall", {
+      await api.post("/systemcalls/systemcall", {
         id: id,
         tags: val,
       });
@@ -170,7 +171,7 @@ export default {
       fetchProcesses();
     });
     const fetchProcesses = async () => {
-      const { data } = await axios.get("http://localhost:5000/systemcalls");
+      const { data } = await api.get("/systemcalls");
       rows.value = data;
     };
     return {

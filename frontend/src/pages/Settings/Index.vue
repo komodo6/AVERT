@@ -148,47 +148,121 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        <img src="./pie-chart.png" />
-      </div>
+      <apexcharts
+        width="550"
+        type="pie"
+        :options="chartOptions"
+        :series="[
+          avertStore.state.keystrokesCount,
+          avertStore.state.systemcallsCount,
+          avertStore.state.processesCount,
+          avertStore.state.mouseactionsCount / 10,
+          0,
+          avertStore.state.screenshotsCount,
+          avertStore.state.windowhistoryCount,
+          avertStore.state.videosCount,
+          1000,
+        ]"
+      ></apexcharts>
     </div>
   </div>
 </template>
 <script>
-import { ref } from "vue";
-import axios from "axios";
+import { onMounted, ref } from "vue";
+import { api } from "src/boot/axios";
+import VueApexCharts from "vue3-apexcharts";
+import {
+  fetchKeystrokesCount,
+  fetchMouseActionsCount,
+  fetchScreenshotsCount,
+  fetchProcessesCount,
+  fetchWindowHistoryCount,
+  fetchSystemCallsCount,
+  fetchVideosCount,
+} from "src/utils/request.js";
+import avertStore from "src/avertStore";
+
 export default {
-  data() {
-    return {
-      items: [
-        { active: false, label: "Record Keystrokes" },
-        { active: false, label: "Record Mouse" },
-        { active: false, label: "Record Screenshots" },
-        { active: false, label: "Record Processes" },
-        { active: false, label: "Record Window History" },
-        { active: false, label: "Record System Calls" },
-        { active: false, label: "Record Video" },
-        { active: false, label: "Record PCAP" },
-      ],
-      all: ref(false),
-      options: ["Minutes", "Seconds"],
-      text: ref(""),
-    };
+  name: "Chart",
+  components: {
+    apexcharts: VueApexCharts,
   },
-  methods: {
-    async toggleAll() {
+  setup() {
+    let chartOptions = {
+      chart: {
+        width: 550,
+        type: "pie",
+      },
+      labels: [
+        "Keystrokes",
+        "System Calls",
+        "Processes",
+        "Mouse Actions",
+        "Network Data",
+        "Screenshots",
+        "Window History",
+        "Video",
+        "Remaining Storage",
+      ],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: "bottom",
+            },
+          },
+        },
+      ],
+      dataLabels: {
+        style: {
+          colors: [],
+        },
+      },
+    };
+
+    let items = ref([
+      { active: false, label: "Record Keystrokes" },
+      { active: false, label: "Record Mouse" },
+      { active: false, label: "Record Screenshots" },
+      { active: false, label: "Record Processes" },
+      { active: false, label: "Record Window History" },
+      { active: false, label: "Record System Calls" },
+      { active: false, label: "Record Video" },
+      { active: false, label: "Record PCAP" },
+    ]);
+    let all = ref(false);
+    let options = ref(["Minutes", "Seconds"]);
+    let text = ref("");
+
+    onMounted(() => {
+      fetchKeystrokesCount();
+      fetchMouseActionsCount();
+      fetchScreenshotsCount();
+      fetchProcessesCount();
+      fetchWindowHistoryCount();
+      fetchSystemCallsCount();
+      fetchVideosCount();
+      console.log("onMounted");
+    });
+
+    const toggleAll = async () => {
       if (this.all) {
-        this.items.forEach((element) => {
+        items.value.forEach((element) => {
           element.active = true;
         });
       } else {
-        this.items.forEach((element) => {
+        items.value.forEach((element) => {
           element.active = false;
         });
       }
-      this.toggle();
-    },
-    async toggle() {
+      toggle();
+    };
+
+    const toggle = async () => {
       let post_data = {
         keystrokes: false,
         mouse: false,
@@ -202,18 +276,37 @@ export default {
       let i = 0;
       for (var key in post_data) {
         if (!post_data.hasOwnProperty(key)) continue;
-        post_data[key] = this.items[i].active;
+        post_data[key] = items.value[i].active;
         i++;
+      }
+
+      if (post_data.video) {
+        await api.get("/videos/capture");
+      } else if (!post_data.video) {
+        await api.get("/videos/stop");
+      }
+      if (post_data.pcap) {
+        await api.get("/networkdata/start");
+      } else if (!post_data.pcap) {
+        await api.get("/networkdata/stop");
       }
 
       console.log(post_data);
 
-      const response = await axios.post(
-        "http://192.168.169.128:5000/recording/",
-        post_data
-      );
+      const { response } = await api.post("/recording/", post_data);
       console.log(response);
-    },
+    };
+
+    return {
+      toggleAll,
+      toggle,
+      items,
+      all,
+      options,
+      text,
+      chartOptions,
+      avertStore,
+    };
   },
 };
 </script>

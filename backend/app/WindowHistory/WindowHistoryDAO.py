@@ -34,8 +34,22 @@ class WindowHistoryDAO:
         else:
             raise Exception("Cannot update, Mouse Action is empty")
 
+    def update_annotation(self, id, annotation):
+        if id is not None:
+            self.db.update({'id': id}, {
+                "$set": {
+                    'annotations': annotation
+                }
+            }, upsert=False, multi=False)
+        else:
+            raise Exception("Cannot update, Mouse Action is empty")
+
     def delete(self, wh):
         if wh is not None:
             self.db.remove(wh.toJSON())
         else:
             raise Exception("Cannot Delete, Mouse Action is empty")
+
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()        

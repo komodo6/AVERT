@@ -14,7 +14,6 @@
 
 <script>
 import { onMounted, ref } from "vue";
-import axios from "axios";
 const JSONTreeView = require("json-tree-view");
 
 export default {

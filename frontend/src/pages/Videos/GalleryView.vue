@@ -1,7 +1,7 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="video-card bg-grey-9">
-      <q-video :src="`http://192.168.169.128:5000/videos/video?id=${filename}`">
+      <q-video :src="`http://localhost:5000/videos/video?id=${filename}`">
       </q-video>
 
       <q-card-section>
@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 import { useStore } from "vuex";
 export default {
   props: {
@@ -32,8 +31,8 @@ export default {
   setup(props) {
     let store = useStore();
     const deleteIMG = async (id) => {
-      let { data } = await axios.delete(
-        "http://192.168.169.128:5000/videos/video?id=" + id
+      let { data } = await api.delete(
+        "/videos/video?id=" + id
       );
       console.log(data);
       store.state.Videos.Videos.forEach((element, index) => {

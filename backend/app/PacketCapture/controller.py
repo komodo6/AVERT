@@ -19,7 +19,6 @@ def getPCAPFIles():
 
 
 
-
 @bp.route("/pcap")
 def getPCAPData():
     if "filename" in request.args:
@@ -30,9 +29,6 @@ def getPCAPData():
         # return dumps(dao.getAllPCAPS())
     else:
         return "Missing filename"
-    
-
-
 
 @bp.route("/start")
 def startPacketCapture():
