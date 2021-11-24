@@ -20,7 +20,7 @@
 
 <script>
 import { ref } from "vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 import { useStore } from "vuex";
 export default {
   props: {
@@ -36,8 +36,8 @@ export default {
   setup(props) {
     let store = useStore();
     const deleteIMG = async (id) => {
-      let { data } = await axios.delete(
-        "http://192.168.169.128:5000/screenshots/image/" + id
+      let { data } = await api.delete(
+        "/screenshots/image/" + id
       );
       console.log(data);
       store.state.screenshots.screenshots.forEach((element, index) => {

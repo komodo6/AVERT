@@ -46,7 +46,7 @@ import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import GalleryView from "./GalleryView.vue";
 import ListView from "./ListView.vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 export default {
   components: {
     GalleryView,
@@ -59,8 +59,8 @@ export default {
     let viewState = ref("List View");
     let videos = ref([]);
     const getImages = async () => {
-      let { data } = await axios.get(
-        "http://192.168.169.128:5000/videos/videos"
+      let { data } = await api.get(
+        "/videos"
       );
       console.log(data);
       store.state.Videos.Videos = data;
