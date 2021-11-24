@@ -230,29 +230,31 @@ export default {
     };
 
     const generateData = () => {
-      let data = {
-        "keystroke": avertStore.state.keystrokes,
-        "mouseaction": avertStore.statemouseactions,
-        "window": avertStore.statewindowhistory,
-        "screenshot": avertStore.statescreenshots,
-        "video": avertStore.statevideos,
-        "pcap": avertStore.statenetworkdata,
-        "systemcall": avertStore.statesystemcalls,
-        "processe": avertStore.stateprocesses,
-      }
-      for( let [value, key] in data) {
-        value["artifact"] = key;
-        rows.value = rows.concat(value);
+      let data = [
+        avertStore.state.keystrokes,
+        avertStore.state.mouseactions,
+        avertStore.state.windowhistory,
+        avertStore.state.screenshots,
+        avertStore.state.videos,
+        avertStore.state.networkdata,
+        avertStore.state.systemcalls,
+        avertStore.state.processes,
+      ];
+      for (const d of data) {
+        if (Object.keys(d).length !== 0 ) {
+          console.log(d);
+          rows.value = rows.value.concat(d);
+        }
       }
     };
 
     onMounted(() => {
       fetchKeystrokes();
-      fetchMouseactions();
+      fetchMouseActions();
       fetchSystemCalls();
       fetchProcesses();
       fetchScreenshots();
-      fetchWindows();
+      fetchWindowHistory();
       fetchVideos();
       generateData();
     });
