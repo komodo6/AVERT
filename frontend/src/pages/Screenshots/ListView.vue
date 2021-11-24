@@ -115,7 +115,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/screenshots/image", {
+      await axios.post("http://192.168.169.128:5000/screenshots/image", {
         id: id,
         tags: val,
       });

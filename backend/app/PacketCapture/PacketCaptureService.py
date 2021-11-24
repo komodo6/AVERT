@@ -34,6 +34,7 @@ class PacketCaptureService():
             raw_hex = str(packet.get_raw_packet())
             
             timestamp = str(datetime.datetime.fromtimestamp(float(pac["sniff_timestamp"])))
+            stream = None
             if "tcp.strem" in pac["layers"][2]["_all_fields"]:
                 stream = pac["layers"][2]["_all_fields"]["tcp.stream"]
             elif "udp.stream" in pac["layers"][2]["_all_fields"]: 

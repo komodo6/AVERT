@@ -1,7 +1,7 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="video-card bg-grey-9">
-      <q-video :src="`http://127.0.0.1:5000/videos/video?id=${filename}`">
+      <q-video :src="`http://192.168.169.128:5000/videos/video?id=${filename}`">
       </q-video>
 
       <q-card-section>
@@ -33,7 +33,7 @@ export default {
     let store = useStore();
     const deleteIMG = async (id) => {
       let { data } = await axios.delete(
-        "http://127.0.0.1:5000/videos/video?id=" + id
+        "http://192.168.169.128:5000/videos/video?id=" + id
       );
       console.log(data);
       store.state.Videos.Videos.forEach((element, index) => {
