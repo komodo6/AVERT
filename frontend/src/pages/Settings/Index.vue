@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="text-h2">
-      SETTINGS
-    </div>
+    <div class="text-h2">SETTINGS</div>
     <div class="row">
       <div class="col">
         <div class="row">
@@ -151,7 +149,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <img src="./pie-chart.png">
+        <img src="./pie-chart.png" />
       </div>
     </div>
   </div>
@@ -163,14 +161,14 @@ export default {
   data() {
     return {
       items: [
-        { active: false, label: 'Record Keystrokes' }, 
-        { active: false, label: 'Record Mouse' },
-        { active: false, label: 'Record Screenshots' }, 
-        { active: false, label: 'Record Processes' }, 
-        { active: false, label: 'Record Window History' }, 
-        { active: false, label: 'Record System Calls' },
-        { active: false, label: 'Record Video' },
-        { active: false, label: 'Record PCAP' },
+        { active: false, label: "Record Keystrokes" },
+        { active: false, label: "Record Mouse" },
+        { active: false, label: "Record Screenshots" },
+        { active: false, label: "Record Processes" },
+        { active: false, label: "Record Window History" },
+        { active: false, label: "Record System Calls" },
+        { active: false, label: "Record Video" },
+        { active: false, label: "Record PCAP" },
       ],
       all: ref(false),
       options: ["Minutes", "Seconds"],
@@ -180,11 +178,11 @@ export default {
   methods: {
     async toggleAll() {
       if (this.all) {
-        this.items.forEach(element => {
+        this.items.forEach((element) => {
           element.active = true;
         });
       } else {
-        this.items.forEach(element => {
+        this.items.forEach((element) => {
           element.active = false;
         });
       }
@@ -192,27 +190,26 @@ export default {
     },
     async toggle() {
       let post_data = {
-        keystrokes: false, 
+        keystrokes: false,
         mouse: false,
-        screenshots: false, 
-        processes: false, 
-        window_history: false, 
-        system_calls: false, 
-        video: false, 
-        pcap: false
+        screenshots: false,
+        processes: false,
+        window_history: false,
+        system_calls: false,
+        video: false,
+        pcap: false,
       };
       let i = 0;
       for (var key in post_data) {
-        if(!post_data.hasOwnProperty(key))
-          continue;
+        if (!post_data.hasOwnProperty(key)) continue;
         post_data[key] = this.items[i].active;
         i++;
       }
 
-      console.log(post_data)
+      console.log(post_data);
 
       const response = await axios.post(
-        "http://localhost:5000/recording/",
+        "http://192.168.169.128:5000/recording/",
         post_data
       );
       console.log(response);
