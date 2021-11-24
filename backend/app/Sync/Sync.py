@@ -9,8 +9,9 @@ class Sync():
     def start_sync(self):
         try:
             client = MongoClient(host=self.ip, port=27017)
+            remote_db = client.AVERT
             for c in self.collections:
-                client[c].insert_many(db[c].find())
+                remote_db[c].insert_many(db[c].find())
             return True
         except Exception as e:
             print(e)
