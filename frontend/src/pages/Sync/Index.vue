@@ -27,10 +27,10 @@ export default {
     let ip = ref("");
     let items = ref([
       { active: false, label: "Keystrokes" },
-      { active: false, label: "Mouse" },
+      { active: false, label: "Mouse Actions" },
       { active: false, label: "Screenshots" },
       { active: false, label: "Processes" },
-      { active: false, label: "Window History" },
+      { active: false, label: "Window Histories" },
       { active: false, label: "System Calls" },
       { active: false, label: "Video" },
       { active: false, label: "PCAP" },
