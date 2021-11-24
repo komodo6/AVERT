@@ -59,7 +59,7 @@
 
 <script>
 import { onMounted, ref, defineComponent } from "vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 import tree from "./tree";
 const columns = [
   {
@@ -103,8 +103,8 @@ export default defineComponent({
     let packet = ref(null);
 
     const fetchPackets = async (filename) => {
-      let { data } = await axios.get(
-        "http://192.168.169.128:5000/networkdata/pcap",
+      let { data } = await api.get(
+        "/networkdata/pcap",
         {
           params: {
             filename: filename,
@@ -123,7 +123,7 @@ export default defineComponent({
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/screenshots/image", {
+      await api.post("/screenshots/image", {
         id: id,
         tags: val,
       });

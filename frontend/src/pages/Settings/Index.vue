@@ -147,21 +147,39 @@
         </div>
       </div>
     </div>
-    <div :style="{ position: 'absolute', right: '200px', bottom: '100px' }">
+    <div class="row">
       <apexcharts
         width="550"
         type="pie"
         :options="chartOptions"
-        :series="[avertStore.state.keystrokes, avertStore.state.systemcalls, avertStore.state.processes, avertStore.state.mouseactions, 0, avertStore.state.screenshots, avertStore.state.windowhistory, avertStore.state.videos, 10]"
+        :series="[
+          avertStore.state.keystrokesCount,
+          avertStore.state.systemcallsCount,
+          avertStore.state.processesCount,
+          avertStore.state.mouseactionsCount / 10,
+          0,
+          avertStore.state.screenshotsCount,
+          avertStore.state.windowhistoryCount,
+          avertStore.state.videosCount,
+          1000,
+        ]"
       ></apexcharts>
     </div>
   </div>
 </template>
 <script>
 import { onMounted, ref } from "vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 import VueApexCharts from "vue3-apexcharts";
-import { fetchKeystrokesCount, fetchMouseActionsCount, fetchScreenshotsCount, fetchProcessesCount, fetchWindowHistoryCount, fetchSystemCallsCount, fetchVideosCount} from "src/utils/request.js";
+import {
+  fetchKeystrokesCount,
+  fetchMouseActionsCount,
+  fetchScreenshotsCount,
+  fetchProcessesCount,
+  fetchWindowHistoryCount,
+  fetchSystemCallsCount,
+  fetchVideosCount,
+} from "src/utils/request.js";
 import avertStore from "src/avertStore";
 
 export default {
@@ -184,7 +202,7 @@ export default {
         "Screenshots",
         "Window History",
         "Video",
-        "Remaining Storage"
+        "Remaining Storage",
       ],
       responsive: [
         {
@@ -206,7 +224,7 @@ export default {
       },
     };
 
-    let items = [
+    let items = ref([
       { active: false, label: "Record Keystrokes" },
       { active: false, label: "Record Mouse" },
       { active: false, label: "Record Screenshots" },
@@ -215,9 +233,9 @@ export default {
       { active: false, label: "Record System Calls" },
       { active: false, label: "Record Video" },
       { active: false, label: "Record PCAP" },
-    ];
+    ]);
     let all = ref(false);
-    let options = ["Minutes", "Seconds"]
+    let options = ref(["Minutes", "Seconds"]);
     let text = ref("");
 
     onMounted(() => {
@@ -231,18 +249,17 @@ export default {
       console.log("onMounted");
     });
 
-
     const toggleAll = async () => {
       if (this.all) {
-        this.items.forEach((element) => {
+        items.value.forEach((element) => {
           element.active = true;
         });
       } else {
-        this.items.forEach((element) => {
+        items.value.forEach((element) => {
           element.active = false;
         });
       }
-      this.toggle();
+      toggle();
     };
 
     const toggle = async () => {
@@ -259,16 +276,24 @@ export default {
       let i = 0;
       for (var key in post_data) {
         if (!post_data.hasOwnProperty(key)) continue;
-        post_data[key] = this.items[i].active;
+        post_data[key] = items.value[i].active;
         i++;
+      }
+
+      if (post_data.video) {
+        await api.get("/videos/capture");
+      } else if (!post_data.video) {
+        await api.get("/videos/stop");
+      }
+      if (post_data.pcap) {
+        await api.get("/networkdata/start");
+      } else if (!post_data.pcap) {
+        await api.get("/networkdata/stop");
       }
 
       console.log(post_data);
 
-      const response = await axios.post(
-        "http://192.168.169.128:5000/recording/",
-        post_data
-      );
+      const { response } = await api.post("/recording/", post_data);
       console.log(response);
     };
 

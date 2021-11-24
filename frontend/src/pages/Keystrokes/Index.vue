@@ -20,7 +20,13 @@
               placeholder="Search"
             >
               <template v-slot:append>
-                <q-icon name="search"> </q-icon>
+                <q-icon v-if="filter === ''" name="search" />
+                <q-icon
+                  v-else
+                  name="clear"
+                  class="cursor-pointer"
+                  @click="filter = ''"
+                />
               </template>
             </q-input>
             <ExportData :rowData="rows" :headers="columns" />
@@ -108,16 +114,16 @@ const columns = [
   {
     name: "annotations",
     label: "Annotations",
-    name: "annotations",
+    field: "annotations",
     align: "center",
-    sortable: false,
+    sortable: true,
   },
   {
     name: "tags",
     label: "Tags",
-    name: "tags",
+    field: "tags",
     align: "center",
-    sortable: false,
+    sortable: true,
   },
 ];
 import axios from "axios";

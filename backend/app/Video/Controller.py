@@ -14,8 +14,9 @@ vdao = VideoDAO()
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-videoOFF = True
+global videoOFF, cs
 
+videoOFF = True
 
 @bp.route('/capture', methods=['GET'])
 def start_recording():
@@ -40,11 +41,13 @@ def start_recording():
 
 @bp.route('/stop', methods=['GET'])
 def stop_recording():
+    global videoOFF, cs
     # TODO: 
     # import capture videop
     #cs = VideoCapture
     # stop here
     cs.stop()
+    videoOFF = True
     print('in stop')
     return('stop',200)
  

@@ -89,7 +89,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item :clickable="false">
+        <!-- <q-item :clickable="false">
           <q-item-section>
             <router-link to="/transaction">
               <q-btn
@@ -101,7 +101,7 @@
               />
             </router-link>
           </q-item-section>
-        </q-item>
+        </q-item> -->
 
         <q-item :clickable="false">
           <q-item-section>
@@ -117,7 +117,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item :clickable="false">
+        <!-- <q-item :clickable="false">
           <q-item-section>
             <router-link to="/delete">
               <q-btn
@@ -129,9 +129,9 @@
               />
             </router-link>
           </q-item-section>
-        </q-item>
+        </q-item> -->
 
-        <q-item :clickable="false">
+        <!-- <q-item :clickable="false">
           <q-item-section>
             <router-link to="/Annotation">
               <q-btn
@@ -143,9 +143,9 @@
               />
             </router-link>
           </q-item-section>
-        </q-item>
+        </q-item> -->
 
-        <q-item :clickable="false">
+        <!-- <q-item :clickable="false">
           <q-item-section>
             <router-link to="/export">
               <q-btn
@@ -157,7 +157,7 @@
               />
             </router-link>
           </q-item-section>
-        </q-item>
+        </q-item> -->
 
         <q-item :clickable="false">
           <q-item-section>

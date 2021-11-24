@@ -51,7 +51,7 @@ export default {
       console.log(props.rowData)
       let data = JSON.stringify(props.rowData, null, 2);
 
-      const status = exportFile("mouseactions.json", data, "application/json");
+      const status = exportFile("data.json", data, "application/json");
 
       if (status !== true) {
         $q.notify({
@@ -81,7 +81,7 @@ export default {
         )
         .join("\r\n");
 
-      const status = exportFile("mouseactions.csv", content, "text/csv");
+      const status = exportFile("data.csv", content, "text/csv");
 
       if (status !== true) {
         $q.notify({

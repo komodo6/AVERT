@@ -150,8 +150,6 @@
 
 <script>
 import { onMounted, ref, defineComponent } from "vue";
-import axios from "axios";
-import tree from "./tree";
 const columns = [
   {
     name: "timestamp",
@@ -215,6 +213,7 @@ const columns = [
 
 import { useRouter } from "vue-router";
 import PacketCaptureFileView from "./PacketFileView.vue";
+import { api } from "src/boot/axios";
 // import route from "src/router";
 export default defineComponent({
   components: { PacketCaptureFileView },
@@ -229,13 +228,13 @@ export default defineComponent({
     let pcapfile = ref(null);
     const router = useRouter();
     const fetchPCAPS = async () => {
-      let { data } = await axios.get("http://192.168.169.128:5000/networkdata");
+      let { data } = await api.get("/networkdata");
       rows.value = data;
       console.log(data);
     };
     const fetchPackets = async () => {
-      let { data } = await axios.get(
-        "http://192.168.169.128:5000/networkdata/pcap?filename=9119e12c-5b1f-4924-a052-637806a6610d.pcap"
+      let { data } = await api.get(
+        "/networkdata/pcap?filename=9119e12c-5b1f-4924-a052-637806a6610d.pcap"
       );
       packets.value = data;
     };
@@ -244,7 +243,7 @@ export default defineComponent({
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/screenshots/image", {
+      await api.post("/screenshots/image", {
         id: id,
         tags: val,
       });
