@@ -205,6 +205,7 @@ export default {
       this.selection = []
     },
      generateGraph(){
+       
       this.graphToShow = this.model;
     }
   },

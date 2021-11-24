@@ -1,13 +1,15 @@
 import {api} from 'src/boot/axios'
 import avertStore from "src/avertStore"
-//import { apply } from 'core-js/fn/reflect';
+import axios from 'axios' 
 
 export const fetchKeystrokes = async () => {
     await api.get('/keystrokes/count').then((response) => {
-        console.log(response.data);
+        
         avertStore.state.keystrokes = response.data
     })
 }
+
+
 
 export const fetchMouseActions = async () => {
     await api.get('/mouseactions/count').then((response) => {
@@ -15,6 +17,14 @@ export const fetchMouseActions = async () => {
         avertStore.state.mouseactions = response.data 
     })
 }
+
+export const fetchMouseActionsTimeline = async () =>{
+    await axios.post("http://localhost:5000/mouseactions/timeline", {
+        start: 'start',
+        end: 'end',
+      });
+}
+
 
 export const fetchScreenshots = async () => {
     await api.get('/screenshots/count').then((response) => {
@@ -56,4 +66,4 @@ export const fetchVideos = async () => {
 
 
 
-// export default fetchKeystrokes, 
+
