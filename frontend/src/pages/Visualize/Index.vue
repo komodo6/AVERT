@@ -89,9 +89,12 @@
                   </div>
                 </div>
                 <div class="col-6">
+                  <div v-if="model === 'Timeline'">
                   <div class="row">
+                    
                     <div class="col">
                       <div class="text-subtitle1">Select Graph Interval</div>
+                    
                     </div>
                   </div>
                   <div class="row">
@@ -130,6 +133,7 @@
                     </div>
                   </div>
                   </div>
+                  </div>
                   <div class="row">
                     <div class="col-5">
                       <q-btn @click="generateGraph" size="lg" color="grey-9">
@@ -140,6 +144,12 @@
                 </div>
               </div>
             </q-form>
+            <div v-if="graphToShow === 'Timeline' ">
+              <TimeLine/>
+            </div>
+            <div v-if="graphToShow === 'Bar Graph'">
+              <BarChart/>
+            </div>
           </div>
         </div>
       </div>
@@ -149,8 +159,14 @@
 </template>
 <script>
 import { ref } from "vue";
+import TimeLine from "./Timelinechart.vue";
+import BarChart from "./BarChart.vue";
 
 export default {
+  components:{
+    TimeLine,
+    BarChart
+  },
   data() {
     
     // let sa = ref(false);
@@ -160,8 +176,9 @@ export default {
     // let pc = ref(false);
     // let ks = ref(false);
     return {
+      graphToShow: ref(''),
       model: ref(null),
-      options: ['Pie Chart', 'Bar Graph', 'Timeline'],
+      options: [ 'Bar Graph', 'Timeline'],
       selection: [],
       optionsa: ['mouseActions', 'networkData', 'screenShots', 'windowHistory', 'videos', 'processes', 'keyStrokes', 'systemCalls' ],
       //interval: ref(null),
@@ -186,6 +203,9 @@ export default {
 
     unselectAll(){
       this.selection = []
+    },
+     generateGraph(){
+      this.graphToShow = this.model;
     }
   },
 }
