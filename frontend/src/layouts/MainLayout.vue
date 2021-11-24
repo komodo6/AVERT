@@ -248,7 +248,7 @@ const linksList = [
 ];
 
 import { defineComponent, ref } from "vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 import { useStore } from "vuex";
 export default defineComponent({
   name: "MainLayout",
@@ -271,7 +271,7 @@ export default defineComponent({
     };
 
     const captureScreenshot = async () => {
-      axios.get("http://localhost:5000/screenshots/capture");
+      api.get("/screenshots/capture");
       location.reload()
     };
 

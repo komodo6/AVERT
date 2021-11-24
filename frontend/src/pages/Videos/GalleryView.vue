@@ -1,7 +1,7 @@
 <template>
   <div class="col-auto q-pa-md">
     <q-card class="video-card bg-grey-9">
-      <q-video :src="`http://192.168.169.128:5000/videos/video?id=${filename}`">
+      <q-video :src="`http://localhost:5000/videos/video?id=${filename}`">
       </q-video>
 
       <q-card-section>

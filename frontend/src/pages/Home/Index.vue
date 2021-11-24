@@ -196,7 +196,6 @@ const columns = [
     sortable: true,
   },
 ];
-import { api } from "src/boot/axios";
 import {
   updateAnnotations,
   updateTags,
