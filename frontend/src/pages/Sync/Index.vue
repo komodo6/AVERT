@@ -3,8 +3,8 @@
     <div class="text-h4">Sync</div>
     <div class="row">
       <div class="col-5">
-        <q-input outlined label="IP Address" />
-        <q-btn color="grey-9" class="q-mt-sm" label="Sync" @click="sync()"/>
+        <q-input outlined label="IP Address" v-model="ip" />
+        <q-btn color="grey-9" class="q-mt-sm" label="Sync" @click="sync()" />
       </div>
     </div>
     <div class="row q-pt-sm">
@@ -12,8 +12,8 @@
         <div class="text-body2">{{ item.label }}</div>
         <q-toggle color="primary" v-model="item.active" />
       </div>
-            <div class="col-4 border">
-        <div class="text-body2" >Toggle All</div>
+      <div class="col-4 border">
+        <div class="text-body2">Toggle All</div>
         <q-toggle color="primary" v-model="all" v-on:click="toggleAll()" />
       </div>
     </div>
@@ -21,8 +21,10 @@
 </template>
 <script>
 import { ref } from "vue";
+import axios from "axios";
 export default {
   setup() {
+    let ip = ref("");
     let items = ref([
       { active: false, label: "Keystrokes" },
       { active: false, label: "Mouse" },
@@ -47,32 +49,37 @@ export default {
     };
 
     const sync = async () => {
-        let post_data = []
-        for (const i of items.value) {
-            if(i.active && i.label != 'PCAP') {
-                post_data = post_data.concat(i.label.replace(/\s/g, ''))
-            }
-            else if(i.active) {
-                post_data = post_data.concat(['NetworkData', 'NetworkPackets'])
-            }
+      let collections = [];
+      for (const i of items.value) {
+        if (i.active && i.label != "PCAP") {
+          collections = collections.concat(i.label.replace(/\s/g, ""));
+        } else if (i.active) {
+          collections = collections.concat(["NetworkData", "NetworkPackets"]);
         }
-        console.log(post_data)
-        const response = await axios.post(
+      }
+      let post_data = {
+        collections: collections,
+        ip: ip.value,
+      };
+      console.log(post_data);
+      const {msg} = await axios.post(
         "http://192.168.19.132:5000/sync/",
         post_data
       );
-    }
+      console.log(msg);
+    };
     return {
       items,
       toggleAll,
       all,
       sync,
+      ip,
     };
   },
 };
 </script>
 <style lang="scss">
 .border {
-    border: 1px solid grey;
+  border: 1px solid grey;
 }
 </style>
