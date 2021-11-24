@@ -59,12 +59,12 @@ export default {
     let images = ref([]);
     const getImages = async () => {
       let { data } = await axios.get(
-        "http://localhost:5000/screenshots/images"
+        "http://192.168.169.128:5000/screenshots/images"
       );
       console.log(data);
       store.state.screenshots.screenshots = data;
       images.value = store.state.screenshots.screenshots;
-      console.log(images.value)
+      console.log(images.value);
     };
 
     const switchViews = () => {

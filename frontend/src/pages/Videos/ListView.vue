@@ -105,7 +105,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://127.0.0.1:5000/videos/video", {
+      await axios.post("http://192.168.169.128:5000/videos/video", {
         id: id,
         tags: val,
       });

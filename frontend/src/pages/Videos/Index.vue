@@ -34,7 +34,7 @@
         />
         <ListView v-show="listView" />
         <!-- <video class="video" controls>
-          <source src="http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4">
+          <source src="http://192.168.169.128:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4">
         </video> -->
       </div>
     </div>
@@ -60,12 +60,12 @@ export default {
     let videos = ref([]);
     const getImages = async () => {
       let { data } = await axios.get(
-        "http://127.0.0.1:5000/videos/videos"
+        "http://192.168.169.128:5000/videos/videos"
       );
       console.log(data);
       store.state.Videos.Videos = data;
       videos.value = store.state.Videos.Videos;
-      console.log(videos.value)
+      console.log(videos.value);
     };
     const switchViews = () => {
       if (gallView.value) {
