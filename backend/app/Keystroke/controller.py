@@ -32,6 +32,18 @@ def update_keystroke_tag():
 
     return "Missings id", 400
 
+@bp.route('/count', methods=['GET'])
+def get_count_keystrokes():
+    try:
+        count = ks.get_count()
+        print(count)
+        return json.dumps(count)
+        # return list(ks.read())
+    except Exception as e:
+        print(e)
+        return 'error'
+
+
 @bp.route('/annotations', methods=['POST'])
 def update_annotation():
     id = request.get_json()["id"] if "id" in request.get_json() else None
@@ -45,3 +57,5 @@ def update_annotation():
             return "Missings annotation", 400
 
     return "Missings id", 400
+
+

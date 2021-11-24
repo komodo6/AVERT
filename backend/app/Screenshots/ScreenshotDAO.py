@@ -49,3 +49,7 @@ class ScreemshotDAO:
             self.db.remove({'id': screenshot})
         else:
             raise Exception("Cannot Delete, Mouse Action is empty")
+
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()        

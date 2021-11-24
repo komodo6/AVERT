@@ -18,6 +18,9 @@ class MouseActionsDAO:
         else:
             return self.db.find({"id": mouse_action_id}, {'_id': False})
 
+    # def read_time_interval(self, start, end):
+
+
     def update(self, mouse_action):
         if mouse_action is not None:
             self.db.save(mouse_action.toJSON())
@@ -49,3 +52,8 @@ class MouseActionsDAO:
             self.db.remove(mouse_action.toJSON())
         else:
             raise Exception("Cannot Delete, Mouse Action is empty")
+
+    
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()

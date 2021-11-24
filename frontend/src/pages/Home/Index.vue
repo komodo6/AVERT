@@ -114,10 +114,12 @@
                     v-for="(value, key) in props.row"
                     :key="key"
                   >
-                  <q-img v-if="key == 'ScreenshotFile'" :src="'data:image/jpeg;base64,'+ value"> </q-img>
-                  <div v-else>
-                    {{key}} : {{value}}
-                  </div>
+                    <q-img
+                      v-if="key == 'ScreenshotFile'"
+                      :src="'data:image/jpeg;base64,' + value"
+                    >
+                    </q-img>
+                    <div v-else>{{ key }} : {{ value }}</div>
                   </div>
                 </div>
               </q-td>
@@ -194,8 +196,19 @@ const columns = [
 ];
 
 import axios from "axios";
-
+import {
+  fetchKeystrokes,
+  fetchMouseActions,
+  fetchScreenshots,
+  fetchProcesses,
+  fetchWindowHistory,
+  fetchSystemCalls,
+  fetchVideos,
+  updateAnnotations,
+  updateTags,
+} from "src/utils/request.js";
 import { exportFile, useQuasar } from "quasar";
+import avertStore from "src/avertStore";
 
 export default {
   setup() {
@@ -203,16 +216,6 @@ export default {
     let selected = ref([]);
     let filter = ref("");
     let annotation = ref("");
-    let visibleColumns = ref([
-      "calories",
-      "desc",
-      "fat",
-      "carbs",
-      "protein",
-      "sodium",
-      "calcium",
-      "iron",
-    ]);
 
     const saveAnnotation = () => {
       console.log(selected.value);
@@ -226,82 +229,21 @@ export default {
       annotation.value = "";
     };
 
-    const updateAnnotations = async (val, id, artifact) => {
-      await axios.post(`http://192.168.19.132:5000/${artifact}s/annotations`, {
-        id: id,
-        annotation: val,
-      });
-      console.log(val, id);
-    };
-
-    const updateTags = async (val, id, artifact) => {
-      if (!val) {
-        val = [];
+    const generateData = () => {
+      let data = {
+        "keystroke": avertStore.state.keystrokes,
+        "mouseaction": avertStore.statemouseactions,
+        "window": avertStore.statewindowhistory,
+        "screenshot": avertStore.statescreenshots,
+        "video": avertStore.statevideos,
+        "pcap": avertStore.statenetworkdata,
+        "systemcall": avertStore.statesystemcalls,
+        "processe": avertStore.stateprocesses,
       }
-      await axios.post(`http://192.168.19.132:5000/${artifact}s/tags`, {
-        id: id,
-        tags: val,
-      });
-      console.log(val, id);
-    };
-
-    const fetchKeystrokes = async () => {
-      const { data } = await axios.get("http://192.168.19.132:5000/keystrokes");
-      for (const d of data) {
-        d["artifact"] = "keystroke";
+      for( let [value, key] in data) {
+        value["artifact"] = key;
+        rows.value = rows.concat(value);
       }
-      rows.value = data;
-    };
-    const fetchSystemCalls = async () => {
-      const { data } = await axios.get(
-        "http://192.168.19.132:5000/systemcalls"
-      );
-      for (const d of data) {
-        d["artifact"] = "systemcall";
-      }
-      rows.value = rows.value.concat(data);
-    };
-    const fetchProcesses = async () => {
-      const { data } = await axios.get("http://192.168.19.132:5000/processes");
-      for (const d of data) {
-        d["artifact"] = "processe";
-      }
-      rows.value = rows.value.concat(data);
-    };
-    const fetchMouseactions = async () => {
-      const { data } = await axios.get(
-        "http://192.168.19.132:5000/mouseactions"
-      );
-      for (const d of data) {
-        d["artifact"] = "mouseaction";
-      }
-      rows.value = rows.value.concat(data);
-    };
-    const fetchImages = async () => {
-      let { data } = await axios.get(
-        "http://192.168.19.132:5000/screenshots/images"
-      );
-      console.log(data)
-      for (const d of data) {
-        d["artifact"] = "screenshot";
-      }
-      rows.value = rows.value.concat(data);
-    };
-    const fetchWindows = async () => {
-      let { data } = await axios.get("http://192.168.19.132:5000/windows");
-      for (const d of data) {
-        d["artifact"] = "window";
-      }
-      rows.value = rows.value.concat(data);
-    };
-    const fetchVideos = async () => {
-      let { data } = await axios.get(
-        "http://192.168.19.132:5000/videos/videos"
-      );
-      for (const d of data) {
-        d["artifact"] = "video";
-      }
-      rows.value = rows.value.concat(data);
     };
 
     onMounted(() => {
@@ -309,22 +251,49 @@ export default {
       fetchMouseactions();
       fetchSystemCalls();
       fetchProcesses();
-      fetchImages();
+      fetchScreenshots();
       fetchWindows();
       fetchVideos();
+      generateData();
     });
 
-    const plusOne = computed(() => visibleColumns);
-    console.log(plusOne);
     return {
       selected,
-      visibleColumns,
       rows,
       columns,
       filter,
       updateTags,
       saveAnnotation,
       annotation,
+      exportTable() {
+        // naive encoding to csv format
+        const content = [columns.map((col) => wrapCsvValue(col.label))]
+          .concat(
+            rows.value.map((row) =>
+              columns
+                .map((col) =>
+                  wrapCsvValue(
+                    typeof col.field === "function"
+                      ? col.field(row)
+                      : row[col.field === void 0 ? col.name : col.field],
+                    col.format
+                  )
+                )
+                .join(",")
+            )
+          )
+          .join("\r\n");
+
+        const status = exportFile("keystrokes.csv", content, "text/csv");
+
+        if (status !== true) {
+          $q.notify({
+            message: "Browser denied file download...",
+            color: "negative",
+            icon: "warning",
+          });
+        }
+      },
     };
   },
 };

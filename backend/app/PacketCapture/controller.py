@@ -21,7 +21,6 @@ def vid():
     path = os.path.join(current_dir, "./Output.mp4")
     return send_file(path)
 
-
 @bp.route("/pcap")
 def getPCAPData():
     if "filename" in request.args:
@@ -32,9 +31,6 @@ def getPCAPData():
         # return dumps(dao.getAllPCAPS())
     else:
         return "Missing filename"
-    
-
-
 
 @bp.route("/start")
 def startPacketCapture():

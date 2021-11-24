@@ -26,7 +26,7 @@ def screenshot_capture():
     return "ok", 200
 
 
-@bp.route('/images', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def get_images():
     images = list(dao.read_all())
     images = json.loads(dumps(images))
@@ -91,3 +91,14 @@ def delete_image(id):
         return img, 200
     else:
         return "Image does not exist", 404
+
+@bp.route('/count', methods=['GET'])
+def get_count_screenshots():
+    try:
+        count = dao.get_count()
+        print(count)
+        return json.dumps(count)
+        # return list(ks.read())
+    except Exception as e:
+        print(e)
+        return 'error'

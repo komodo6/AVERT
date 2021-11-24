@@ -49,3 +49,7 @@ class SystemCallDAO:
             self.db.remove(process.toJSON())
         else:
             raise Exception("Cannot Delete, System Call is empty")
+
+    def get_count(self):
+        print(self.db.count())
+        return self.db.count()        
