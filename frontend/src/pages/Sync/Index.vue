@@ -63,7 +63,7 @@ export default {
       };
       console.log(post_data);
       const response = await axios.post(
-        "http://192.168.19.132:5000/sync/",
+        "http://localhost:5000/sync/",
         post_data
       );
       console.log(response);
