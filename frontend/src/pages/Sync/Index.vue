@@ -62,11 +62,11 @@ export default {
         ip: ip.value,
       };
       console.log(post_data);
-      const {msg} = await axios.post(
+      const response = await axios.post(
         "http://192.168.19.132:5000/sync/",
         post_data
       );
-      console.log(msg);
+      console.log(response);
     };
     return {
       items,

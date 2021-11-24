@@ -8,8 +8,9 @@ bp = Blueprint('sync', __name__, url_prefix='/sync')
 
 
 @bp.route('/', methods=['POST'])
-def screenshot_capture():
+def sync_to_ip():
     collections, ip = request.get_json()
+    print(request.get_json())
     sync = Sync(ip, collections)
 
     resp = sync.start_sync()
