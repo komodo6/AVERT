@@ -11,7 +11,7 @@ class Sync():
             client = MongoClient(host=self.ip, port=27017)
             for c in self.collections:
                 client[c].insert_many(db[c].find())
-            return('Synced')
+            return True
         except Exception as e:
             print(e)
-            return('Error')
+            return False

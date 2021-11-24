@@ -25,6 +25,7 @@ def create_app():
     from app.Scripts.controller import bp as scripting
     from app.WindowHistory.controller import bp as windowhistory
     from app.PacketCapture.controller import bp as networkdata
+    from app.Sync.controller import bp as sync
 
     app.register_blueprint(keystrokes)
     app.register_blueprint(MouseActions)
@@ -36,5 +37,6 @@ def create_app():
     app.register_blueprint(scripting)
     app.register_blueprint(windowhistory)
     app.register_blueprint(networkdata)
+    app.register_blueprint(sync)
 
     return app
