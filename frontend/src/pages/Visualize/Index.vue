@@ -97,7 +97,7 @@
                     
                     </div>
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-2">
                       <div class="q-pa-md">
                         <div class="q-gutter-sm">
@@ -131,8 +131,8 @@
                         </div>
                       </div>   
                     </div>
-                  </div>
-                  </div>
+                  </div> -->
+                  <!-- </div> -->
                   </div>
                   <div class="row">
                     <div class="col-5">

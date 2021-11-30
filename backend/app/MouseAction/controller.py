@@ -51,20 +51,6 @@ def get_mouseaction_timeline():
     print(r_times)
     print(r_intervals)
     r = {'r_times':r_times, 'r_intervals':r_intervals}
-          
-
-    
-    
-
-    # id = request.get_json()["id"] if "id" in request.get_json() else None
-    # if id:
-    #     tags = request.get_json(
-    #     )["tags"] if "tags" in request.get_json() else None
-    #     if tags is not None:
-    #         ma.update_tag(id, tags)
-    #         return "Updated", 200
-    #     else:
-    #         return "Missings tags", 400
 
     return json.dumps(r), 200
 

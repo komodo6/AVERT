@@ -18,6 +18,19 @@ class ScreemshotDAO:
     def read_all(self):
         return self.db.find({}, {'_id': False})
 
+    def read_time_interval(self, end_range):
+        print('end_range in read interval',end_range.strftime("%Y-%m-%d %H:%M:%S.%f")) #TODO: Delete 
+        range = {
+            "timestamp":{
+                "$lt": end_range.strftime("%Y-%m-%d %H:%M:%S.%f")   
+            }
+        }
+        screenshot_list = []
+        sc = self.db.find(range)
+        for doc in sc:
+            screenshot_list = screenshot_list + [doc]
+        return screenshot_list
+
     def update(self, screenshot):
         if screenshot is not None:
             self.db.save(screenshot.toJSON())

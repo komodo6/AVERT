@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from .ProcessDAO import ProcessDAO
 import json
+import datetime
 
 
 bp = Blueprint("process", __name__, url_prefix="/processes")
@@ -37,3 +38,28 @@ def get_count_processes():
     except Exception as e:
         print(e)
         return 'error'
+
+
+@bp.route('/timeline', methods=['POST'])
+def get_process_timeline():
+    print('Made it in processes')
+    time_range = request.get_json()
+
+    print(time_range['start']) # TODO:Delete
+    print(time_range['end'])
+    start_date = datetime.datetime.strptime(time_range['start'],"%Y-%m-%d %H:%M:%S.%f")
+    end_date = datetime.datetime.strptime(time_range['end'],"%Y-%m-%d %H:%M:%S.%f")
+    increment = datetime.timedelta(milliseconds=100)
+    r_times = []
+    r_intervals = []
+
+    while start_date <= end_date:
+        r_times = r_times + [start_date.strftime("%Y-%m-%d %H:%M:%S.%f")]
+        r_intervals = r_intervals + [len(ps.read_time_interval(start_date))]
+        start_date =  start_date + increment
+
+    print(r_times)
+    print(r_intervals)
+    r = {'r_times':r_times, 'r_intervals':r_intervals}
+
+    return json.dumps(r), 200

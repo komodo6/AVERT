@@ -47,7 +47,28 @@ export default {
       end: this.$props.endTime,
     })
 
+    const psTimeline = await axios.post("http://localhost:5000/processes/timeline", {
+      start: this.$props.startTime,
+      end: this.$props.endTime,
+    })
 
+    const whTimeline = await axios.post("http://localhost:5000/windows/timeline", {
+      start: this.$props.startTime,
+      end: this.$props.endTime,
+    })
+
+    const scTimeline = await axios.post("http://localhost:5000/screenshots/timeline", {
+      start: this.$props.startTime,
+      end: this.$props.endTime,
+    })
+
+    const vTimeline = await axios.post("http://localhost:5000/videos/timeline", {
+      start: this.$props.startTime,
+      end: this.$props.endTime,
+    })
+
+
+  
     console.log('maTimeline' + JSON.stringify(maTimeline) )
     console.log(maTimeline['data']['r_intervals'])
 
@@ -62,6 +83,28 @@ export default {
         {
           name: "Keystrokes",
           data: ksTimeline['data']['r_intervals']
+        },
+        {
+          name: "Process",
+          data: psTimeline['data']['r_intervals']
+        },
+        {
+          name: "Window History",
+          data: whTimeline['data']['r_intervals']
+        },
+        {
+          name: "Network",
+          data: [0]
+        }
+        ,
+        {
+          name: "Screen Shots",
+          data: scTimeline['data']['r_intervals']
+        }
+        ,
+        {
+          name: "Screen Shots",
+          data: vTimeline['data']['r_intervals']
         }
       ];
 
