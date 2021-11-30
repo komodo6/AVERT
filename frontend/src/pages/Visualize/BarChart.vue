@@ -25,42 +25,71 @@ import {
   fetchVideos,
 } from "src/utils/request.js";
 import { chartOptions } from "./barchartoption";
+import axios from 'axios'
 export default {
   name: "Chart",
   components: {
     apexchart: VueApexCharts,
   },
-  setup() {
-    let series = ref([]);
-    fetchKeystrokes();
-    fetchMouseActions();
-    fetchScreenshots();
-    fetchProcesses();
-    fetchWindowHistory();
-    fetchSystemCalls();
-    fetchVideos();
-    onMounted(() => {
-      series.value = [
+  async created() {
+    // let series = ref([]);
+
+    const ks = await axios.get("http://localhost:5000/keystrokes/count");
+    // await fetchKeystrokes();
+    console.log(ks.data)
+    const ma = await axios.get("http://localhost:5000/mouseactions/count");
+    console.log(ma.data)
+    // await fetchScreenshots();
+    const ps = await axios.get("http://localhost:5000/processes/count");
+    console.log(ps.data)
+    // await fetchProcesses();
+
+    const wh = await axios.get("http://localhost:5000/windows/count");
+    console.log(wh.data)
+    // await fetchWindowHistory();
+    const sc = await axios.get("http://localhost:5000/systemcalls/count");
+    console.log(sc.data)
+    // await fetchSystemCalls();
+
+    // const vi = await axios.get("http://localhost:5000'/videos/count");
+    // console.log(vi.data)
+    // await fetchVideos();
+      this.series = [
         {
           name: "Inflation",
           data: [
-            avertStore.state.keystrokes,
-            avertStore.state.systemcalls,
-            avertStore.state.processes,
-            avertStore.state.mouseactions,
+            ks,
+            sc,
+            ps,
             0,
-            avertStore.state.screenshots,
-            avertStore.state.windowhistory,
-            avertStore.state.videos,
+            0,
+            sc,
+            wh,
+            0,
           ],
         },
       ];
-    });
 
-    return {
-      series,
-      chartOptions,
-    };
   },
+  date(){
+    return{
+      series:[
+        {
+          name: "Inflation",
+          data: [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ],
+        },
+      ],
+      chartOptions: chartOptions
+    }
+  }
 };
 </script>

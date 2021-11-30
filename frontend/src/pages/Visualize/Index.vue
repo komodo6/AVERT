@@ -145,7 +145,7 @@
               </div>
             </q-form>
             <div v-if="graphToShow === 'Timeline' ">
-              <TimeLine/>
+              <TimeLine :startTime="startTime" :endTime="endTime"/>
             </div>
             <div v-if="graphToShow === 'Bar Graph'">
               <BarChart/>
@@ -168,14 +168,9 @@ export default {
     BarChart
   },
   data() {
-    
-    // let sa = ref(false);
-    // let sc = ref(false);
-    // let mm = ref(false);
-    // let wh = ref(false);
-    // let pc = ref(false);
-    // let ks = ref(false);
     return {
+      startTime: '2021-11-23 02:12:36.200',
+      endTime: '2021-11-23 02:12:37.100',
       graphToShow: ref(''),
       model: ref(null),
       options: [ 'Bar Graph', 'Timeline'],

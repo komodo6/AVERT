@@ -37,8 +37,8 @@ def get_mouseaction_timeline():
 
     print(time_range['start']) # TODO:Delete
     print(time_range['end'])
-    start_date = datetime.datetime.strptime("2021-11-23 02:12:36.200","%Y-%m-%d %H:%M:%S.%f")
-    end_date = datetime.datetime.strptime("2021-11-23 02:12:37.100","%Y-%m-%d %H:%M:%S.%f")
+    start_date = datetime.datetime.strptime(time_range['start'],"%Y-%m-%d %H:%M:%S.%f")
+    end_date = datetime.datetime.strptime(time_range['end'],"%Y-%m-%d %H:%M:%S.%f")
     increment = datetime.timedelta(milliseconds=100)
     r_times = []
     r_intervals = []

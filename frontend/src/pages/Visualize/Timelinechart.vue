@@ -28,16 +28,26 @@ import axios from 'axios';
 // import {chartOptions} from "./timelineoption.js";
 
 export default {
-  name: "Chart",
+  name: "TimeLine",
+  props:['startTime','endTime'],
   components: {
     apexchart: VueApexCharts,
   },
   async created(){
-
+    console.log(this.$props.startTime )
+    console.log(this.$props.endTime )
+    // console.log(props.startTime)
     const maTimeline = await axios.post("http://localhost:5000/mouseactions/timeline", {
-      start: 'start',
-      end: 'end',
+      start: this.$props.startTime,
+      end: this.$props.endTime,
     })
+
+    const ksTimeline = await axios.post("http://localhost:5000/keystrokes/timeline", {
+      start: this.$props.startTime,
+      end: this.$props.endTime,
+    })
+
+
     console.log('maTimeline' + JSON.stringify(maTimeline) )
     console.log(maTimeline['data']['r_intervals'])
 
@@ -48,6 +58,10 @@ export default {
         {
           name: "Mouse Action",
           data:maTimeline['data']['r_intervals'],
+        },
+        {
+          name: "Keystrokes",
+          data: ksTimeline['data']['r_intervals']
         }
       ];
 
@@ -68,7 +82,7 @@ export default {
           curve: "straight",
         },
         title: {
-          text: "Missing data (null values)",
+          text: "Timeline",
         },
         xaxis: {
             categories:maTimeline['data']['r_times']
@@ -99,7 +113,7 @@ export default {
           curve: "straight",
         },
         title: {
-          text: "Missing data (null values)",
+          text: "Timeline",
         },
         xaxis: {
             categories:[]
