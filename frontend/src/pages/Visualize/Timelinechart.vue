@@ -57,7 +57,7 @@ export default {
     this.series= [
         {
           name: "Mouse Action",
-          data:maTimeline['data']['r_intervals'],
+          data: maTimeline['data']['r_intervals'],
         },
         {
           name: "Keystrokes",

@@ -33,6 +33,7 @@ export default {
   },
   async created() {
     // let series = ref([]);
+    console.log( 'Chart Options: ' + JSON.stringify(chartOptions))
 
     const ks = await axios.get("http://localhost:5000/keystrokes/count");
     // await fetchKeystrokes();
@@ -56,22 +57,22 @@ export default {
     // await fetchVideos();
       this.series = [
         {
-          name: "Inflation",
+          name: "BarChart",
           data: [
-            ks,
-            sc,
-            ps,
+            ks.data,
+            sc.data,
+            ps.data,
+            ma.data,
             0,
-            0,
-            sc,
-            wh,
+            sc.data,
+            wh.data,
             0,
           ],
         },
       ];
 
   },
-  date(){
+  data(){
     return{
       series:[
         {
