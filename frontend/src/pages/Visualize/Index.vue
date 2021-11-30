@@ -42,13 +42,13 @@
                     <div class="col-4">
                       <div clas="start-date">
                         <label> Start Date</label>
-                        <input type="datetime-local" />
+                        <input v-model="startTime" type="datetime-local" step="0.001" />
                       </div>
                     </div>
                     <div class="col-4">
                       <div clas="end-date">
                         <label> End Date</label>
-                        <input type="datetime-local" />
+                        <input v-model="endTime" type="datetime-local" step="0.001"/>
                       </div>
                     </div>
                   </div>
