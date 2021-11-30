@@ -15,8 +15,9 @@ vdao = VideoDAO()
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-videoOFF = True
+global videoOFF, cs
 
+videoOFF = True
 
 @bp.route('/capture', methods=['GET'])
 def start_recording():
@@ -41,17 +42,19 @@ def start_recording():
 
 @bp.route('/stop', methods=['GET'])
 def stop_recording():
+    global videoOFF, cs
     # TODO: 
     # import capture videop
     #cs = VideoCapture
     # stop here
     cs.stop()
+    videoOFF = True
     print('in stop')
     return('stop',200)
  
 
 
-@bp.route('/videos', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def get_images():
     videos = list(vdao.read_all())
     return dumps(videos)
@@ -77,7 +80,7 @@ def get_image():
         return "Image does not exist", 404
 
 
-@bp.route('/videos', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_image():
 
     id = request.get_json()["id"] if "id" in request.get_json() else None
@@ -85,10 +88,24 @@ def update_image():
         tags = request.get_json(
         )["tags"] if "tags" in request.get_json() else None
         if tags is not None:
-            dao.update_tag(id, tags)
+            vdao.update_tag(id, tags)
             return "Updated", 200
         else:
             return "Missings tags", 400
+
+    return "Missings id", 400
+
+@bp.route('/annotations', methods=['POST'])
+def update_annotation():
+    id = request.get_json()["id"] if "id" in request.get_json() else None
+    if id:
+        annotation = request.get_json(
+        )["annotation"] if "annotation" in request.get_json() else None
+        if annotation is not None:
+            vdao.update_annotation(id, annotation)
+            return "Updated", 200
+        else:
+            return "Missings annotation", 400
 
     return "Missings id", 400
 

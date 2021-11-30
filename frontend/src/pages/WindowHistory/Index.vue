@@ -216,7 +216,7 @@ const columns = [
     sortable: false,
   },
 ];
-import axios from "axios";
+import { api } from "src/boot/axios";
 import { onMounted, ref } from "vue";
 import { exportFile, useQuasar } from "quasar";
 import ExportData from "../../components/ExportData.vue";
@@ -230,7 +230,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://localhost:5000/windows/window", {
+      await api.post("/windows/window", {
         id: id,
         tags: val,
       });
@@ -245,7 +245,7 @@ export default {
       fetchWindows();
     });
     const fetchWindows = async () => {
-      const { data } = await axios.get("http://localhost:5000/windows");
+      const { data } = await api.get("/windows");
       rows.value = data;
     };
     return {

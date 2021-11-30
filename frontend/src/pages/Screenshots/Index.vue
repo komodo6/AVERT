@@ -44,7 +44,7 @@ import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import GalleryView from "./GalleryView.vue";
 import ListView from "./ListView.vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 export default {
   components: {
     GalleryView,
@@ -58,13 +58,13 @@ export default {
     let viewState = ref("List View");
     let images = ref([]);
     const getImages = async () => {
-      let { data } = await axios.get(
-        "http://localhost:5000/screenshots/images"
+      let { data } = await api.get(
+        "/screenshots"
       );
       console.log(data);
       store.state.screenshots.screenshots = data;
       images.value = store.state.screenshots.screenshots;
-      console.log(images.value)
+      console.log(images.value);
     };
 
     const switchViews = () => {

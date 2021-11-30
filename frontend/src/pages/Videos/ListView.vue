@@ -92,7 +92,7 @@ const columns = [
 ];
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import axios from "axios";
+import { api } from "src/boot/axios";
 export default {
   setup() {
     let store = useStore();
@@ -105,7 +105,7 @@ export default {
       if (!val) {
         val = [];
       }
-      await axios.post("http://127.0.0.1:5000/videos/video", {
+      await api.post("/videos/video", {
         id: id,
         tags: val,
       });

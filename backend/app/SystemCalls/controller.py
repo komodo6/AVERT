@@ -32,7 +32,7 @@ def kill_syscall():
     return "das", 200
 
 
-@bp.route('/systemcall', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_image():
 
     id = request.get_json()["id"] if "id" in request.get_json() else None
@@ -44,6 +44,20 @@ def update_image():
             return "Updated", 200
         else:
             return "Missings tags", 400
+
+    return "Missings id", 400
+
+@bp.route('/annotations', methods=['POST'])
+def update_annotation():
+    id = request.get_json()["id"] if "id" in request.get_json() else None
+    if id:
+        annotation = request.get_json(
+        )["annotation"] if "annotation" in request.get_json() else None
+        if annotation is not None:
+            scd.update_annotation(id, annotation)
+            return "Updated", 200
+        else:
+            return "Missings annotation", 400
 
     return "Missings id", 400
 

@@ -34,7 +34,7 @@
         />
         <ListView v-show="listView" />
         <!-- <video class="video" controls>
-          <source src="http://127.0.0.1:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4">
+          <source src="http://192.168.169.128:5000/videos/video?id=e79533a2-3c32-11ec-875d-000c29bb9f61.mp4" type="video/mp4">
         </video> -->
       </div>
     </div>
@@ -46,7 +46,7 @@ import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import GalleryView from "./GalleryView.vue";
 import ListView from "./ListView.vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 export default {
   components: {
     GalleryView,
@@ -59,13 +59,13 @@ export default {
     let viewState = ref("List View");
     let videos = ref([]);
     const getImages = async () => {
-      let { data } = await axios.get(
-        "http://127.0.0.1:5000/videos/videos"
+      let { data } = await api.get(
+        "/videos"
       );
       console.log(data);
       store.state.Videos.Videos = data;
       videos.value = store.state.Videos.Videos;
-      console.log(videos.value)
+      console.log(videos.value);
     };
     const switchViews = () => {
       if (gallView.value) {

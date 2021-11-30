@@ -17,6 +17,12 @@ const routes = [
         component: () => import("pages/PacketCapture/Index.vue"),
       },
       {
+        path: "/packetcapture/packetfileview",
+        component: () => import("pages/PacketCapture/PacketFileView.vue"),
+        name: "PacketCaptureFileView",
+        props: true,
+      },
+      {
         path: "/screenshots",
         component: () => import("pages/Screenshots/Index.vue"),
       },

@@ -50,6 +50,17 @@ class ProcessDAO:
         else:
             raise Exception("Cannot update, Mouse Action is empty")
 
+    def update_annotation(self, id, annotation):
+        if id is not None:
+            self.db.update({'id': id}, {
+                "$set": {
+                    'annotations': annotation
+                }
+            }, upsert=False, multi=False)
+        else:
+            raise Exception("Cannot update, Mouse Action is empty")
+
+
     def delete(self, process):
         if process is not None:
             self.db.remove(process.toJSON())

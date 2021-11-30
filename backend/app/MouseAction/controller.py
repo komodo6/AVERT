@@ -15,8 +15,7 @@ def index():
     return json.dumps(all_mouseactions)
 
 
-
-@bp.route('/mouseaction', methods=['POST'])
+@bp.route('/tags', methods=['POST'])
 def update_mouseaction_tag():
     id = request.get_json()["id"] if "id" in request.get_json() else None
     if id:
@@ -27,6 +26,20 @@ def update_mouseaction_tag():
             return "Updated", 200
         else:
             return "Missings tags", 400
+
+    return "Missings id", 400
+
+@bp.route('/annotations', methods=['POST'])
+def update_annotation():
+    id = request.get_json()["id"] if "id" in request.get_json() else None
+    if id:
+        annotation = request.get_json(
+        )["annotation"] if "annotation" in request.get_json() else None
+        if annotation is not None:
+            ma.update_annotation(id, annotation)
+            return "Updated", 200
+        else:
+            return "Missings annotation", 400
 
     return "Missings id", 400
 
@@ -53,7 +66,6 @@ def get_mouseaction_timeline():
     r = {'r_times':r_times, 'r_intervals':r_intervals}
 
     return json.dumps(r), 200
-
 
 @bp.route('/count', methods=['GET'])
 def get_count_mouseactions():

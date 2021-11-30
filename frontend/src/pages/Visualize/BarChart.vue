@@ -16,13 +16,13 @@ import { onMounted, ref } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import avertStore from "src/avertStore";
 import {
-  fetchKeystrokes,
-  fetchMouseActions,
-  fetchScreenshots,
-  fetchProcesses,
-  fetchWindowHistory,
-  fetchSystemCalls,
-  fetchVideos,
+  fetchKeystrokesCount,
+  fetchMouseActionsCount,
+  fetchScreenshotsCount,
+  fetchProcessesCount,
+  fetchWindowHistoryCount,
+  fetchSystemCallsCount,
+  fetchVideosCount,
 } from "src/utils/request.js";
 import { chartOptions } from "./barchartoption";
 import axios from 'axios'
@@ -31,6 +31,7 @@ export default {
   components: {
     apexchart: VueApexCharts,
   },
+<<<<<<< HEAD
   async created() {
     // let series = ref([]);
     console.log( 'Chart Options: ' + JSON.stringify(chartOptions))
@@ -56,6 +57,19 @@ export default {
     // console.log(vi.data)
     // await fetchVideos();
       this.series = [
+=======
+  setup() {
+    let series = ref([]);
+    fetchKeystrokesCount();
+    fetchMouseActionsCount();
+    fetchScreenshotsCount();
+    fetchProcessesCount();
+    fetchWindowHistoryCount();
+    fetchSystemCallsCount();
+    fetchVideosCount();
+    onMounted(() => {
+      series.value = [
+>>>>>>> develop
         {
           name: "BarChart",
           data: [
