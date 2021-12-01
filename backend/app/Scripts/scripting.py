@@ -6,7 +6,7 @@ from pynput.mouse import Listener, Button, Controller
 import pymongo
 from operator import itemgetter
 
-client = pymongo.MongoClient(host="54.215.46.201", port=27017)
+client = pymongo.MongoClient('mongodb://root:p%40ss4now@128.199.10.49:27017')
 db = client.AVERT
 def make_script(start_range, end_range):
     try:

@@ -18,6 +18,19 @@ class ProcessDAO:
         else:
             return self.db.find({"id": process_id}, {'_id': False})
 
+    def read_time_interval(self, end_range):
+        print('end_range in read interval',end_range.strftime("%Y-%m-%d %H:%M:%S.%f")) #TODO: Delete 
+        range = {
+            "timestamp":{
+                "$lt": end_range.strftime("%Y-%m-%d %H:%M:%S.%f")   
+            }
+        }
+        process_list = []
+        ps = self.db.find(range)
+        for doc in ps:
+            process_list = process_list + [doc]
+        return process_list
+
     def update(self, process):
         if process is not None:
             query = {'proc_pid': process.toJSON()['proc_pid']}

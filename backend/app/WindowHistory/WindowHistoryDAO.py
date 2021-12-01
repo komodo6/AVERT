@@ -17,6 +17,19 @@ class WindowHistoryDAO:
         else:
             return self.db.find({"id": wh_id}, {'_id': False})
 
+    def read_time_interval(self, end_range):
+        print('end_range in read interval',end_range.strftime("%Y-%m-%d %H:%M:%S.%f")) #TODO: Delete 
+        range = {
+            "timestamp":{
+                "$lt": end_range.strftime("%Y-%m-%d %H:%M:%S.%f")   
+            }
+        }
+        windowhistory_list = []
+        wh = self.db.find(range)
+        for doc in wh:
+            windowhistory_list = windowhistory_list + [doc]
+        return windowhistory_list
+
     def update(self, wh):
         if wh is not None:
             self.db.save(wh.toJSON())

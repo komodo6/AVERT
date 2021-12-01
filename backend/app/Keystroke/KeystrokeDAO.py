@@ -18,6 +18,19 @@ class KeystrokeDAO:
         else:
             return self.db.find({"id": keystroke_id}, {'_id': False})
 
+    def read_time_interval(self, end_range):
+        print('end_range in read interval',end_range.strftime("%Y-%m-%d %H:%M:%S.%f")) #TODO: Delete 
+        range = {
+            "timestamp":{
+                "$lt": end_range.strftime("%Y-%m-%d %H:%M:%S.%f")   
+            }
+        }
+        ks_list = []
+        ks = self.db.find(range)
+        for doc in ks:
+            ks_list = ks_list + [doc]
+        return ks_list
+
     def get_count(self):
         print(self.db.count())
         return self.db.count()

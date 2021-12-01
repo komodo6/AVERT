@@ -172,6 +172,21 @@
             </router-link>
           </q-item-section>
         </q-item>
+
+        <q-item :clickable="false">
+          <q-item-section>
+            <router-link to="/scripts">
+              <q-btn
+                style="width: 200px"
+                icon="receipt"
+                label="scripts"
+                color="grey-9 q-mx-sm"
+                push
+              />
+            </router-link>
+          </q-item-section>
+        </q-item>
+
       </q-list>
     </q-drawer>
 

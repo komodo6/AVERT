@@ -42,13 +42,13 @@
                     <div class="col-4">
                       <div clas="start-date">
                         <label> Start Date</label>
-                        <input type="datetime-local" />
+                        <input v-model="startTime" type="datetime-local" step="0.001" />
                       </div>
                     </div>
                     <div class="col-4">
                       <div clas="end-date">
                         <label> End Date</label>
-                        <input type="datetime-local" />
+                        <input v-model="endTime" type="datetime-local" step="0.001"/>
                       </div>
                     </div>
                   </div>
@@ -97,7 +97,7 @@
                     
                     </div>
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-2">
                       <div class="q-pa-md">
                         <div class="q-gutter-sm">
@@ -131,8 +131,8 @@
                         </div>
                       </div>   
                     </div>
-                  </div>
-                  </div>
+                  </div> -->
+                  <!-- </div> -->
                   </div>
                   <div class="row">
                     <div class="col-5">
@@ -145,7 +145,7 @@
               </div>
             </q-form>
             <div v-if="graphToShow === 'Timeline' ">
-              <TimeLine/>
+              <TimeLine :startTime="startTime" :endTime="endTime" :selectedArtifacts="selection"/>
             </div>
             <div v-if="graphToShow === 'Bar Graph'">
               <BarChart/>
@@ -168,14 +168,9 @@ export default {
     BarChart
   },
   data() {
-    
-    // let sa = ref(false);
-    // let sc = ref(false);
-    // let mm = ref(false);
-    // let wh = ref(false);
-    // let pc = ref(false);
-    // let ks = ref(false);
     return {
+      startTime: '2021-11-23 02:12:36.200',
+      endTime: '2021-11-23 02:12:37.100',
       graphToShow: ref(''),
       model: ref(null),
       options: [ 'Bar Graph', 'Timeline'],
@@ -199,7 +194,8 @@ export default {
 
   methods:{
     selectAll(){
-      this.selection = this.optionsa;},
+      this.selection = this.optionsa;
+      },
 
     unselectAll(){
       this.selection = []

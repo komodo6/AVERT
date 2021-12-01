@@ -18,6 +18,19 @@ class VideoDAO:
     def read_all(self):
         return self.db.find({}, {'_id': False})
 
+    def read_time_interval(self, end_range):
+        print('end_range in read interval',end_range.strftime("%Y-%m-%d %H:%M:%S.%f")) #TODO: Delete 
+        range = {
+            "timestamp":{
+                "$lt": end_range.strftime("%Y-%m-%d %H:%M:%S.%f")   
+            }
+        }
+        video_list = []
+        v = self.db.find(range)
+        for doc in v:
+            video_list = video_list + [doc]
+        return video_list
+
     def update(self, video):
         if video is not None:
             self.db.save(video.toJSON())

@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 import json
 from . import KeystrokeDAO
+import datetime
 bp = Blueprint('keystrokes', __name__, url_prefix='/keystrokes')
 
 ks = KeystrokeDAO.KeystrokeDAO()
@@ -57,5 +58,43 @@ def update_annotation():
             return "Missings annotation", 400
 
     return "Missings id", 400
+
+
+@bp.route('/timeline', methods=['POST'])
+def get_keystrokes_timeline():
+    time_range = request.get_json()
+
+    print(time_range['start']) # TODO:Delete
+    print(time_range['end'])
+    start_date = datetime.datetime.strptime(time_range['start'],"%Y-%m-%d %H:%M:%S.%f")
+    end_date = datetime.datetime.strptime(time_range['end'],"%Y-%m-%d %H:%M:%S.%f")
+    increment = datetime.timedelta(milliseconds=100)
+    r_times = []
+    r_intervals = []
+
+    while start_date <= end_date:
+        r_times = r_times + [start_date.strftime("%Y-%m-%d %H:%M:%S.%f")]
+        r_intervals = r_intervals + [len(ks.read_time_interval(start_date))]
+        start_date =  start_date + increment
+
+    print(r_times)
+    print(r_intervals)
+    r = {'r_times':r_times, 'r_intervals':r_intervals}
+          
+
+    
+    
+
+    # id = request.get_json()["id"] if "id" in request.get_json() else None
+    # if id:
+    #     tags = request.get_json(
+    #     )["tags"] if "tags" in request.get_json() else None
+    #     if tags is not None:
+    #         ma.update_tag(id, tags)
+    #         return "Updated", 200
+    #     else:
+    #         return "Missings tags", 400
+
+    return json.dumps(r), 200
 
 

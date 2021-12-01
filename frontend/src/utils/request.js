@@ -8,10 +8,23 @@ export const fetchKeystrokes = async () => {
 };
 
 export const fetchMouseActions = async () => {
-  await api.get("/mouseactions").then((response) => {
-    avertStore.state.mouseactions = response.data;
-  });
-};
+    await api.get('/mouseactions').then((response) => {
+        console.log(response.data)
+        avertStore.state.mouseactions = response.data 
+    })
+}
+
+export const fetchMouseActionsTimeline = async () =>{
+    await api.post("http://localhost:5000/mouseactions/timeline", {
+        start: 'start',
+        end: 'end',
+      }).then((response) => {
+          console.log(response)
+          avertStore.state.mouseActionsTimeline = response.data
+      });
+}
+
+
 
 export const fetchScreenshots = async () => {
   await api.get("/screenshots").then((response) => {
@@ -43,12 +56,12 @@ export const fetchVideos = async () => {
   });
 };
 
-export const fetchMouseActionsTimeline = async () => {
-  await api.post("/mouseactions/timeline", {
-    start: "start",
-    end: "end",
-  });
-};
+// export const fetchMouseActionsTimeline = async () => {
+//   await api.post("/mouseactions/timeline", {
+//     start: "start",
+//     end: "end",
+//   });
+// };
 
 export const fetchKeystrokesCount = async () => {
   await api.get("/keystrokes/count").then((response) => {
