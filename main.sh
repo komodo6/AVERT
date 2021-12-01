@@ -7,7 +7,13 @@ echo "Installing Mongo"
 ./MongoInstall.sh
 
 echo "Running app in dev"
-cd ../frontend
+cd ../frontend/
 npm run dev:electron
+
+echo "Creating Folders"
+cd ../backend/app/
+mkdir temps/
+cd Video/
+mkdir videos/
 
 echo "Complete
