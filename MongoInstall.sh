@@ -1,10 +1,10 @@
 set -e
 
 echo "Installing repo"
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+sudo apt-get install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 
-echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" > /etc/apt/sources.list.d/mongodb-org-3.2.list
-
+echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
 echo "Installing binaries"
 sudo apt-get update

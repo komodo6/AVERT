@@ -4,6 +4,9 @@ set -e
 echo "Installing dependencies"
 ./DepInstall.sh
 
+echo "Installing Node"
+./NodeInstall.sh
+
 echo "Installing Mongo"
 ./MongoInstall.sh
 
