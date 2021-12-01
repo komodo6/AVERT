@@ -156,12 +156,12 @@
           avertStore.state.keystrokesCount,
           avertStore.state.systemcallsCount,
           avertStore.state.processesCount,
-          avertStore.state.mouseactionsCount / 10,
-          0,
+          avertStore.state.mouseactionsCount,
+          avertStore.state.networkdataCount,
           avertStore.state.screenshotsCount,
           avertStore.state.windowhistoryCount,
           avertStore.state.videosCount,
-          1000,
+          600,
         ]"
       ></apexcharts>
     </div>
@@ -179,6 +179,7 @@ import {
   fetchWindowHistoryCount,
   fetchSystemCallsCount,
   fetchVideosCount,
+  fetchPacketCount,
 } from "src/utils/request.js";
 import avertStore from "src/avertStore";
 
@@ -192,6 +193,7 @@ export default {
       chart: {
         width: 550,
         type: "pie",
+        foreColor: '#fff',
       },
       labels: [
         "Keystrokes",
@@ -246,6 +248,7 @@ export default {
       fetchWindowHistoryCount();
       fetchSystemCallsCount();
       fetchVideosCount();
+      fetchPacketCount();
       console.log("onMounted");
     });
 
