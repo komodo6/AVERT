@@ -253,7 +253,7 @@ export default {
     });
 
     const toggleAll = async () => {
-      if (this.all) {
+      if (all.value) {
         items.value.forEach((element) => {
           element.active = true;
         });

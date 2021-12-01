@@ -199,10 +199,11 @@ export default {
           curve: "straight",
         },
         tooltip:{
-          enabled:false,
+          enabled:true,
+          style: {color: '#00ff00'},
           autoTextColor:false,
           label:{
-            fill: '#ffffff'
+            fill: 'red'
           }
         },
         title: {
