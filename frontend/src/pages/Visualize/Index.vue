@@ -145,7 +145,7 @@
               </div>
             </q-form>
             <div v-if="graphToShow === 'Timeline' ">
-              <TimeLine :startTime="startTime" :endTime="endTime"/>
+              <TimeLine :startTime="startTime" :endTime="endTime" :selectedArtifacts="selection"/>
             </div>
             <div v-if="graphToShow === 'Bar Graph'">
               <BarChart/>
@@ -194,7 +194,8 @@ export default {
 
   methods:{
     selectAll(){
-      this.selection = this.optionsa;},
+      this.selection = this.optionsa;
+      },
 
     unselectAll(){
       this.selection = []

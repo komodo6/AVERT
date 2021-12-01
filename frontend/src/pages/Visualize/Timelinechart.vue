@@ -29,100 +29,181 @@ import axios from 'axios';
 
 export default {
   name: "TimeLine",
-  props:['startTime','endTime'],
+  props:['startTime','endTime','selectedArtifacts'],
   components: {
     apexchart: VueApexCharts,
   },
   async created(){
-    console.log(this.$props.startTime )
-    console.log(this.$props.endTime )
-    // console.log(props.startTime)
+    var selectedArtifacts = []
+    
+    var startTime = "";
+    var endTime = "";
+    startTime = this.$props.startTime.replace('T',' ')
+    endTime = this.$props.endTime.replace('T',' ')
+    console.log('startTime: ' + startTime )
+    console.log('endTime: ' + endTime )
+
+
+    
+
     const maTimeline = await axios.post("http://localhost:5000/mouseactions/timeline", {
-      start: this.$props.startTime,
-      end: this.$props.endTime,
+      start: startTime,
+      end: endTime,
     })
 
     const ksTimeline = await axios.post("http://localhost:5000/keystrokes/timeline", {
-      start: this.$props.startTime,
-      end: this.$props.endTime,
+      start: startTime,
+      end: endTime,
     })
 
     const psTimeline = await axios.post("http://localhost:5000/processes/timeline", {
-      start: this.$props.startTime,
-      end: this.$props.endTime,
+      start: startTime,
+      end: endTime,
     })
 
     const whTimeline = await axios.post("http://localhost:5000/windows/timeline", {
-      start: this.$props.startTime,
-      end: this.$props.endTime,
+      start: startTime,
+      end: endTime,
     })
 
     const scTimeline = await axios.post("http://localhost:5000/screenshots/timeline", {
-      start: this.$props.startTime,
-      end: this.$props.endTime,
+      start: startTime,
+      end: endTime,
     })
 
     const vTimeline = await axios.post("http://localhost:5000/videos/timeline", {
-      start: this.$props.startTime,
-      end: this.$props.endTime,
+      start: startTime,
+      end: endTime,
     })
 
+
+    this.$props.selectedArtifacts.forEach(item =>{
+      if(item === "mouseActions"){
+        selectedArtifacts.push({
+          name: "Mouse Action",
+          data: maTimeline['data']['r_intervals'],
+        })
+      }
+      if(item === "keyStrokes"){
+        selectedArtifacts.push(
+        {
+          name: "Keystrokes",
+          data: ksTimeline['data']['r_intervals']
+        }
+        )
+      }
+      if(item === "processes"){
+        selectedArtifacts.push(
+        {
+          name: "Process",
+          data: psTimeline['data']['r_intervals']
+        }
+        )
+      }
+      if(item === "windowHistory"){
+        selectedArtifacts.push(
+        {
+          name: "Window History",
+          data: whTimeline['data']['r_intervals']
+        }
+        )
+      }
+      if (item === "networkData" ){
+        selectedArtifacts.push(
+        {
+          name: "Network",
+          data: [0]
+        }
+        )
+      }
+      if (item === "screenShots" ){
+        selectedArtifacts.push(
+        {
+          name: "Screen Shots",
+          data: vTimeline['data']['r_intervals']
+        }
+        )
+      }
+      if (item === "videos" ){
+        selectedArtifacts.push(
+        {
+          name: "Videos",
+          data: vTimeline['data']['r_intervals']
+        }
+        )
+      }
+
+        
+
+
+    });
 
   
     console.log('maTimeline' + JSON.stringify(maTimeline) )
     console.log(maTimeline['data']['r_intervals'])
 
+    // this.series= [
+    //     {
+    //       name: "Mouse Action",
+    //       data: maTimeline['data']['r_intervals'],
+    //     },
+    //     {
+    //       name: "Keystrokes",
+    //       data: ksTimeline['data']['r_intervals']
+    //     },
+    //     {
+    //       name: "Process",
+    //       data: psTimeline['data']['r_intervals']
+    //     },
+    //     {
+    //       name: "Window History",
+    //       data: whTimeline['data']['r_intervals']
+    //     },
+    //     {
+    //       name: "Network",
+    //       data: [0]
+    //     }
+    //     ,
+    //     {
+    //       name: "Screen Shots",
+    //       data: scTimeline['data']['r_intervals']
+    //     }
+    //     ,
+    //     {
+    //       name: "Videos",
+    //       data: vTimeline['data']['r_intervals']
+    //     }
+    //   ];
 
 
-
-    this.series= [
-        {
-          name: "Mouse Action",
-          data: maTimeline['data']['r_intervals'],
-        },
-        {
-          name: "Keystrokes",
-          data: ksTimeline['data']['r_intervals']
-        },
-        {
-          name: "Process",
-          data: psTimeline['data']['r_intervals']
-        },
-        {
-          name: "Window History",
-          data: whTimeline['data']['r_intervals']
-        },
-        {
-          name: "Network",
-          data: [0]
-        }
-        ,
-        {
-          name: "Screen Shots",
-          data: scTimeline['data']['r_intervals']
-        }
-        ,
-        {
-          name: "Screen Shots",
-          data: vTimeline['data']['r_intervals']
-        }
-      ];
-
+   this.series = selectedArtifacts;
 
     this.chartOptions = {
         chart: {
+          // background: '#fff',
+          fill: '#000',
+          foreColor: '#fff',
           height: 350,
           type: "line",
           zoom: {
-            enabled: false,
+            enabled: true,
           },
           animations: {
-            enabled: true,
+            background:'#fff',
+            enabled: false,
+          
           },
         },
         stroke: {
           width: [5, 5, 4],
           curve: "straight",
+        },
+        tooltip:{
+          enabled:false,
+          autoTextColor:false,
+          label:{
+            fill: '#ffffff'
+          }
         },
         title: {
           text: "Timeline",
