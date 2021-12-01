@@ -4,7 +4,7 @@ set -e
 # Run this script like - bash script-name.sh
 
 # Define versions
-INSTALL_NODE_VER=10
+INSTALL_NODE_VER=14
 INSTALL_NVM_VER=0.33.11
 INSTALL_YARN_VER=1.7.0
 
@@ -57,9 +57,3 @@ echo "==> Print binary paths"
 which npm
 which node
 which yarn
-
-echo "==> List installed node versions"
-nvm ls
-
-nvm cache clear
-echo "==> Now you're all setup and ready for development. If changes are yet totake effect, I suggest you restart your computer"

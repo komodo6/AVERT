@@ -4,7 +4,7 @@ import {PythonShell} from 'python-shell';
 import path from "path";
 
 let options = {
-  scriptPath: '../../backend/',
+  scriptPath: '/usr/src/backend/',
 };
 
 let pyshell = new PythonShell('app.py', options);

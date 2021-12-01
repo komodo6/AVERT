@@ -9,12 +9,12 @@ echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main" | sudo
 echo "Installing binaries"
 sudo apt-get update
 sudo apt-get install -y mongodb-org
-service mongod stop
+sudo service mongod stop
 
 
 echo "Setting up default settings"
-rm -rf /var/lib/mongodb/*
-cat > /etc/mongod.conf <<'EOF'
+sudo rm -rf /var/lib/mongodb/*
+sudo cat > sudo /etc/mongod.conf <<'EOF'
 storage:
   dbPath: /var/lib/mongodb
   directoryPerDB: true
@@ -41,7 +41,7 @@ security:
 
 EOF
 
-service mongod start
+sudo service mongod start
 sleep 5
 
 mongo admin <<'EOF'
@@ -70,4 +70,4 @@ db.createUser(user);
 exit
 EOF
 
-echo "Complete
+echo "Complete"
