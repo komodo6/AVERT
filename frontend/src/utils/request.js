@@ -98,6 +98,15 @@ export const fetchVideosCount = async () => {
   });
 };
 
+export const fetchPacketCount = async () => {
+  await api.get("/networkdata/count").then((response) => {
+    console.log(response.data);
+    avertStore.state.networkdataCount = response.data;
+  });
+};
+
+
+
 export const updateAnnotations = async (val, id, artifact) => {
   await api.post(`/${artifact}s/annotations`, {
     id: id,

@@ -12,6 +12,9 @@ class PacketCaptureDAO():
         self.nd = db.NetworkData
         self.np = db.NetworkPackets
 
+    def get_count(self):
+        print(self.np.count())
+        return self.np.count()
 
     def createPCAP(self, networkdata):
         pcapPath = os.path.join(current_dir, f"../pcaps/{networkdata.pcapfile}")
@@ -46,3 +49,5 @@ class PacketCaptureDAO():
     
     def getPacketsBYID(self, id):
         return list(self.np.find({"_id": id}))
+
+    

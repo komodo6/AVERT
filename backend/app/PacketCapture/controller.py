@@ -53,4 +53,15 @@ def stopPacketCapture():
 @bp.route("/health")
 def health_check():
     return "ok", 200
+
+@bp.route('/count', methods=['GET'])
+def get_count_packets():
+    try:
+        count = dao.get_count()
+        print(count)
+        return json.dumps(count)
+        # return list(ks.read())
+    except Exception as e:
+        print(e)
+        return 'error'    
     
