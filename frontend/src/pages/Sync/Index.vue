@@ -17,6 +17,9 @@
         <q-toggle color="primary" v-model="all" v-on:click="toggleAll()" />
       </div>
     </div>
+    <div class="row q-pt-sm">
+        <q-linear-progress :value="progress" :buffer="buffer" />
+    </div>
   </div>
 </template>
 <script>
@@ -47,8 +50,29 @@ export default {
         });
       }
     };
+    const progress = ref(0.01)
+    const buffer = ref(0.01)
+    let interval, bufferInterval
 
     const sync = async () => {
+      interval = setInterval(() => {
+        if (progress.value >= 1) {
+          progress.value = 0.01
+          buffer.value = 0.01
+          clearInterval(interval)
+          clearInterval(bufferInterval)
+          return
+        }
+
+        progress.value = Math.min(1, buffer.value, progress.value + 0.1)
+      }, 700 + Math.random() * 1000)
+
+      bufferInterval = setInterval(() => {
+        if (buffer.value < 1) {
+          buffer.value = Math.min(1, buffer.value + Math.random() * 0.2)
+        }
+      }, 700)
+
       let collections = [];
       for (const i of items.value) {
         if (i.active && i.label != "PCAP") {
@@ -68,12 +92,15 @@ export default {
       );
       console.log(response);
     };
+    
     return {
       items,
       toggleAll,
       all,
       sync,
       ip,
+      progress,
+      buffer
     };
   },
 };
