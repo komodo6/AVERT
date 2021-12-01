@@ -25,6 +25,7 @@
     "fs": "0.0.1-security",
     "json-tree-view": "^0.4.12",
     "path": "^0.12.7",
+    "python-shell": "^3.0.1",
     "quasar": "^2.1.7",
     "vue3-apexcharts": "^1.4.1",
     "vuex": "^4.0.1"
