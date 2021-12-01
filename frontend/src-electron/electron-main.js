@@ -1,6 +1,13 @@
 import { app, BrowserWindow, nativeTheme } from "electron";
 import { initialize, enable } from "@electron/remote/main";
+import {PythonShell} from 'python-shell';
 import path from "path";
+
+let options = {
+  scriptPath: '../../backend/',
+};
+
+let pyshell = new PythonShell('app.py', options);
 
 initialize();
 
@@ -16,6 +23,11 @@ try {
 } catch (_) {}
 
 let mainWindow;
+
+pyshell.on('message', function (message) {
+  // received a message sent from the Python script (a simple "print" statement)
+  console.log(message);
+});
 
 function createWindow() {
   /**
